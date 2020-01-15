@@ -1,0 +1,63 @@
+---
+title: "Lab 06 - Two-sample Tests"
+author: "Bruno Grande"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Learning Objectives
+
+
+
+## Introduction
+
+### Dataset
+
+
+
+### Analysis Goal
+
+
+
+### Resources
+
+#### Links
+
+
+
+#### References
+
+
+
+## Analysis
+
+### Load packages
+
+
+
+### Load data
+
+
+
+### Tidy data
+
+
+
+### Explore data
+
+
+
+### Analyze data
+
+
+
+### Conclusions
+
+
+
+## Homework Assignment
+
+
+
+## Session Info
+
