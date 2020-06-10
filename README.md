@@ -1,10 +1,19 @@
 # MBB 343: Data Science Laboratory for MBB
 
+These materials are designed for an elective 2-credit course in the Department of Molecular Biology and Biochemistry (MBB) at Simon Fraser University. This course is intended to accompany the lecture-based STAT 320 (Introduction to Data Science for the Life Sciences), a 2-unit course that will introduce life sciences students to data science. The examples in this lab course will be geared towards MBB students with an emphasis on molecular biology and genomic data. The expected enrollment is around 30 students.
+
+Together, STAT 320 and MBB 343 will provide a gentle introduction to important tools in data science and will be tailored to students with no prior programming experience. The curriculum in this laboratory course will provide life sciences students with an opportunity to learn R, the most popular statistical programming language, which is commonly used for data science. During the STAT 320 lectures, students will learn theoretical and practical aspects of statistics that are directly relevant to this course. In addition, each 3-hour lab will begin with a 1-hour lecture that will provide more specific context on the topic and data being analyzed that week. These lectures will bridge the concepts taught in STAT 320 with relevant applications to biological data for students with a basic molecular biology background (MBB 222). Most weeks, students will take a quiz at the beginning of the lab to reinforce their understanding of the preparatory material. 
+
+Initially, we will require that STAT 320 and MBB 343 be taken concurrently. However, we will encourage life sciences departments to develop their own discipline-specific laboratory courses that could substitute for MBB 343. This approach is consistent with the model created by Statistics and Actuarial Science for the first introductory data science courses for non-Statistics majors (STAT 310 and STAT 311).
+
+- **Prerequisites:** MBB 222 and one of STAT 201, STAT 203, STAT 205, or STAT 270 with a grade of at least C- or permission of the instructor. 
+- **Corequisite:** STAT 320
+
 ## Lab 01
 
 ### Motivation
 
-In this lesson, you will learn how to effectively use the RStudio text editor, which will become your primary tool for writing R code in the rest of this lab course. You will be able to customize this tool to your liking and discover features that will increase your productivity. You will also learn the fundamental concept of the file system, which you will use every time you read and write a file. Tools such as RStudio and R packages will simplify the complexity of the file system. Lastly, you will learn about the incredible repositories of R packages that you can leverage in your analyses, namely the Comprehensive R Archive Network (CRAN) and Bioconductor. This lesson creates the foundation required for becoming an R user and data scientist.
+In this lesson, you will learn how to effectively use the RStudio text editor, which will become your primary tool for writing R code in this lab course. You will be able to customize this tool to your liking and discover features that will increase your productivity. You will also learn the fundamental concept of the file system, which you will use every time you read and write a file. Tools such as RStudio and R packages will simplify the complexity of the file system. Lastly, you will learn about the incredible repositories of R packages that you can leverage in your analyses, namely the Comprehensive R Archive Network (CRAN) and Bioconductor. This lesson creates the foundation required for becoming an R user and data scientist.
 
 ### Concepts/Glossary
 
@@ -12,7 +21,6 @@ In this lesson, you will learn how to effectively use the RStudio text editor, w
 - RStudio
 - Text editor (vs word processor)
 - Reproducibility
-- Package
 - File system
 - File path (absolute vs relative)
 - Working directory
@@ -20,6 +28,7 @@ In this lesson, you will learn how to effectively use the RStudio text editor, w
 - Console
 - Run/Source
 - RStudio projects
+- Package
 - CRAN
 - Bioconductor
 
