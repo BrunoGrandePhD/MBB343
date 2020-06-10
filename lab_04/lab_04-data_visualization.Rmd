@@ -7,58 +7,32 @@ output: html_document
 
 ## Learning Objectives
 
-
-
 ## Introduction
 
 ### Dataset
 
-
-
 ### Analysis Goal
-
-
 
 ### Resources
 
 #### Links
 
-[Creating Publication-Quality Graphics with ggplot2](https://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/index.html) by Software Carpentry
-
-
 #### References
-
-
 
 ## Analysis
 
 ### Load packages
 
-
-
 ### Load data
-
-
 
 ### Tidy data
 
-
-
 ### Explore data
-
-
 
 ### Analyze data
 
-
-
 ### Conclusions
-
-
 
 ## Homework Assignment
 
-
-
 ## Session Info
-

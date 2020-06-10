@@ -7,58 +7,32 @@ output: html_document
 
 ## Learning Objectives
 
-
-
 ## Introduction
 
 ### Dataset
 
-
-
 ### Analysis Goal
-
-
 
 ### Resources
 
 #### Links
 
-[Introduction to R and RStudio](https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/index.html) by Software Carpentry
-
 #### References
-
-
 
 ## Analysis
 
 ### Load packages
 
-
-
 ### Load data
-
-
 
 ### Tidy data
 
-
-
 ### Explore data
-
-
 
 ### Analyze data
 
-
-
 ### Conclusions
-
-
 
 ## Homework Assignment
 
-
-
 ## Session Info
-
-
