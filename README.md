@@ -1,6 +1,8 @@
 # MBB 343: Data Science Laboratory for MBB
 
-### Course Overview
+## Course Overview
+
+### Summary
 
 These materials are designed for an elective 2-credit course in the Department of Molecular Biology and Biochemistry (MBB) at Simon Fraser University. This course is intended to accompany the lecture-based STAT 320 (Introduction to Data Science for the Life Sciences), a 2-unit course that will introduce life sciences students to data science. The examples in this lab course will be geared towards MBB students with an emphasis on molecular biology and genomic data. The expected enrollment is around 30 students.
 
@@ -361,6 +363,10 @@ No data will be used in this lab.
 - Intercept
 - Regression coefficient
 - Model prediction
+- Formula
+- Fitted values
+- Residuals
+- Quantile-quantile plot
 
 ### Learning Objectives
 
@@ -368,7 +374,8 @@ No data will be used in this lab.
   - List assumptions made for linear regression
   - Visualize simple linear regression using the `ggplot` package
   - Identify outliers and decide whether to exclude them
-  - Fit a linear model to a dataset using `lm()`
+  - Fit a linear model with continuous variables using `lm()`
+  - Fit a linear model with dummy variables using `lm()`
   - Interpret diagnostic plots from a simple linear regression model
   - Calculate P-values from a linear model using `summary()`
   - Compare and evaluate linear models
@@ -386,13 +393,27 @@ No data will be used in this lab.
 
 ### Concepts/Glossary
 
-- To be completed.
+- Interaction terms
+- Dummy variable
+- Model selection
+- Akaike information criterion
+- Overfitting
+- Collinearity
+- Bias-variance trade-off
+- Non-linearity
+- Correlation of error terms
+- Heteroskedasticity
+- Leverage
+- Loading
+- Biplot
+- Scaling
+- Scree plot
 
 ### Learning Objectives
 
 - Perform multiple linear regression in R
   - Differentiate between simple and multiple linear models
-  - Fit a multiple linear regression model to a dataset using `lm()`
+  - Fit a multiple linear regression model using `lm()`
   - Interpret diagnostic plots from a multiple linear regression model
   - Interpret coefficients of linear models
   - Predict values using linear models
@@ -412,12 +433,20 @@ No data will be used in this lab.
 
 - https://www.geeksforgeeks.org/principal-component-analysis-with-r-programming/
 - https://microbiome.github.io/tutorials/Ordination.html
+- https://pubmed.ncbi.nlm.nih.gov/26650184/
 
 ## Lab 10
 
 ### Concepts/Glossary
 
-- To be completed.
+- Accuracy
+- Sensitivity
+- Specificity
+- Precision
+- Recall
+- Regularization
+- Variable selection
+- Lasso
 
 ### Learning Objectives
 
@@ -436,16 +465,22 @@ No data will be used in this lab.
 
 - https://github.com/cloucks/dopamine_habituation/blob/master/bin/habituation_probability_plotNstats_CL.R
 
-## Lab 11 - Wisdom of the Forest
+## Lab 11: Wisdom of the Forest
 
 ### Concepts/Glossary
 
-- To be completed.
+- Hyperparameter
+- Decision tree
+- Bagging
+- Variable importance
+- Training data
+- Test data
+- Cross-validation
 
 ### Learning Objectives
 
 - Perform random forest classification in R
-  - Train a random forest model using `randomForest`
+  - Train a random forest model using the `randomForest` package
   - Optimize hyperparameters of a random forest model
   - Evaluate random forest models
   - Compare performance between random forest and logistic regression (with and without lasso regularization)
@@ -462,11 +497,20 @@ No data will be used in this lab.
 - https://rstudio-pubs-static.s3.amazonaws.com/300604_3da1e726964d47a794d3323ffb41264d.html#random-forests
 - https://uc-r.github.io/random_forests
 
-## Lab 12 - Putting things in buckets
+## Lab 12: Putting Things in Buckets
 
 ### Concepts/Glossary
 
-- To be completed.
+- Dendrogram
+- Heatmap
+- Distance metric
+- Euclidean distance
+- Consensus clustering
+- Stability
+- Agglomerative clustering
+- Bottom-up clustering
+- Linkage
+- Dendrogram cutting
 
 ### Learning Objectives
 
@@ -489,8 +533,7 @@ No data will be used in this lab.
 - http://www.science.smith.edu/~jcrouser/SDS293/labs/lab16-r.html
 - https://uc-r.github.io/hc_clustering
 
-
-## Lab 13 - Describe data with different and (much) fewer perspectives.
+## Lab 13: Describe Data with Different and (Much) Fewer Perspectives
 
 ### Concepts/Glossary
 
@@ -498,7 +541,7 @@ No data will be used in this lab.
 
 ### Learning Objectives
 
-- Perform linear dimensional reduction using PCA
+- Perform linear dimensional reduction using PCAs
   - Explain why PCA is useful for graph-based clustering and non-linear dimensional reduction
   - Determine the dimensionality of the dataset (optimal number of principal components)
 - Perform graph-based clustering
