@@ -81,7 +81,7 @@ Freely available online: https://r4ds.had.co.nz
 
 No data will be used in this lab.
 
-## Resources
+### Resources
 
 - http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro
 - http://swcarpentry.github.io/r-novice-gapminder/03-seeking-help
@@ -131,7 +131,7 @@ No data will be used in this lab.
 
 - Built-in R datasets (`iris`, `mtcars`)
 
-## Resources
+### Resources
 
 - http://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1
 - http://swcarpentry.github.io/r-novice-gapminder/05-data-structures-part2
@@ -183,7 +183,7 @@ No data will be used in this lab.
 - [Gapminder](https://github.com/jennybc/gapminder/blob/master/inst/extdata/gapminder.tsv)
 - [Snow algae metadata](https://github.com/cengstro/bc_snow_algae_amplicon/blob/master/data/field/tidy_field.csv)
 
-## Resources
+### Resources
 
 - http://swcarpentry.github.io/r-novice-gapminder/13-dplyr
 
@@ -216,7 +216,7 @@ No data will be used in this lab.
 - [Gapminder](https://github.com/jennybc/gapminder/blob/master/inst/extdata/gapminder.tsv)
 - [Snow algae metadata](https://github.com/cengstro/bc_snow_algae_amplicon/blob/master/data/field/tidy_field.csv)
 
-## Resources
+### Resources
 
 - http://swcarpentry.github.io/r-novice-gapminder/13-dplyr
 - http://swcarpentry.github.io/r-novice-gapminder/14-tidyr
@@ -256,7 +256,7 @@ No data will be used in this lab.
 - [Gapminder](https://github.com/jennybc/gapminder/blob/master/inst/extdata/gapminder.tsv)
 - [Snow algae metadata](https://github.com/cengstro/bc_snow_algae_amplicon/blob/master/data/field/tidy_field.csv)
 
-## Resources
+### Resources
 
 - http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2
 
@@ -300,7 +300,7 @@ No data will be used in this lab.
 - [Snow algae microbiome](https://github.com/cengstro/bc_snow_algae_amplicon/blob/master/data/rel_abund/3_filter/18s/18s_rel_abund.csv)
 - [Fluorescence staining](https://elifesciences.org/articles/46315/figures)
 
-## Resources
+### Resources
 
 - https://www.statsandr.com/blog/correlation-coefficient-and-correlation-test-in-r/
 
@@ -341,7 +341,7 @@ No data will be used in this lab.
 
 - A simple albeit naive application of these categorical tests are genome-wide associated studies. Possible datasets would include a salmonid genomic/SNP dataset from the Davidson lab.
 
-## Resources
+### Resources
 
 - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5426219
 - http://varianceexplained.org/statistics/interpreting-pvalue-histogram/
@@ -372,7 +372,7 @@ No data will be used in this lab.
 
 - To be determined.
 
-## Resources
+### Resources
 
 - To be completed
 
@@ -402,7 +402,7 @@ No data will be used in this lab.
 - [AICDA expression](https://doi.org/10.1182/blood-2018-09-871418)
 - A metagenomic dataset could be useful for demonstrating PCA.
 
-## Resources
+### Resources
 
 - https://www.geeksforgeeks.org/principal-component-analysis-with-r-programming/
 - https://microbiome.github.io/tutorials/Ordination.html
@@ -426,7 +426,7 @@ No data will be used in this lab.
 
 - https://elifesciences.org/articles/37271
 
-## Resources
+### Resources
 
 - https://github.com/cloucks/dopamine_habituation/blob/master/bin/habituation_probability_plotNstats_CL.R
 
@@ -450,7 +450,7 @@ No data will be used in this lab.
 - [UCI Heart Disease Data Set](https://archive.ics.uci.edu/ml/datasets/Heart+Disease)
 - [METABRIC expression and mutation dataset](https://www.kaggle.com/raghadalharbi/breast-cancer-gene-expression-profiles-metabric)s
 
-## Resources
+### Resources
 
 - To be completed
 
@@ -476,7 +476,7 @@ No data will be used in this lab.
 - [Pancreatic cancer subgroups](https://www.nature.com/articles/s41467-018-06498-2)
 - [Yersinia distance metrics](https://github.com/WGS-TB/PathOGiST/tree/master/demo/package)
 
-## Resources
+### Resources
 
 - To be completed
 
