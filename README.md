@@ -197,6 +197,7 @@ No data will be used in this lab.
 - Wide vs long format
 - Tidy format
 - List columns
+- Data wrangling
 
 ### Learning Objectives
 
@@ -220,6 +221,7 @@ No data will be used in this lab.
 
 - http://swcarpentry.github.io/r-novice-gapminder/13-dplyr
 - http://swcarpentry.github.io/r-novice-gapminder/14-tidyr
+- http://www-stat.wharton.upenn.edu/~moneyball/module3.html
 
 ## Lab 05: Data Visualization
 
@@ -299,10 +301,13 @@ No data will be used in this lab.
 
 - [Snow algae microbiome](https://github.com/cengstro/bc_snow_algae_amplicon/blob/master/data/rel_abund/3_filter/18s/18s_rel_abund.csv)
 - [Fluorescence staining](https://elifesciences.org/articles/46315/figures)
+- Correlation of DNA and RNA expression
 
 ### Resources
 
 - https://www.statsandr.com/blog/correlation-coefficient-and-correlation-test-in-r/
+- https://online.stat.psu.edu/stat501/lesson/1/1.9
+- https://yury-zablotski.netlify.app/post/multiple-logistic-regression-with-interactions/
 
 ## Lab 07: Categorical Tests and Multiple Hypothesis Testing
 
@@ -374,7 +379,8 @@ No data will be used in this lab.
 
 ### Resources
 
-- To be completed
+- http://www-stat.wharton.upenn.edu/~moneyball/module7.html
+- https://rstudio-pubs-static.s3.amazonaws.com/481001_86a6eab92f6844eeb9b6c370085e874e.html
 
 ## Lab 09
 
@@ -430,7 +436,7 @@ No data will be used in this lab.
 
 - https://github.com/cloucks/dopamine_habituation/blob/master/bin/habituation_probability_plotNstats_CL.R
 
-## Lab 11
+## Lab 11 - Wisdom of the Forest
 
 ### Concepts/Glossary
 
@@ -452,9 +458,11 @@ No data will be used in this lab.
 
 ### Resources
 
-- To be completed
+- https://datascienceplus.com/random-forests-in-r/
+- https://rstudio-pubs-static.s3.amazonaws.com/300604_3da1e726964d47a794d3323ffb41264d.html#random-forests
+- https://uc-r.github.io/random_forests
 
-## Lab 12
+## Lab 12 - Putting things in buckets
 
 ### Concepts/Glossary
 
@@ -478,9 +486,11 @@ No data will be used in this lab.
 
 ### Resources
 
-- To be completed
+- http://www.science.smith.edu/~jcrouser/SDS293/labs/lab16-r.html
+- https://uc-r.github.io/hc_clustering
 
-## Lab 13
+
+## Lab 13 - Describe data with different and (much) fewer perspectives.
 
 ### Concepts/Glossary
 
@@ -508,6 +518,7 @@ No data will be used in this lab.
 
 - https://github.com/kdkorthauer/FestivalWorkshopVignettes/blob/master/SingleCellAnalyses.Rmd
 - https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
+- https://github.com/STAT540-UBC/STAT540-UBC.github.io/blob/master/seminars/seminars_winter_2020/seminar6/sm06_clustering-pca.md
 
 ## Capstone Project
 
