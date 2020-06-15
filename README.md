@@ -68,7 +68,7 @@ Freely available online: https://r4ds.had.co.nz
   - Perform simple arithmetic calculations
   - List arithmetic operators (+, -, \*, /, ^, ()) and their precedence
   - Compare values with logical operators (`==`/`!=`, `<`/`<=`, `>`/`>=`)
-  - Define a variable and retrieve its contents
+  - Define a variable with a valid name and retrieve its contents
   - Differentiate between variables and objects
   - Create sequences of integers using the colon (`:`) notation
   - Describe the structure and behaviour of a function call
@@ -103,6 +103,7 @@ No data will be used in this lab.
 - List
 - Matrix
 - Subsetting
+- 1-based indexing
 - Row/column/element names
 
 ### Learning Objectives
