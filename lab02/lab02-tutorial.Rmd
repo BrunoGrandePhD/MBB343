@@ -1,0 +1,505 @@
+---
+title: "Lab 02 – Data Structures: What Data Looks Like in R"
+output: html_notebook
+---
+
+## Tutorial
+
+### Learning Objectives
+
+- Describe the main vector types (logical, integer, double, character)
+  - Define vectors of length 1 for each type (without the `c()` function)
+  - Define longer vectors using the `c()` function
+  - Explain how vector types are enforced (type coercion)
+  - Determine the type of an existing vector
+  - Explain vectorization in R and why it's powerful
+  - Describe how R recycles values
+  - Differentiate and convert between character vectors and factors
+- Describe higher-level data structures (lists, matrices, data frames)
+  - Provide example use cases for data frames versus matrices
+  - Explain how data frames are related to lists
+  - Examine a data frame using `str()` and `head()`
+  - Differentiate between the output of `typeof()` and `class()`
+- Subset vectors and data structures using the `[` operator
+  - Explain the implications of 1-based indexing in R
+  - Select elements/rows/columns by position or name
+  - Remove elements/rows/columns by position
+  - Subset elements/rows/columns using logical operations or vectors
+  - Differentiate between the `[` and the `[[` subsetting operators
+
+### Context
+
+In the previous tutorial, you learned how to navigate the RStudio interface and ran your first bits of R code. Today, we're going to take a look at what data looks like in R. This tutorial will focus on a particular data structure, the data frame, and its key component, the vector. These data structures are fundamental to data science in R, so pay close attention.
+
+In fact, we don't have much time to lose. A deadly pandemic has struck the planet and we need to act quickly to better understand the virus behind it all. Virologists call it Severe Acute Respiratory Syndrome Coronavirus 2 (SARS-CoV-2), but the public more generally refer to the associated disease, COVID-19. The European Union (EU) has been collecting data on this global outbreak and has asked your team, Pandemic Intelligence (PI), for any insights you can glean from this dataset.
+
+In this tutorial, we will start by exploring the Canadian statistics for the first six months of 2020. The data was originally downloaded from the [EU Open Data Portal](https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data). It was lightly processed and filtered for this tutorial. Note that the last month might not be complete if the data was downloaded mid-month.
+
+### The Data Frame
+
+#### Loading the Data Frame
+
+Let's start by loading our data. We will learn more about this process in a future tutorial. For now, we are going to simply load the data from the Internet and preview it. The `read.csv()` function can take a file path or a URL and returns a data frame. Let's see it in action!
+
+```{r}
+# Load the data frame into R
+covid <- read.csv("data/covid19_cases_canada_monthly.csv",
+                  stringsAsFactors = FALSE)
+
+# Preview the data frame
+covid
+```
+
+```{r}
+class(covid)
+```
+
+A data frame is two-dimensional. In other words, it has rows and columns, just like any table in Excel. However, unlike Excel, data frames in R are strictly rectangular. Every column has the same length, and the same rule applies to rows. This doesn't mean you can't have missing data. Rather, missing data is made explicit with the `NA` value (not seen here) as opposed to being implicit with the absence of data.
+
+#### Exploring the Data Frame
+
+As far as datasets come, this one is a baby, but it's a perfect starting point. From the preview, you can see that the `covid` data frame has six rows and five columns. In R, you can find this out using the `nrow()` and `ncol()` functions, respectively.
+
+```{r}
+# Number of r ows
+nrow(covid)
+
+# Number of columns
+ncol(covid)
+```
+
+```{r}
+summary(covid)
+```
+
+```{r}
+head(covid, 2)
+
+tail(covid, 2)
+```
+
+### The Vector
+
+#### Performing Operations on the Vector
+
+That's enough boring stuff for now. Let's start actually handling the data. The most basic operation you can do with a data frame is extracting a column. There are several ways of doing this, but the simplest is the `$` operator. For example, if we want to extract the `cases` column, which contains the number of new COVID-19 cases during each month in Canada. You can clearly see the rapid increase in cases and eventual plateau once social distancing slowed down the outbreak.
+
+```{r}
+covid$cases
+```
+
+It might be surprising to see the column laid out horizontally. That's because it's no longer considered a column of the data frame after we use the `$` operator. Specifically, columns consist of a data structure known as a vector.
+
+```{r}
+typeof(covid$cases)
+```
+
+vectorization
+
+```{r}
+covid$cases / 1000
+```
+
+```{r}
+covid$cases_1000 <- covid$cases / 1000
+
+covid
+```
+
+```{r}
+paste("Canada had", covid$cases_1000, "thousand cases in", covid$month)
+```
+
+```{r, error=TRUE}
+covid$month + covid$cases_1000
+```
+
+#### Vector Types
+
+type abbreviations
+
+```{r}
+str(covid)
+```
+
+```{r}
+new_vector <- vector(mode = "character", length = 3)
+
+new_vector
+```
+
+```{r}
+typeof(new_vector)
+```
+
+```{r}
+class(new_vector)
+```
+
+```{r}
+str(new_vector)
+```
+
+```{r}
+?vector
+```
+
+Concatenation
+
+```{r}
+lgl_vector <- c(TRUE, FALSE, FALSE)
+
+lgl_vector
+
+typeof(lgl_vector)
+```
+
+```{r}
+int_vector <- c(1L, 5L, 8L)
+
+int_vector
+
+typeof(int_vector)
+```
+
+numeric and double
+
+```{r}
+num_vector <- c(1, 5.8, 101.01)
+
+num_vector
+
+typeof(num_vector)
+```
+
+```{r}
+chr_vector <- c("foo", "bar")
+
+chr_vector
+
+typeof(chr_vector)
+```
+
+#### Type Coercion
+
+Mixing types
+little difference between integer and numeric/double
+
+```{r}
+mixed_vector <- c(FALSE, TRUE)
+mixed_vector
+
+mixed_vector <- c(mixed_vector, 2L)
+mixed_vector
+
+mixed_vector <- c(mixed_vector, 3.0)
+mixed_vector
+
+mixed_vector <- c(mixed_vector, "four")
+mixed_vector
+```
+
+```{r}
+as.numeric(mixed_vector)
+
+as.logical(mixed_vector)
+
+as.logical(as.numeric(mixed_vector))
+```
+
+```{r}
+covid$cases_1000 <- as.integer(covid$cases_1000)
+
+covid
+```
+
+### The Factor
+
+```{r}
+months <- factor(covid$month)
+
+months
+```
+
+Hints at integer nature
+
+```{r}
+class(months)
+str(months)
+```
+
+integer?
+
+```{r}
+typeof(months)
+```
+
+```{r}
+as.character(months)
+
+as.integer(months)
+
+levels(months)
+```
+
+```{r}
+factor(covid$month, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun"))
+```
+
+### The List
+
+```{r}
+list_example <- list(FALSE, TRUE, 2L, 3.0, "four")
+list_example
+```
+
+```{r}
+another_list <- list(title = "Numbers", numbers = 1:10, data = TRUE)
+another_list
+```
+
+Same syntax as data frame. That's because data frames are where each column (vector or factor) has the same length
+
+```{r}
+another_list$numbers
+```
+
+```{r}
+typeof(covid)
+```
+
+### The Matrix
+
+```{r}
+matrix_example <- matrix(1:24, ncol=6, nrow=4)
+matrix_example
+```
+
+```{r}
+class(matrix_example)
+typeof(matrix_example)
+```
+
+Explain use cases for matrices vs data frames
+
+### Subsetting
+
+```{r}
+x <- covid$cases
+names(x) <- covid$month
+x
+```
+
+
+#### Vector Subsetting Using Indices
+
+```{r}
+x[1]
+x[4]
+```
+
+```{r}
+x[c(1, 2, 3)]
+x[1:3]
+```
+
+```{r}
+x[c(1, 1, 3)]
+```
+
+```{r}
+x[9]
+```
+
+```{r}
+x[0]
+```
+
+```{r}
+x[-2]
+```
+
+```{r}
+x[c(-1, -5)]
+x[-c(1, 5)]
+```
+
+Common mistake
+
+```{r, error=TRUE}
+x[-1:3]
+```
+
+```{r}
+x[-(1:3)]
+```
+
+Remains unchanged so far
+
+```{r}
+x
+```
+
+```{r}
+x <- x[-c(1, 6)]
+x
+```
+
+#### Vector Subsetting Using Names
+
+```{r}
+x["Feb"]
+x[c("Feb", "Apr")]
+```
+
+#### Vector Subsetting Using Logical Operations
+
+Months with over 10000 cases
+
+```{r}
+x
+x[c(FALSE, TRUE, TRUE, FALSE)]
+```
+
+```{r}
+over10thousand <- x >= 10000
+over10thousand
+```
+
+```{r}
+x[over10thousand]
+```
+
+No need for intermediate variable
+
+```{r}
+x[x >= 10000]
+```
+
+AND
+
+```{r}
+x[x >= 30000 & x <= 40000]
+```
+
+OR
+
+```{r}
+x[x < 30000 | x > 40000]
+```
+
+==, not =
+
+```{r}
+names(x) == "May"
+```
+
+```{r}
+x[names(x) == "May"]
+```
+
+Explain recycling
+
+```{r}
+x[names(x) == c("Feb", "Apr", "May")]
+```
+
+Look up help for `%in%`
+
+```{r}
+x[names(x) %in% c("Feb", "Apr", "May")]
+```
+
+`!` means NOT
+
+```{r}
+x[! names(x) %in% c("Mar")]
+```
+
+#### List Subsetting
+
+```{r}
+another_list
+```
+
+```{r}
+another_list[2]
+
+class(another_list[2])
+```
+
+```{r}
+another_list[[2]]
+
+class(another_list[[2]])
+```
+
+```{r}
+another_list[1:2]
+```
+
+```{r, error=TRUE}
+another_list[[1:2]]
+```
+
+```{r}
+another_list[-(1:2)]
+```
+
+```{r, error=TRUE}
+another_list[[-(1:2)]]
+```
+
+```{r}
+another_list[c("numbers", "data")]
+```
+
+```{r}
+another_list["numbers"]
+```
+
+```{r}
+another_list[["numbers"]]
+```
+
+```{r}
+another_list$numbers
+```
+
+#### Data Frame Subsetting
+
+```{r}
+covid
+```
+
+```{r}
+covid$cases
+covid[["cases"]]
+covid[[4]]
+```
+
+```{r}
+covid["cases"]
+```
+
+```{r}
+covid[3, 4]
+```
+
+```{r}
+covid[3,]
+```
+
+```{r}
+covid[, 4]
+```
+
+## More Resources
+
+- http://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1
+- http://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting
+- http://swcarpentry.github.io/r-novice-gapminder/09-vectorization
+
+## Assignment
+
+No assignment for this lab.
