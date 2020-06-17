@@ -1,0 +1,16 @@
+---
+title: "Lab"
+output: html_notebook
+---
+
+## Tutorial
+
+### Learning Objectives
+
+### Context
+
+### Stuff
+
+## More Resources
+
+## Assignment

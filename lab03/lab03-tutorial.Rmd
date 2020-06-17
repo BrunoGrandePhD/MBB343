@@ -1,0 +1,65 @@
+---
+title: "Lab 03 – Data Exploration: Introducing the Tidyverse"
+output: html_notebook
+---
+
+## Tutorial
+
+### Learning Objectives
+
+- Install packages from CRAN and Bioconductor
+- Understand the basics of the file system
+  - Identify and update the current working directory
+  - Differentiate between absolute and relative paths
+  - Explain how their working directory impacts their code
+  - Use RStudio projects to automatically update the working directory
+- Load data from tabular files (CSV, TSV) into R
+  - Explain advantages of `readr` package over base R
+  - Explain the `stringsAsFactors` argument
+  - Explain advantages of tibbles over data frames
+- Manipulate data frames in R using the `dplyr` package
+  - Subset columns by name or condition using `select()`
+  - Rename columns using `rename()`
+  - Subset rows conditionally on one or more columns using `filter()`
+  - Sort rows by one or more columns using `arrange()` and `desc()`
+  - Create new columns from existing columns using `mutate()`
+  - Explain advantages of using `dplyr` functions compared to base R equivalents
+- Troubleshoot error messages in R
+
+### Context
+
+
+
+### Total cumulative cases in different continent
+
+
+### Total deaths in different months
+
+
+### Death rate 
+
+## More Resources
+
+- http://swcarpentry.github.io/r-novice-gapminder/05-data-structures-part2
+- http://swcarpentry.github.io/r-novice-gapminder/13-dplyr
+
+## Assignment 
+
+The media, the public, friends and family really appreciate your PI team's initial reporting from the EU data. However, they got more questions for you. 
+
+### Highest and lowest death rates 
+
+The WHO wants to know, of the countries that have >10,000 cases, which one has the highest death rate and which one has the lowest death rate to better understand the health care systems of some countries. Please store the number 10000 in a separate variable so that the WHO can easily adjust that threshold in your code snippet instead of coming back to you to ask the same question.
+
+
+### On April 22. 
+
+Your friend Bob really want to know the total number of new cases on Earth day (April 22) worldwide and he wants to know how you get that number. Please show and describe how you get the number from this dataset so that Bob can do it himself next time.
+
+
+### In Europe, cumulative cases by countries
+
+Some media outlets want to get the cumulative cases in 2020 of different countries in Europe. Please write them a snippet of code to get this answer and store 'Europe' in a separate variable. That way their analysts can simpily change the variable to get information about other continents, avoiding mistakes resulting in erroneous reporting.
+
+
+
