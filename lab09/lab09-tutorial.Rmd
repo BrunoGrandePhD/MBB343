@@ -1,5 +1,5 @@
 ---
-title: "Lab"
+title: "Lab 09 – Multiple Linear Regression and PCA: Using ALL of the Variables"
 output: html_notebook
 ---
 
@@ -7,10 +7,27 @@ output: html_notebook
 
 ### Learning Objectives
 
+- Perform multiple linear regression in R
+  - Differentiate between simple and multiple linear models
+  - Fit a multiple linear regression model using `lm()`
+  - Interpret diagnostic plots from a multiple linear regression model
+  - Interpret coefficients of linear models
+  - Predict values using linear models
+- Perform principal component analysis (PCA) using `prcomp()`
+  - Explain importance of centering and scaling data prior to PCA
+  - Evaluate PCA with scree plots using the `ggplot` package
+  - Visualize principal components using the `ggplot` package
+  - Explain the potential pitfalls with batch effects and PCA
+  - Diagnose whether batch effects account for the top PCA components
+
 ### Context
 
 ### Stuff
 
 ## More Resources
+
+- https://www.geeksforgeeks.org/principal-component-analysis-with-r-programming/
+- https://microbiome.github.io/tutorials/Ordination.html
+- https://pubmed.ncbi.nlm.nih.gov/26650184/
 
 ## Assignment

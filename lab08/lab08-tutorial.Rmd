@@ -1,5 +1,5 @@
 ---
-title: "Lab"
+title: "Lab 08 – Simple Linear Regression"
 output: html_notebook
 ---
 
@@ -7,10 +7,23 @@ output: html_notebook
 
 ### Learning Objectives
 
+- Perform simple linear regression in R
+  - List assumptions made for linear regression
+  - Visualize simple linear regression using the `ggplot` package
+  - Identify outliers and decide whether to exclude them
+  - Fit a linear model with continuous variables using `lm()`
+  - Fit a linear model with dummy variables using `lm()`
+  - Interpret diagnostic plots from a simple linear regression model
+  - Calculate P-values from a linear model using `summary()`
+  - Compare and evaluate linear models
+
 ### Context
 
 ### Stuff
 
 ## More Resources
+
+- http://www-stat.wharton.upenn.edu/~moneyball/module7.html
+- https://rstudio-pubs-static.s3.amazonaws.com/481001_86a6eab92f6844eeb9b6c370085e874e.html
 
 ## Assignment

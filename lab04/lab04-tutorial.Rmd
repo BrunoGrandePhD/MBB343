@@ -1,5 +1,5 @@
 ---
-title: "Lab"
+title: "Lab 04 – Data Wrangling: Taming Your Data"
 output: html_notebook
 ---
 
@@ -7,10 +7,25 @@ output: html_notebook
 
 ### Learning Objectives
 
+- Manipulate data frames in R using the `dplyr` package
+  - Combine multiple `dplyr` commands using pipes (`%>%`)
+  - Group rows using `group_by()` and `group_nest()`
+  - Compute aggregate statistics using `summarize()`
+  - Differentiate the behaviour of `mutate()` and `summarize()`
+- Transform data frame layout using the `tidyr` package
+  - Differentiate between long and wide layouts
+  - List use cases for each layout (long and wide)
+  - Convert data frame to long format using `pivot_longer()`
+  - Convert data frame to wide format using `pivot_wider()`
+
 ### Context
 
 ### Stuff
 
 ## More Resources
+
+- http://swcarpentry.github.io/r-novice-gapminder/13-dplyr
+- http://swcarpentry.github.io/r-novice-gapminder/14-tidyr
+- http://www-stat.wharton.upenn.edu/~moneyball/module3.html
 
 ## Assignment

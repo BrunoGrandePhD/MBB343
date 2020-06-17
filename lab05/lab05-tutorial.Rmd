@@ -1,5 +1,5 @@
 ---
-title: "Lab"
+title: "Lab 05 – Data Visualization: At Least 1,000 Words"
 output: html_notebook
 ---
 
@@ -7,10 +7,24 @@ output: html_notebook
 
 ### Learning Objectives
 
+- Visualize data using the `ggplot2` package
+  - List the most common geometries ("geoms") and their use cases (categorical versus continuous X/Y variables)
+  - Identify and describe the aesthetics of each geom
+  - Create multi-layered plots by combining multiple geoms
+  - Transform how data is mapped to visual features using scales
+  - Reorder categorical axes using factors with the `forcats` package
+  - Divide data into sub-plots using facetting
+  - Configure how the axes of the individual facets are laid out
+  - Save a plot to disk as PDF and PNG images
+  - Differentiate between PDF and PNG images
+  - Combine different plots using the `patchwork` package
+
 ### Context
 
 ### Stuff
 
 ## More Resources
+
+- http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2
 
 ## Assignment

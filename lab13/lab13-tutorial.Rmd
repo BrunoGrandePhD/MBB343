@@ -1,5 +1,5 @@
 ---
-title: "Lab"
+title: "Lab 13 – Dealing with High-Dimensional Data: Non-linear Perspectives"
 output: html_notebook
 ---
 
@@ -7,10 +7,25 @@ output: html_notebook
 
 ### Learning Objectives
 
+- Perform linear dimensional reduction using PCAs
+  - Explain why PCA is useful for graph-based clustering and non-linear dimensional reduction
+  - Determine the dimensionality of the dataset (optimal number of principal components)
+- Perform graph-based clustering
+  - Explain advantages of graph-based clustering compared to other forms of unsupervised clustering
+  - Evaluate graph-based clusters
+- Perform uniform manifold approximation and projection (UMAP) using the `umap` package
+  - Differentiate between linear and non-linear dimensional reduction
+  - Visualize UMAP results using the `ggplot` package
+  - Evaluate UMAP results using graph-based clusters and other covariates
+
 ### Context
 
 ### Stuff
 
 ## More Resources
+
+- https://github.com/kdkorthauer/FestivalWorkshopVignettes/blob/master/SingleCellAnalyses.Rmd
+- https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
+- https://github.com/STAT540-UBC/STAT540-UBC.github.io/blob/master/seminars/seminars_winter_2020/seminar6/sm06_clustering-pca.md
 
 ## Assignment

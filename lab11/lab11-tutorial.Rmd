@@ -1,5 +1,5 @@
 ---
-title: "Lab"
+title: "Lab 11 – Random Forest Classification: Wisdom of the Forest"
 output: html_notebook
 ---
 
@@ -7,10 +7,21 @@ output: html_notebook
 
 ### Learning Objectives
 
+- Perform random forest classification in R
+  - Train a random forest model using the `randomForest` package
+  - Optimize hyperparameters of a random forest model
+  - Evaluate random forest models
+  - Compare performance between random forest and logistic regression (with and without lasso regularization)
+  - Identify important features using random forest
+
 ### Context
 
 ### Stuff
 
 ## More Resources
+
+- https://datascienceplus.com/random-forests-in-r/
+- https://rstudio-pubs-static.s3.amazonaws.com/300604_3da1e726964d47a794d3323ffb41264d.html#random-forests
+- https://uc-r.github.io/random_forests
 
 ## Assignment

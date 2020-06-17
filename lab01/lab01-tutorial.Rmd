@@ -1,0 +1,42 @@
+---
+title: "Lab 01 – Getting Started with R and RStudio: Tools of the Trade"
+output: html_notebook
+---
+
+## Tutorial
+
+### Learning Objectives
+
+- Set up the R programming language and the RStudio IDE
+  - Install R and RStudio on a local computer or laptop
+  - Create an account on rstudio.cloud
+- Navigate the RStudio interface
+  - Customize RStudio options for reproducibility and convenience
+  - Describe the purpose of the main panes in RStudio (Source, Console, Environment, History, Files, Plots, Packages, Help)
+  - Locate important buttons in RStudio (Projects, Open/Save, Run/Source)
+  - Differentiate between writing R code in the console versus scripts
+  - Discover, edit, and create keyboard shortcuts in RStudio
+- Write simple R statements
+  - Perform simple arithmetic calculations
+  - List arithmetic operators (+, -, \*, /, ^, ()) and their precedence
+  - Compare values with logical operators (`==`/`!=`, `<`/`<=`, `>`/`>=`)
+  - Define a variable with a valid name and retrieve its contents
+  - Differentiate between variables and objects
+  - Create sequences of integers using the colon (`:`) notation
+  - Describe the structure and behaviour of a function call
+- Identify where to look when seeking for help
+  - Locate the help page for functions and special operators
+  - Resolve an error message using a web search tool
+  - Formulate effective questions for their peers
+
+### Context
+
+### Stuff
+
+## More Resources
+
+- http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro
+- http://swcarpentry.github.io/r-novice-gapminder/03-seeking-help
+- https://ariel.rbind.io/workshop/rbasics/#interactive-tutorials
+
+## Assignment

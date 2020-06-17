@@ -1,5 +1,5 @@
 ---
-title: "Lab"
+title: "Lab 07 – Categorical Tests and Multiple Hypothesis Testing"
 output: html_notebook
 ---
 
@@ -7,10 +7,25 @@ output: html_notebook
 
 ### Learning Objectives
 
+- Perform independence tests on categorical data
+  - Differentiate between Fisher's exact test and chi-squared test
+  - Identify which test is most appropriate for a dataset
+  - Visualize the categorical data for a dataset using the `ggplot` package
+  - Process a data frame to produce a contingency table
+  - Calculate P-value using `fisher.test()` and `chisq.test()`
+- Perform P-value correction for multiple hypothesis testing
+  - Visualize P-value distribution first using the `ggplot` package
+  - Explain the multiple hypothesis problem
+  - Correct P-values using `p.adjust()`
+  - Detect anomalies in P-value distributions
+
 ### Context
 
 ### Stuff
 
 ## More Resources
+
+- https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5426219
+- http://varianceexplained.org/statistics/interpreting-pvalue-histogram/
 
 ## Assignment

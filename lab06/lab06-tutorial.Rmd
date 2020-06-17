@@ -1,5 +1,5 @@
 ---
-title: "Lab"
+title: "Lab 06 – Correlation and Two-Sample Tests"
 output: html_notebook
 ---
 
@@ -7,10 +7,30 @@ output: html_notebook
 
 ### Learning Objectives
 
+- Explain importance of deciding which test to use before testing (P-hacking)
+- Identify outliers for exclusion from tests
+- Perform parametric (Pearson) and non-parametric (Spearman) correlation in R
+  - Differentiate between both types of correlation
+  - Visualize the correlation for a dataset using the `ggplot` package
+  - Identify which type of correlation is most appropriate for a dataset
+  - Calculate the correlation coefficient using `cor()`
+  - Calculate the P-value using `cor.test()`
+- Perform parametric (t-test) and non-parametric (Wilcoxon test) two-sample tests
+  - Differentiate between both types of tests
+  - Visualize the data in each group of a dataset using the `ggplot` package
+  - Identify which type of test is most appropriate for a dataset
+  - Calculate the P-value using `t.test()` and `wilcox.test()`
+
 ### Context
 
 ### Stuff
 
 ## More Resources
+
+- https://www.statsandr.com/blog/student-s-t-test-in-r-and-by-hand-how-to-compare-two-groups-under-different-scenarios/
+- https://www.statsandr.com/blog/wilcoxon-test-in-r-how-to-compare-2-groups-under-the-non-normality-assumption/
+- https://www.statsandr.com/blog/correlation-coefficient-and-correlation-test-in-r/
+- https://online.stat.psu.edu/stat501/lesson/1/1.9
+- https://yury-zablotski.netlify.app/post/multiple-logistic-regression-with-interactions/
 
 ## Assignment

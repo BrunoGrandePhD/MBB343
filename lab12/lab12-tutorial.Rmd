@@ -1,5 +1,5 @@
 ---
-title: "Lab"
+title: "Lab 12 – Hierarchical Clustering: Putting Things in Buckets"
 output: html_notebook
 ---
 
@@ -7,10 +7,22 @@ output: html_notebook
 
 ### Learning Objectives
 
+- Perform hierarchical clustering in R
+  - Explain limitations of hierarchical clustering
+  - Identify relevant distance metrics
+  - Calculate distances using `dist()`
+  - Perform clustering using `hclust()`
+  - Visualize clustering using the `ggdendro` package
+  - Perform and visualize clustering using the `pheatmap` package
+  - Evaluate clustering using the `ConsensusClusterPlus` package
+
 ### Context
 
 ### Stuff
 
 ## More Resources
+
+- http://www.science.smith.edu/~jcrouser/SDS293/labs/lab16-r.html
+- https://uc-r.github.io/hc_clustering
 
 ## Assignment

@@ -1,11 +1,18 @@
 ---
-title: "Lab"
+title: "Lab 10 – Logistic Regression: First Steps with Classification"
 output: html_notebook
 ---
 
 ## Tutorial
 
 ### Learning Objectives
+
+- Perform logistic regression in R
+  - Fit a logistic model to a dataset using `glm()`
+  - Interpret logistic model coefficients
+  - Apply logistic regression to a classification problem
+  - Visualize logistic regression using the `ggplot` package
+  - Perform penalized logistic regression in R using lasso regularization with the `glmnet` package
 
 ### Context
 
