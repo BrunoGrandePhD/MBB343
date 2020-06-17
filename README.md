@@ -70,7 +70,7 @@ Freely available online: https://r4ds.had.co.nz
   - Perform simple arithmetic calculations
   - List arithmetic operators (+, -, \*, /, ^, ()) and their precedence
   - Compare values with logical operators (`==`/`!=`, `<`/`<=`, `>`/`>=`)
-  - Define a variable and retrieve its contents
+  - Define a variable with a valid name and retrieve its contents
   - Differentiate between variables and objects
   - Create sequences of integers using the colon (`:`) notation
   - Describe the structure and behaviour of a function call
@@ -87,107 +87,15 @@ No data will be used in this lab.
 
 - http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro
 - http://swcarpentry.github.io/r-novice-gapminder/03-seeking-help
+- https://ariel.rbind.io/workshop/rbasics/#interactive-tutorials
 
-## Lab 02: Data Structures
+## Lab 02 – Data Structures: What Data Looks Like in R
 
-### Concepts/Glossary
+Moved to `lab02/lab02-tutorial.Rmd`.
 
-- Vector
-- Vector type (logical, integer, double, character)
-- Type coercion
-- Vector concatenation
-- Vector length
-- Vector recycling
-- Data structure
-- Class
-- Factor
-- Data frame
-- List
-- Matrix
-- Subsetting
-- Row/column/element names
+## Lab 03 – Data Exploration: Introducing the Tidyverse
 
-### Learning Objectives
-
-- Describe the main vector types (logical, integer, double, character)
-  - Define vectors of length 1 for each type (without the `c()` function)
-  - Define longer vectors using the `c()` function
-  - Explain how vector types are enforced (type coercion)
-  - Determine the type of an existing vector
-  - Explain vectorization in R and why it's powerful
-  - Describe how R recycles values
-  - Differentiate and convert between character vectors and factors
-- Describe higher-level data structures (lists, matrices, data frames)
-  - Provide example use cases for data frames versus matrices
-  - Explain how data frames are related to lists
-  - Examine a data frame using `str()` and `head()`
-  - Differentiate between the output of `typeof()` and `class()`
-- Subset vectors and data structures using the `[` operator
-  - Explain the implications of 1-based indexing in R
-  - Select elements/rows/columns by position or name
-  - Remove elements/rows/columns by position
-  - Subset elements/rows/columns using logical operations or vectors
-  - Differentiate between the `[` and the `[[` subsetting operators
-
-### Datasets
-
-- Built-in R datasets (`iris`, `mtcars`)
-
-### Resources
-
-- http://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1
-- http://swcarpentry.github.io/r-novice-gapminder/05-data-structures-part2
-- http://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting
-- http://swcarpentry.github.io/r-novice-gapminder/09-vectorization
-
-## Lab 03: Data Import and Wrangling I
-
-### Concepts/Glossary
-
-- Package
-- CRAN
-- Bioconductor
-- File system
-- File path (absolute vs relative)
-- Working directory
-- RStudio Projects
-- Tibbles
-- stringsAsFactors
-- File format
-- Plain text vs binary formats
-- Logical AND vs OR
-- Errors
-- Warnings
-
-### Learning Objectives
-
-- Install packages from CRAN and Bioconductor
-- Understand the basics of the file system
-  - Identify and update the current working directory
-  - Differentiate between absolute and relative paths
-  - Explain how their working directory impacts their code
-  - Use RStudio projects to automatically update the working directory
-- Load data from tabular files (CSV, TSV) into R
-  - Explain advantages of `readr` package over base R
-  - Explain the `stringsAsFactors` argument
-  - Explain advantages of tibbles over data frames
-- Manipulate data frames in R using the `dplyr` package
-  - Subset columns by name or condition using `select()`
-  - Rename columns using `rename()`
-  - Subset rows conditionally on one or more columns using `filter()`
-  - Sort rows by one or more columns using `arrange()` and `desc()`
-  - Create new columns from existing columns using `mutate()`
-  - Explain advantages of using `dplyr` functions compared to base R equivalents
-- Troubleshoot error messages in R
-
-### Datasets
-
-- [Gapminder](https://github.com/jennybc/gapminder/blob/master/inst/extdata/gapminder.tsv)
-- [Snow algae metadata](https://github.com/cengstro/bc_snow_algae_amplicon/blob/master/data/field/tidy_field.csv)
-
-### Resources
-
-- http://swcarpentry.github.io/r-novice-gapminder/13-dplyr
+Moved to `lab03/lab03-tutorial.Rmd`.
 
 ## Lab 04: Data Wrangling II
 
@@ -307,6 +215,8 @@ No data will be used in this lab.
 
 ### Resources
 
+- https://www.statsandr.com/blog/student-s-t-test-in-r-and-by-hand-how-to-compare-two-groups-under-different-scenarios/
+- https://www.statsandr.com/blog/wilcoxon-test-in-r-how-to-compare-2-groups-under-the-non-normality-assumption/
 - https://www.statsandr.com/blog/correlation-coefficient-and-correlation-test-in-r/
 - https://online.stat.psu.edu/stat501/lesson/1/1.9
 - https://yury-zablotski.netlify.app/post/multiple-logistic-regression-with-interactions/
