@@ -1,0 +1,98 @@
+---
+title: "Data visualization - information at a glimpse"
+output: html_notebook
+---
+
+Your research team is becoming reputable. The MapleLeaf channel has invited you and your colleagues for their special program with Bob: "COVID19 facts and myths with the Pandemic Intelligence team". The agenda: 5 minute of an overview on state of the pandemic, 25 minute of Q&A. Given the short amount of time, you have decided you and your team will prepare some figures to help illustrate your points during the interview.
+
+## What's data visualization 
+
+Data visualization is the graphic representation of data. For many people, it's easier to learn something from a graph that uses color, labels, patterns to show the important information, than a bunch of numbers. Science communication is becoming increasingly important. A good graph effectively conveys facts to your audience and drive one's point home while a bad one confuses and/or, worst, misleads people. 
+
+Data visualization is a huge topic so we cannot cover the design principles in this lab. We will focus more on "how" to do it with code and some common sense. Please read up on blog posts on the internet such as this one: [Basic principles, common pitfalls](https://paldhous.github.io/ucb/2016/dataviz/week2.html).
+
+You will be doing data wrangling steps similar to what you've done before. But instead of looking at the result in a table, we will visualize them in graphs.
+
+
+## Graphic in R 
+
+(Describe how graphic works in R). 
+
+
+## Simple inspection
+
+
+```{r}
+covid <- read.table(file='covid19_cases_world.csv', header = TRUE, sep=',')
+```
+
+## Cumulative cases in the world and the death rates 
+
+
+## Looking at just Canada
+
+Let's look the covid 19 cases and deaths just in Canada. To do this, we need to subset the dataset.
+
+
+## Which countries have flatten the curve?
+
+
+## Which countries have the highest number of cases
+
+
+# Assignment - Bob has some questions collected from the audience! 
+
+For each of the question below, please do the following:
+- Inspect the data and think about what information the dataset has.
+- Think about how you can best answer the questions given the information you have.
+- Do any necessary data wrangling and provide comments in your code to describe why you need to do those steps.
+- Plot the graph. Remember your goals! Is your graph easy to understand? Does it have all the labels it need? Does it help answer the audience's question?
+- Narrate your graph. Describe what it illustrates.
+
+
+### Provinces in Canada
+
+ Bob ask if you could do a general overall view on the pandemic situation in different provinces in Canada. What are the provinces that are hit the hardest, which provinces recovered the earliest, etc. You don't have dataset on how the economy is impacted, but you have this dataset that tells you the number of cases in different provinces:
+
+```{r}
+covid_canada <- read.table('../data/covid19_canada_simplified.csv', header=TRUE, sep = ",")
+```
+
+
+### Breakdown of cases by age groups and gender in British Columbia
+
+You also prepared a graph to follow up with the previous question to show whether covid-19 affect different genders and age groups differently, at least in British Columbia.
+
+```{r}
+covid_bc <- read.table('../data/BCCDC_covid_case_detail.csv', header=TRUE, sep = ",")
+```
+
+
+### Isn't the flu just as bad? 
+
+"Some people were saying that Covid-19 isn't as bad as we made it out to be, because common flu kills a lot of people each year as well. What do you say to that", asked Bob the interviewer. Good thing that you've gotten a dataset from CDC - NCHS (National Center for Health Statistics) that can demonstrate the death caused by covid-19 far exceed what's expected in a normal flu season.
+
+```{r}
+mortality_cdc <- read.table('../data/nchs_mortality_report_cleaned.csv', header=TRUE, sep=',')
+```
+
+### Why the 2 meter social distancing?
+
+"Some people are wondering how the government come up 2 meter. Why 2 meter? Why not 3 meter or 1 meter?" Bob asked. 
+
+```{r}
+
+```
+
+
+### What masks should we wear?
+
+
+### Has the stay at home recommendation in BC helps? 
+
+"People are wondering if shutting down the restaurants and asking people to stay at home have helped with flattening the curve, could you elaborate on that", he asked. You decided you will show the audience the graph of new cases in Canada in time series, with some reference points of some key dates in Canada.
+
+(plot the days since stay at home order.)
+
+
+
