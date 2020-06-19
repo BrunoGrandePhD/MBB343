@@ -18,48 +18,273 @@ output: html_notebook
   - Explain the `stringsAsFactors` argument
   - Explain advantages of tibbles over data frames
 - Manipulate data frames in R using the `dplyr` package
+  - Explain advantages of using `dplyr` functions compared to base R equivalents
   - Subset columns by name or condition using `select()`
   - Rename columns using `rename()`
   - Subset rows conditionally on one or more columns using `filter()`
   - Sort rows by one or more columns using `arrange()` and `desc()`
   - Create new columns from existing columns using `mutate()`
-  - Explain advantages of using `dplyr` functions compared to base R equivalents
+  - Combine multiple `dplyr` commands using pipes (`%>%`)
 - Troubleshoot error messages in R
 
 ### Context
 
+In the previous tutorial, you became familiar with the most important data structures in R, including the data frame and its vector columns. While much more is possible in R, these two data structures alone cover most use cases in data science. As a result, we can now start an honest analysis of the worldwide COVID-19 dataset. The EU has a few questions that they would like our team, Pandemic Intelligence, to address as soon as possible.
 
+Today, we will learn the power of R packages and they're one of the reasons why R is so popular and effective for data science. We will start with two packages from what is called the `tidyverse` suite. More on that later. The two packages we will introduce today are `readr` (for importing and exporting data) and `dplyr` (for exploring and wrangling data). These packages come with functions that are often faster and more convenient to use than their base R equivalents. They're essential tools in your data science toolbox.
 
-### Total cumulative cases in different continent
+In this tutorial, we will explore monthly COVID-19 statistics for territories spanning the globe, not just Canada. The data was originally downloaded from the [EU Open Data Portal](https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data). It was lightly processed and filtered for this tutorial. Note that the last month might not be complete if the data was downloaded mid-month.
 
+### The tidyverse
 
-### Total deaths in different months
+Introduce the tidyverse philosophy and the concept of tidy data.
 
+Explain CRAN and Bioconductor.
 
-### Death rate 
+Explain `install.packages()`.
+
+```{r, eval=FALSE}
+install.packages("readr")
+install.packages("dplyr")
+```
+
+### The File System
+
+Working directory.
+
+Absolute vs relative paths.
+
+RStudio projects.
+
+```{r, warning=FALSE}
+getwd()
+list.files()
+
+setwd("data/")
+list.files()
+
+setwd("../")
+list.files()
+list.files("data/")
+```
+
+### `readr`: Importing data using `read_csv()`
+
+List other read functions.
+
+Confirm column types.
+
+Advantages of readr over base R.
+
+Explain `stringsAsFactors` default value.
+
+```{r}
+covid <- read_csv("data/covid19_cases_worldwide_monthly.csv")
+```
+
+Tibbles vs data frames
+
+`str()` reveals `spec` attribute.
+
+`glimpse()` is an alternative to `str()`.
+
+```{r}
+str(covid)
+glimpse(covid)
+```
+
+```{r}
+tibble:::print.tbl(covid)
+```
+
+```{r}
+print.data.frame(head(covid, 30))
+```
+
+### `dplyr`: The Heart of the Tidyverse
+
+Functions organized as verbs.
+
+Advantages of using dplyr over base R.
+
+#### Wrangling columns with `select()` and `rename()`
+
+Goal: We only care about month, territory, and cases.
+
+Base R version for selecting columns.
+
+```{r}
+covid[,c("month", "territory", "cases")]
+```
+
+```{r}
+select(covid, month, territory, cases)
+```
+
+Goal: Clarify that population is for 2018.
+
+Using `rename()`.
+
+The need to use `<-` to update data frame. Otherwise, just printed.
+
+```{r}
+covid <- original_covid
+
+rename(covid, population_2018 = population)
+
+covid <- rename(covid, population_2018 = population)
+```
+
+Base R version for renaming columns.
+
+`names()` is the same as `colnames()` for data frames.
+
+```{r, eval=FALSE}
+names(covid)[names(covid) == "population"] <- "population_2018"
+```
+
+#### Wrangling rows with `arrange()` and `filter()`
+
+Goal: Find most deadly month in any country.
+
+Using `arrange()`
+
+`desc()` vs `-`
+
+```{r}
+arrange(covid, deaths)
+arrange(covid, -deaths)
+arrange(covid, desc(deaths))
+```
+
+Base R version.
+
+```{r}
+covid[order(covid$deaths, decreasing = TRUE),]
+```
+
+Goal: Find the deadliest month per territory.
+
+```{r}
+arrange(covid, territory, desc(deaths))
+```
+
+Goal: Recreate small data frame for Canada.
+
+Using `filter()`.
+
+```{r}
+filter(covid, territory == "Canada")
+```
+
+Using base R.
+
+```{r}
+covid[covid$territory == "Canada",]
+```
+
+Goal: Get the case and death counts for all Oceania territories for the month of May.
+
+The comma implies `&` (AND).
+
+```{r}
+filter(covid, continent == "Oceania" & month == "May")
+filter(covid, continent == "Oceania", month == "May")
+```
+
+For June and May.
+
+```{r}
+# Wrong
+filter(covid, continent == "Oceania", month == "May", month == "Jun")
+
+filter(covid, continent == "Oceania", month == "May" | month == "Jun")
+filter(covid, continent == "Oceania", month %in% c("May", "Jun"))
+```
+
+#### Create new columns with `mutate()`
+
+Goal: Calculate a new column based on the number of deaths normalized by the number of cases.
+
+Using `mutate()`.
+
+Use of `=` versus `<-`.
+
+Remind about vectorization.
+
+Discussion about `NaN`.
+
+Introduction of `ifelse()`
+
+Remind about assignment.
+
+```{r}
+mutate(covid, death_rate = deaths / cases)
+
+mutate(covid, death_rate = ifelse(cases > 0, deaths / cases, 0))
+
+covid <- mutate(covid, death_rate = ifelse(cases > 0, deaths / cases, 0))
+```
+
+Base R version.
+
+```{r}
+covid$death_rate <- ifelse(covid$cases > 0, covid$deaths / covid$cases, 0)
+```
+
+#### Combining different `dplyr` verbs
+
+Goal: Order the months in based on the death rate in China (increasing order).
+
+Assume we don't have `death_rate` column.
+
+Intermediate variables are problematic.
+
+```{r}
+covid <- mutate(covid, death_rate = ifelse(cases > 0, deaths / cases, 0))
+covid_china <- filter(covid, territory == "China")
+covid_china <- arrange(covid_china, death_rate)
+select(covid_china, month, death_rate)
+```
+
+Using pipes.
+
+```{r}
+mutate(covid, death_rate = ifelse(cases > 0, deaths / cases, 0)) %>%
+  filter(territory == "China") %>%
+  arrange(death_rate) %>%
+  select(month, death_rate)
+```
+
+### `readr`: Exporting data using `write_csv()`
+
+Export final data frame to disk.
+
+Discuss different formats (CSV, TSV, lines).
+
+```{r}
+write_csv(covid, "data/covid19_cases_worldwide_monthly.updated.csv")
+```
 
 ## More Resources
 
 - http://swcarpentry.github.io/r-novice-gapminder/05-data-structures-part2
 - http://swcarpentry.github.io/r-novice-gapminder/13-dplyr
 
-## Assignment 
+## Assignment
 
-The media, the public, friends and family really appreciate your PI team's initial reporting from the EU data. However, they got more questions for you. 
+The media, the public, friends and family really appreciate your PI team's initial reporting from the EU data. However, they got more questions for you.
 
-### Highest and lowest death rates 
+### Fix month column so that it orders chronologically (not alphabetically)
+
+### Highest and lowest death rates
 
 The WHO wants to know, of the countries that have >10,000 cases, which one has the highest death rate and which one has the lowest death rate to better understand the health care systems of some countries. Please store the number 10000 in a separate variable so that the WHO can easily adjust that threshold in your code snippet instead of coming back to you to ask the same question.
 
-
-### On April 22. 
+### On April 22.
 
 Your friend Bob really want to know the total number of new cases on Earth day (April 22) worldwide and he wants to know how you get that number. Please show and describe how you get the number from this dataset so that Bob can do it himself next time.
-
 
 ### In Europe, cumulative cases by countries
 
 Some media outlets want to get the cumulative cases in 2020 of different countries in Europe. Please write them a snippet of code to get this answer and store 'Europe' in a separate variable. That way their analysts can simpily change the variable to get information about other continents, avoiding mistakes resulting in erroneous reporting.
-
-
-
