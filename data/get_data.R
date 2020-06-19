@@ -22,30 +22,23 @@ covid19_cases_worldwide <-
   covid19_cases_worldwide_raw %>%
   transmute(date = dmy(dateRep), year, month, day,
             territory = countriesAndTerritories, continent = continentExp,
-            population = popData2018, cases, deaths) %>%
+            population = popData2019, cases, deaths) %>%
   filter(!territory %in% nonterritories,
-         year >= 2020)
+         year >= 2020) %>%
+  write_csv("data/covid19_cases_worldwide.csv")
 
-write_csv(covid19_cases_worldwide, "data/covid19_cases_worldwide.csv")
 
-
-covid19_cases_worldwide_weekly <-
+covid19_cases_worldwide_monthly <-
   covid19_cases_worldwide %>%
-  mutate(week = week(date)) %>%
-  group_by(year, week, territory, continent) %>%
+  mutate(month = month(month, label = TRUE)) %>%
+  group_by(year, month, territory, continent) %>%
   summarize(across(c(cases, deaths), sum), across(population, mean),
-            .groups = "drop")
-
-write_csv(covid19_cases_worldwide_weekly,
-          "data/covid19_cases_worldwide_weekly.csv")
+            .groups = "drop") %>%
+  write_csv("data/covid19_cases_worldwide_monthly.csv")
 
 
 covid19_cases_canada_monthly <-
-  covid19_cases_worldwide %>%
+  covid19_cases_worldwide_monthly %>%
   filter(territory == "Canada") %>%
-  mutate(month = month(month, label = TRUE)) %>%
-  group_by(year, month, territory) %>%
-  summarize(across(c(cases, deaths), sum), .groups = "drop")
-
-write_csv(covid19_cases_canada_monthly,
-          "data/covid19_cases_canada_monthly.csv")
+  select(-continent, -population) %>%
+  write_csv("data/covid19_cases_canada_monthly.csv")
