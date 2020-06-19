@@ -29,9 +29,9 @@ output: html_notebook
 
 ### Context
 
-In the previous tutorial, you learned how to navigate the RStudio interface and ran your first bits of R code. Today, we're going to take a look at what data looks like in R. This tutorial will focus on a particular data structure, the data frame, and its key component, the vector. These data structures are fundamental to data science in R, so pay close attention.
+In the previous tutorial, we learned how to navigate the RStudio interface and ran your first bits of R code. Today, we're going to take a look at what data looks like in R. This tutorial will focus on a particular data structure, the data frame, and its key component, the vector. These data structures are fundamental to data science in R, so pay close attention.
 
-In fact, we don't have much time to lose. A deadly pandemic has struck the planet and we need to act quickly to better understand the virus behind it all. Virologists call it Severe Acute Respiratory Syndrome Coronavirus 2 (SARS-CoV-2), but the public more generally refer to the associated disease, COVID-19. The European Union (EU) has been collecting data on this global outbreak and has asked your team, Pandemic Intelligence (PI), for any insights you can glean from this dataset.
+In fact, we don't have much time to lose. A deadly pandemic has struck the planet and we need to act quickly to better understand the virus behind it all. Virologists call it Severe Acute Respiratory Syndrome Coronavirus 2 (SARS-CoV-2), but the public more generally refer to the associated disease, COVID-19. The European Union (EU) has been collecting data on this global outbreak and has asked our team, Pandemic Intelligence, for any insights we can glean from this dataset.
 
 In this tutorial, we will start by exploring the Canadian statistics for the first six months of 2020. The data was originally downloaded from the [EU Open Data Portal](https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data). It was lightly processed and filtered for this tutorial. Note that the last month might not be complete if the data was downloaded mid-month.
 
