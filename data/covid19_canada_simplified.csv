@@ -1,0 +1,1513 @@
+"prname","date","numdeaths","numtotal","numrecover"
+"Ontario","31-01-2020",0,3,NA
+"British Columbia","31-01-2020",0,1,NA
+"Canada","31-01-2020",0,4,NA
+"Ontario","08-02-2020",0,3,NA
+"British Columbia","08-02-2020",0,4,NA
+"Canada","08-02-2020",0,7,NA
+"Ontario","16-02-2020",0,3,NA
+"British Columbia","16-02-2020",0,5,NA
+"Canada","16-02-2020",0,8,NA
+"Ontario","21-02-2020",0,3,NA
+"British Columbia","21-02-2020",0,6,NA
+"Canada","21-02-2020",0,9,NA
+"Ontario","24-02-2020",0,4,NA
+"British Columbia","24-02-2020",0,6,NA
+"Canada","24-02-2020",0,10,NA
+"Ontario","25-02-2020",0,4,NA
+"British Columbia","25-02-2020",0,7,NA
+"Canada","25-02-2020",0,11,NA
+"Ontario","26-02-2020",0,5,NA
+"British Columbia","26-02-2020",0,7,NA
+"Canada","26-02-2020",0,12,NA
+"Ontario","27-02-2020",0,6,NA
+"British Columbia","27-02-2020",0,7,NA
+"Canada","27-02-2020",0,13,NA
+"Ontario","29-02-2020",0,8,NA
+"British Columbia","29-02-2020",0,7,NA
+"Canada","29-02-2020",0,15,NA
+"Ontario","01-03-2020",0,15,NA
+"British Columbia","01-03-2020",0,8,NA
+"Quebec","01-03-2020",0,1,NA
+"Canada","01-03-2020",0,24,NA
+"Ontario","03-03-2020",0,20,NA
+"British Columbia","03-03-2020",0,12,NA
+"Quebec","03-03-2020",0,1,NA
+"Canada","03-03-2020",0,33,NA
+"Ontario","05-03-2020",0,22,NA
+"British Columbia","05-03-2020",0,21,NA
+"Quebec","05-03-2020",0,2,NA
+"Canada","05-03-2020",0,45,NA
+"Ontario","06-03-2020",0,28,NA
+"British Columbia","06-03-2020",0,21,NA
+"Quebec","06-03-2020",0,2,NA
+"Canada","06-03-2020",0,51,NA
+"Ontario","07-03-2020",0,28,NA
+"British Columbia","07-03-2020",0,27,NA
+"Quebec","07-03-2020",0,2,NA
+"Canada","07-03-2020",0,57,NA
+"Ontario","08-03-2020",0,31,NA
+"British Columbia","08-03-2020",1,27,NA
+"Quebec","08-03-2020",0,3,NA
+"Alberta","08-03-2020",0,1,NA
+"Canada","08-03-2020",1,62,NA
+"Ontario","09-03-2020",0,34,NA
+"British Columbia","09-03-2020",1,32,NA
+"Quebec","09-03-2020",0,4,NA
+"Alberta","09-03-2020",0,7,NA
+"Canada","09-03-2020",1,77,NA
+"British Columbia","11-03-2020",1,39,NA
+"Alberta","11-03-2020",0,14,NA
+"Saskatchewan","11-03-2020",0,0,NA
+"Manitoba","11-03-2020",0,0,NA
+"Ontario","11-03-2020",1,42,NA
+"Quebec","11-03-2020",0,7,NA
+"New Brunswick","11-03-2020",0,0,NA
+"Newfoundland and Labrador","11-03-2020",0,0,NA
+"Nova Scotia","11-03-2020",0,0,NA
+"Prince Edward Island","11-03-2020",0,0,NA
+"Northwest Territories","11-03-2020",0,0,NA
+"Nunavut","11-03-2020",0,0,NA
+"Yukon","11-03-2020",0,0,NA
+"Repatriated travellers","11-03-2020",0,1,NA
+"Canada","11-03-2020",2,103,NA
+"British Columbia","12-03-2020",1,46,NA
+"Alberta","12-03-2020",0,19,NA
+"Saskatchewan","12-03-2020",0,1,NA
+"Manitoba","12-03-2020",0,1,NA
+"Ontario","12-03-2020",1,59,NA
+"Quebec","12-03-2020",0,13,NA
+"Newfoundland and Labrador","12-03-2020",0,0,NA
+"New Brunswick","12-03-2020",0,1,NA
+"Nova Scotia","12-03-2020",0,0,NA
+"Prince Edward Island","12-03-2020",0,0,NA
+"Yukon","12-03-2020",0,0,NA
+"Northwest Territories","12-03-2020",0,0,NA
+"Nunavut","12-03-2020",0,0,NA
+"Repatriated travellers","12-03-2020",0,1,NA
+"Canada","12-03-2020",2,141,NA
+"British Columbia","13-03-2020",1,53,NA
+"Alberta","13-03-2020",0,23,NA
+"Saskatchewan","13-03-2020",0,1,NA
+"Manitoba","13-03-2020",0,3,NA
+"Ontario","13-03-2020",1,79,NA
+"Quebec","13-03-2020",0,17,NA
+"Newfoundland and Labrador","13-03-2020",0,0,NA
+"New Brunswick","13-03-2020",0,1,NA
+"Nova Scotia","13-03-2020",0,0,NA
+"Prince Edward Island","13-03-2020",0,0,NA
+"Yukon","13-03-2020",0,0,NA
+"Northwest Territories","13-03-2020",0,0,NA
+"Nunavut","13-03-2020",0,0,NA
+"Repatriated travellers","13-03-2020",0,2,NA
+"Canada","13-03-2020",2,179,NA
+"British Columbia","14-03-2020",1,64,NA
+"Alberta","14-03-2020",0,29,NA
+"Saskatchewan","14-03-2020",0,2,NA
+"Manitoba","14-03-2020",0,4,NA
+"Ontario","14-03-2020",1,79,NA
+"Quebec","14-03-2020",0,17,NA
+"Newfoundland and Labrador","14-03-2020",0,0,NA
+"New Brunswick","14-03-2020",0,2,NA
+"Nova Scotia","14-03-2020",0,0,NA
+"Prince Edward Island","14-03-2020",0,0,NA
+"Yukon","14-03-2020",0,0,NA
+"Northwest Territories","14-03-2020",0,0,NA
+"Nunavut","14-03-2020",0,0,NA
+"Repatriated travellers","14-03-2020",0,2,NA
+"Canada","14-03-2020",2,199,NA
+"British Columbia","15-03-2020",1,73,NA
+"Alberta","15-03-2020",0,39,NA
+"Saskatchewan","15-03-2020",0,2,NA
+"Manitoba","15-03-2020",0,4,NA
+"Ontario","15-03-2020",1,103,NA
+"Quebec","15-03-2020",0,24,NA
+"Newfoundland and Labrador","15-03-2020",0,1,NA
+"New Brunswick","15-03-2020",0,2,NA
+"Nova Scotia","15-03-2020",0,0,NA
+"Prince Edward Island","15-03-2020",0,1,NA
+"Yukon","15-03-2020",0,0,NA
+"Northwest Territories","15-03-2020",0,0,NA
+"Nunavut","15-03-2020",0,0,NA
+"Repatriated travellers","15-03-2020",0,4,NA
+"Canada","15-03-2020",2,253,NA
+"British Columbia","16-03-2020",4,73,NA
+"Alberta","16-03-2020",0,56,NA
+"Saskatchewan","16-03-2020",0,6,NA
+"Manitoba","16-03-2020",0,7,NA
+"Ontario","16-03-2020",1,145,NA
+"Quebec","16-03-2020",0,39,NA
+"Newfoundland and Labrador","16-03-2020",0,1,NA
+"New Brunswick","16-03-2020",0,6,NA
+"Nova Scotia","16-03-2020",0,3,NA
+"Prince Edward Island","16-03-2020",0,1,NA
+"Yukon","16-03-2020",0,0,NA
+"Northwest Territories","16-03-2020",0,0,NA
+"Nunavut","16-03-2020",0,0,NA
+"Repatriated travellers","16-03-2020",0,4,NA
+"Canada","16-03-2020",5,341,NA
+"British Columbia","17-03-2020",7,103,NA
+"Alberta","17-03-2020",0,74,NA
+"Saskatchewan","17-03-2020",0,7,NA
+"Manitoba","17-03-2020",0,7,NA
+"Ontario","17-03-2020",1,177,NA
+"Quebec","17-03-2020",0,50,NA
+"Newfoundland and Labrador","17-03-2020",0,1,NA
+"New Brunswick","17-03-2020",0,7,NA
+"Nova Scotia","17-03-2020",0,5,NA
+"Prince Edward Island","17-03-2020",0,1,NA
+"Yukon","17-03-2020",0,0,NA
+"Northwest Territories","17-03-2020",0,0,NA
+"Nunavut","17-03-2020",0,0,NA
+"Repatriated travellers","17-03-2020",0,8,NA
+"Canada","17-03-2020",8,440,NA
+"British Columbia","18-03-2020",7,186,NA
+"Alberta","18-03-2020",0,97,NA
+"Saskatchewan","18-03-2020",0,8,NA
+"Manitoba","18-03-2020",0,15,NA
+"Ontario","18-03-2020",1,189,NA
+"Quebec","18-03-2020",1,74,NA
+"Newfoundland and Labrador","18-03-2020",0,3,NA
+"New Brunswick","18-03-2020",0,8,NA
+"Nova Scotia","18-03-2020",0,7,NA
+"Prince Edward Island","18-03-2020",0,1,NA
+"Yukon","18-03-2020",0,0,NA
+"Northwest Territories","18-03-2020",0,0,NA
+"Nunavut","18-03-2020",0,0,NA
+"Repatriated travellers","18-03-2020",0,9,NA
+"Canada","18-03-2020",9,597,NA
+"British Columbia","19-03-2020",8,271,NA
+"Alberta","19-03-2020",1,146,NA
+"Saskatchewan","19-03-2020",0,20,NA
+"Manitoba","19-03-2020",0,17,NA
+"Ontario","19-03-2020",2,258,NA
+"Quebec","19-03-2020",1,121,NA
+"Newfoundland and Labrador","19-03-2020",0,3,NA
+"New Brunswick","19-03-2020",0,11,NA
+"Nova Scotia","19-03-2020",0,14,NA
+"Prince Edward Island","19-03-2020",0,2,NA
+"Yukon","19-03-2020",0,0,NA
+"Northwest Territories","19-03-2020",0,0,NA
+"Nunavut","19-03-2020",0,0,NA
+"Repatriated travellers","19-03-2020",0,10,NA
+"Canada","19-03-2020",12,873,NA
+"British Columbia","20-03-2020",9,271,NA
+"Alberta","20-03-2020",1,195,NA
+"Saskatchewan","20-03-2020",0,26,NA
+"Manitoba","20-03-2020",0,17,NA
+"Ontario","20-03-2020",2,311,NA
+"Quebec","20-03-2020",1,139,NA
+"Newfoundland and Labrador","20-03-2020",0,4,NA
+"New Brunswick","20-03-2020",0,11,NA
+"Nova Scotia","20-03-2020",0,15,NA
+"Prince Edward Island","20-03-2020",0,2,NA
+"Yukon","20-03-2020",0,0,NA
+"Northwest Territories","20-03-2020",0,0,NA
+"Nunavut","20-03-2020",0,0,NA
+"Repatriated travellers","20-03-2020",0,13,NA
+"Canada","20-03-2020",13,1004,NA
+"British Columbia","21-03-2020",10,424,NA
+"Alberta","21-03-2020",1,226,NA
+"Saskatchewan","21-03-2020",0,44,NA
+"Manitoba","21-03-2020",0,19,NA
+"Ontario","21-03-2020",3,377,NA
+"Quebec","21-03-2020",4,221,NA
+"Newfoundland and Labrador","21-03-2020",0,6,NA
+"New Brunswick","21-03-2020",0,17,NA
+"Nova Scotia","21-03-2020",0,21,NA
+"Prince Edward Island","21-03-2020",0,2,NA
+"Yukon","21-03-2020",0,0,NA
+"Northwest Territories","21-03-2020",0,1,NA
+"Nunavut","21-03-2020",0,0,NA
+"Repatriated travellers","21-03-2020",0,13,NA
+"Canada","21-03-2020",18,1371,NA
+"British Columbia","22-03-2020",10,424,NA
+"Alberta","22-03-2020",1,259,NA
+"Saskatchewan","22-03-2020",0,52,NA
+"Manitoba","22-03-2020",0,19,NA
+"Ontario","22-03-2020",5,425,NA
+"Quebec","22-03-2020",4,221,NA
+"Newfoundland and Labrador","22-03-2020",0,9,NA
+"New Brunswick","22-03-2020",0,17,NA
+"Nova Scotia","22-03-2020",0,28,NA
+"Prince Edward Island","22-03-2020",0,3,NA
+"Yukon","22-03-2020",0,0,NA
+"Northwest Territories","22-03-2020",0,1,NA
+"Nunavut","22-03-2020",0,0,NA
+"Repatriated travellers","22-03-2020",0,13,NA
+"Canada","22-03-2020",20,1471,NA
+"British Columbia","23-03-2020",13,472,NA
+"Alberta","23-03-2020",1,301,NA
+"Saskatchewan","23-03-2020",0,66,NA
+"Manitoba","23-03-2020",0,20,NA
+"Ontario","23-03-2020",6,503,NA
+"Quebec","23-03-2020",4,628,NA
+"Newfoundland and Labrador","23-03-2020",0,24,NA
+"New Brunswick","23-03-2020",0,17,NA
+"Nova Scotia","23-03-2020",0,41,NA
+"Prince Edward Island","23-03-2020",0,3,NA
+"Yukon","23-03-2020",0,2,NA
+"Northwest Territories","23-03-2020",0,1,NA
+"Nunavut","23-03-2020",0,0,NA
+"Repatriated travellers","23-03-2020",0,13,NA
+"Canada","23-03-2020",24,2091,NA
+"British Columbia","24-03-2020",13,617,NA
+"Alberta","24-03-2020",2,358,NA
+"Saskatchewan","24-03-2020",0,72,NA
+"Manitoba","24-03-2020",0,21,NA
+"Ontario","24-03-2020",8,588,NA
+"Quebec","24-03-2020",4,1013,NA
+"Newfoundland and Labrador","24-03-2020",0,35,NA
+"New Brunswick","24-03-2020",0,18,NA
+"Nova Scotia","24-03-2020",0,51,NA
+"Prince Edward Island","24-03-2020",0,3,NA
+"Yukon","24-03-2020",0,2,NA
+"Northwest Territories","24-03-2020",0,1,NA
+"Nunavut","24-03-2020",0,0,NA
+"Repatriated travellers","24-03-2020",0,13,NA
+"Canada","24-03-2020",27,2792,NA
+"British Columbia","25-03-2020",14,659,NA
+"Alberta","25-03-2020",2,419,NA
+"Saskatchewan","25-03-2020",0,86,NA
+"Manitoba","25-03-2020",0,35,NA
+"Ontario","25-03-2020",13,688,NA
+"Quebec","25-03-2020",6,1339,NA
+"Newfoundland and Labrador","25-03-2020",0,67,NA
+"New Brunswick","25-03-2020",0,26,NA
+"Nova Scotia","25-03-2020",0,68,NA
+"Prince Edward Island","25-03-2020",0,5,NA
+"Yukon","25-03-2020",0,3,NA
+"Northwest Territories","25-03-2020",0,1,NA
+"Nunavut","25-03-2020",0,0,NA
+"Repatriated travellers","25-03-2020",0,13,NA
+"Canada","25-03-2020",35,3409,NA
+"British Columbia","26-03-2020",14,725,186
+"Alberta","26-03-2020",2,486,27
+"Saskatchewan","26-03-2020",0,95,3
+"Manitoba","26-03-2020",0,36,1
+"Ontario","26-03-2020",15,858,8
+"Quebec","26-03-2020",8,1629,2
+"Newfoundland and Labrador","26-03-2020",0,82,NA
+"New Brunswick","26-03-2020",0,33,NA
+"Nova Scotia","26-03-2020",0,73,2
+"Prince Edward Island","26-03-2020",0,9,1
+"Yukon","26-03-2020",0,3,NA
+"Northwest Territories","26-03-2020",0,1,NA
+"Nunavut","26-03-2020",0,0,NA
+"Repatriated travellers","26-03-2020",0,13,NA
+"Canada","26-03-2020",39,4043,230
+"British Columbia","27-03-2020",14,725,186
+"Alberta","27-03-2020",2,542,27
+"Saskatchewan","27-03-2020",0,104,3
+"Manitoba","27-03-2020",1,39,1
+"Ontario","27-03-2020",18,993,8
+"Quebec","27-03-2020",18,2021,29
+"Newfoundland and Labrador","27-03-2020",0,102,NA
+"New Brunswick","27-03-2020",0,45,1
+"Nova Scotia","27-03-2020",0,90,2
+"Prince Edward Island","27-03-2020",0,11,1
+"Yukon","27-03-2020",0,3,NA
+"Northwest Territories","27-03-2020",0,1,NA
+"Nunavut","27-03-2020",0,0,NA
+"Repatriated travellers","27-03-2020",0,13,NA
+"Canada","27-03-2020",53,4689,256
+"British Columbia","28-03-2020",16,884,396
+"Alberta","28-03-2020",2,542,53
+"Saskatchewan","28-03-2020",0,134,3
+"Manitoba","28-03-2020",1,64,1
+"Ontario","28-03-2020",18,993,8
+"Quebec","28-03-2020",22,2498,29
+"Newfoundland and Labrador","28-03-2020",0,120,4
+"New Brunswick","28-03-2020",0,51,2
+"Nova Scotia","28-03-2020",0,110,4
+"Prince Edward Island","28-03-2020",0,11,1
+"Yukon","28-03-2020",0,4,NA
+"Northwest Territories","28-03-2020",0,1,NA
+"Nunavut","28-03-2020",0,0,NA
+"Repatriated travellers","28-03-2020",0,13,NA
+"Canada","28-03-2020",59,5425,502
+"British Columbia","29-03-2020",17,884,396
+"Alberta","29-03-2020",2,621,73
+"Saskatchewan","29-03-2020",0,134,4
+"Manitoba","29-03-2020",1,72,1
+"Ontario","29-03-2020",19,1355,8
+"Quebec","29-03-2020",22,2840,29
+"Newfoundland and Labrador","29-03-2020",0,135,4
+"New Brunswick","29-03-2020",0,66,2
+"Nova Scotia","29-03-2020",0,122,4
+"Prince Edward Island","29-03-2020",0,11,1
+"Yukon","29-03-2020",0,4,NA
+"Northwest Territories","29-03-2020",0,1,NA
+"Nunavut","29-03-2020",0,0,NA
+"Repatriated travellers","29-03-2020",0,13,NA
+"Canada","29-03-2020",61,6258,522
+"British Columbia","30-03-2020",19,960,469
+"Alberta","30-03-2020",8,690,94
+"Saskatchewan","30-03-2020",2,175,14
+"Manitoba","30-03-2020",1,96,2
+"Ontario","30-03-2020",33,1706,431
+"Quebec","30-03-2020",25,3430,29
+"Newfoundland and Labrador","30-03-2020",1,148,7
+"New Brunswick","30-03-2020",0,68,2
+"Nova Scotia","30-03-2020",0,127,10
+"Prince Edward Island","30-03-2020",0,18,1
+"Yukon","30-03-2020",0,5,NA
+"Northwest Territories","30-03-2020",0,1,NA
+"Nunavut","30-03-2020",0,0,NA
+"Repatriated travellers","30-03-2020",0,13,9
+"Canada","30-03-2020",89,7437,1068
+"British Columbia","31-03-2020",19,970,507
+"Alberta","31-03-2020",9,754,120
+"Saskatchewan","31-03-2020",2,184,21
+"Manitoba","31-03-2020",1,103,4
+"Ontario","31-03-2020",33,1966,534
+"Quebec","31-03-2020",31,4162,29
+"Newfoundland and Labrador","31-03-2020",1,152,7
+"New Brunswick","31-03-2020",0,70,9
+"Nova Scotia","31-03-2020",0,147,10
+"Prince Edward Island","31-03-2020",0,21,1
+"Yukon","31-03-2020",0,5,NA
+"Northwest Territories","31-03-2020",0,1,NA
+"Nunavut","31-03-2020",0,0,NA
+"Repatriated travellers","31-03-2020",0,13,12
+"Canada","31-03-2020",96,8548,1254
+"British Columbia","01-04-2020",25,1066,606
+"Alberta","01-04-2020",9,754,142
+"Saskatchewan","01-04-2020",3,193,30
+"Manitoba","01-04-2020",1,127,4
+"Ontario","01-04-2020",37,2392,689
+"Quebec","01-04-2020",33,4611,29
+"Newfoundland and Labrador","01-04-2020",1,175,10
+"New Brunswick","01-04-2020",0,81,14
+"Nova Scotia","01-04-2020",0,173,11
+"Prince Edward Island","01-04-2020",0,21,3
+"Yukon","01-04-2020",0,5,3
+"Northwest Territories","01-04-2020",0,2,NA
+"Nunavut","01-04-2020",0,0,NA
+"Repatriated travellers","01-04-2020",0,13,12
+"Canada","01-04-2020",109,9613,1553
+"British Columbia","02-04-2020",31,1121,641
+"Alberta","02-04-2020",13,968,174
+"Saskatchewan","02-04-2020",3,206,36
+"Manitoba","02-04-2020",1,167,11
+"Ontario","02-04-2020",53,2793,831
+"Quebec","02-04-2020",36,5518,224
+"Newfoundland and Labrador","02-04-2020",1,183,10
+"New Brunswick","02-04-2020",0,91,22
+"Nova Scotia","02-04-2020",0,193,16
+"Prince Edward Island","02-04-2020",0,22,3
+"Yukon","02-04-2020",0,6,3
+"Northwest Territories","02-04-2020",0,2,NA
+"Nunavut","02-04-2020",0,0,NA
+"Repatriated travellers","02-04-2020",0,13,12
+"Canada","02-04-2020",138,11283,1983
+"British Columbia","03-04-2020",35,1174,641
+"Alberta","03-04-2020",18,1075,NA
+"Saskatchewan","03-04-2020",3,220,NA
+"Manitoba","03-04-2020",2,182,NA
+"Ontario","03-04-2020",67,3255,NA
+"Quebec","03-04-2020",61,6101,NA
+"Newfoundland and Labrador","03-04-2020",1,183,NA
+"New Brunswick","03-04-2020",0,95,NA
+"Nova Scotia","03-04-2020",0,207,NA
+"Prince Edward Island","03-04-2020",0,22,NA
+"Yukon","03-04-2020",0,6,NA
+"Northwest Territories","03-04-2020",0,4,NA
+"Nunavut","03-04-2020",0,0,NA
+"Repatriated travellers","03-04-2020",0,13,NA
+"Canada","03-04-2020",187,12537,NA
+"British Columbia","04-04-2020",38,1203,705
+"Alberta","04-04-2020",18,1075,NA
+"Saskatchewan","04-04-2020",3,231,NA
+"Manitoba","04-04-2020",2,194,NA
+"Ontario","04-04-2020",94,3630,NA
+"Quebec","04-04-2020",75,6997,NA
+"Newfoundland and Labrador","04-04-2020",1,195,NA
+"New Brunswick","04-04-2020",0,98,NA
+"Nova Scotia","04-04-2020",0,236,NA
+"Prince Edward Island","04-04-2020",0,22,NA
+"Yukon","04-04-2020",0,6,NA
+"Northwest Territories","04-04-2020",0,4,NA
+"Nunavut","04-04-2020",0,0,NA
+"Repatriated travellers","04-04-2020",0,13,NA
+"Canada","04-04-2020",231,13904,NA
+"British Columbia","05-04-2020",38,1203,704
+"Alberta","05-04-2020",23,1250,240
+"Saskatchewan","05-04-2020",3,249,55
+"Manitoba","05-04-2020",2,203,17
+"Ontario","05-04-2020",119,4038,1219
+"Quebec","05-04-2020",94,7944,0
+"Newfoundland and Labrador","05-04-2020",1,217,11
+"New Brunswick","05-04-2020",0,101,28
+"Nova Scotia","05-04-2020",0,262,50
+"Prince Edward Island","05-04-2020",0,22,6
+"Yukon","05-04-2020",0,6,4
+"Northwest Territories","05-04-2020",0,4,1
+"Nunavut","05-04-2020",0,0,0
+"Repatriated travellers","05-04-2020",0,13,12
+"Canada","05-04-2020",280,15512,2335
+"British Columbia","06-04-2020",39,1266,783
+"Alberta","06-04-2020",24,1348,361
+"Saskatchewan","06-04-2020",3,253,81
+"Manitoba","06-04-2020",2,204,17
+"Ontario","06-04-2020",132,4347,1624
+"Quebec","06-04-2020",121,8580,611
+"Newfoundland and Labrador","06-04-2020",2,226,32
+"New Brunswick","06-04-2020",0,103,30
+"Nova Scotia","06-04-2020",0,293,64
+"Prince Edward Island","06-04-2020",0,22,8
+"Yukon","06-04-2020",0,7,4
+"Northwest Territories","06-04-2020",0,5,1
+"Nunavut","06-04-2020",0,0,0
+"Repatriated travellers","06-04-2020",0,13,12
+"Canada","06-04-2020",323,16667,3616
+"British Columbia","07-04-2020",43,1291,783
+"Alberta","07-04-2020",26,1373,NA
+"Saskatchewan","07-04-2020",3,260,NA
+"Manitoba","07-04-2020",3,217,NA
+"Ontario","07-04-2020",153,4726,NA
+"Quebec","07-04-2020",150,9340,NA
+"Newfoundland and Labrador","07-04-2020",2,228,NA
+"New Brunswick","07-04-2020",0,105,NA
+"Nova Scotia","07-04-2020",0,310,NA
+"Prince Edward Island","07-04-2020",0,22,NA
+"Yukon","07-04-2020",0,7,NA
+"Northwest Territories","07-04-2020",0,5,NA
+"Nunavut","07-04-2020",0,0,NA
+"Repatriated travellers","07-04-2020",0,13,NA
+"Canada","07-04-2020",380,17897,NA
+"British Columbia","08-04-2020",48,1336,838
+"Alberta","08-04-2020",29,1423,NA
+"Saskatchewan","08-04-2020",3,271,NA
+"Manitoba","08-04-2020",3,221,NA
+"Ontario","08-04-2020",174,5276,NA
+"Quebec","08-04-2020",175,10031,NA
+"Newfoundland and Labrador","08-04-2020",2,232,NA
+"New Brunswick","08-04-2020",0,108,NA
+"Nova Scotia","08-04-2020",1,342,NA
+"Prince Edward Island","08-04-2020",0,24,NA
+"Yukon","08-04-2020",0,7,NA
+"Northwest Territories","08-04-2020",0,5,NA
+"Nunavut","08-04-2020",0,0,NA
+"Repatriated travellers","08-04-2020",0,13,NA
+"Canada","08-04-2020",435,19289,NA
+"British Columbia","09-04-2020",50,1370,858
+"Alberta","09-04-2020",32,1451,NA
+"Saskatchewan","09-04-2020",3,278,NA
+"Manitoba","09-04-2020",3,224,NA
+"Ontario","09-04-2020",200,5759,NA
+"Quebec","09-04-2020",216,10912,NA
+"Newfoundland and Labrador","09-04-2020",3,236,NA
+"New Brunswick","09-04-2020",0,111,NA
+"Nova Scotia","09-04-2020",2,373,NA
+"Prince Edward Island","09-04-2020",0,25,NA
+"Yukon","09-04-2020",0,8,NA
+"Northwest Territories","09-04-2020",0,5,NA
+"Nunavut","09-04-2020",0,0,NA
+"Repatriated travellers","09-04-2020",0,13,NA
+"Canada","09-04-2020",509,20765,NA
+"British Columbia","10-04-2020",55,1410,879
+"Alberta","10-04-2020",39,1500,NA
+"Saskatchewan","10-04-2020",3,285,NA
+"Manitoba","10-04-2020",4,230,NA
+"Ontario","10-04-2020",222,6237,NA
+"Quebec","10-04-2020",241,11677,NA
+"Newfoundland and Labrador","10-04-2020",3,239,NA
+"New Brunswick","10-04-2020",0,112,NA
+"Nova Scotia","10-04-2020",2,407,NA
+"Prince Edward Island","10-04-2020",0,25,NA
+"Yukon","10-04-2020",0,8,NA
+"Northwest Territories","10-04-2020",0,5,NA
+"Nunavut","10-04-2020",0,0,NA
+"Repatriated travellers","10-04-2020",NA,13,NA
+"Canada","10-04-2020",569,22148,NA
+"British Columbia","11-04-2020",58,1445,905
+"Alberta","11-04-2020",40,1569,NA
+"Saskatchewan","11-04-2020",4,289,NA
+"Manitoba","11-04-2020",4,243,NA
+"Ontario","11-04-2020",253,6648,NA
+"Quebec","11-04-2020",289,12292,NA
+"Newfoundland and Labrador","11-04-2020",3,241,NA
+"New Brunswick","11-04-2020",0,112,NA
+"Nova Scotia","11-04-2020",2,428,NA
+"Prince Edward Island","11-04-2020",0,25,NA
+"Yukon","11-04-2020",0,8,NA
+"Northwest Territories","11-04-2020",0,5,NA
+"Nunavut","11-04-2020",0,0,NA
+"Repatriated travellers","11-04-2020",NA,13,NA
+"Canada","11-04-2020",653,23318,NA
+"British Columbia","12-04-2020",58,1445,905
+"Alberta","12-04-2020",44,1651,NA
+"Saskatchewan","12-04-2020",4,298,NA
+"Manitoba","12-04-2020",4,242,NA
+"Ontario","12-04-2020",274,7049,NA
+"Quebec","12-04-2020",328,12846,NA
+"Newfoundland and Labrador","12-04-2020",3,242,NA
+"New Brunswick","12-04-2020",0,114,NA
+"Nova Scotia","12-04-2020",2,445,NA
+"Prince Edward Island","12-04-2020",0,25,NA
+"Yukon","12-04-2020",0,8,NA
+"Northwest Territories","12-04-2020",0,5,NA
+"Nunavut","12-04-2020",0,0,NA
+"Repatriated travellers","12-04-2020",NA,13,NA
+"Canada","12-04-2020",717,24383,NA
+"British Columbia","13-04-2020",69,1490,926
+"Alberta","13-04-2020",46,1732,NA
+"Saskatchewan","13-04-2020",4,300,NA
+"Manitoba","13-04-2020",4,246,NA
+"Ontario","13-04-2020",291,7470,NA
+"Quebec","13-04-2020",360,13557,NA
+"Newfoundland and Labrador","13-04-2020",3,244,NA
+"New Brunswick","13-04-2020",0,116,NA
+"Nova Scotia","13-04-2020",3,474,NA
+"Prince Edward Island","13-04-2020",0,25,NA
+"Yukon","13-04-2020",0,8,NA
+"Northwest Territories","13-04-2020",0,5,NA
+"Nunavut","13-04-2020",0,0,NA
+"Repatriated travellers","13-04-2020",NA,13,NA
+"Canada","13-04-2020",780,25680,NA
+"British Columbia","14-04-2020",72,1517,942
+"Alberta","14-04-2020",48,1870,NA
+"Saskatchewan","14-04-2020",4,301,NA
+"Manitoba","14-04-2020",4,246,NA
+"Ontario","14-04-2020",334,7953,NA
+"Quebec","14-04-2020",435,14248,NA
+"Newfoundland and Labrador","14-04-2020",3,244,NA
+"New Brunswick","14-04-2020",0,116,NA
+"Nova Scotia","14-04-2020",3,517,NA
+"Prince Edward Island","14-04-2020",0,25,NA
+"Yukon","14-04-2020",0,8,NA
+"Northwest Territories","14-04-2020",0,5,NA
+"Nunavut","14-04-2020",0,0,NA
+"Repatriated travellers","14-04-2020",NA,13,NA
+"Canada","14-04-2020",903,27063,NA
+"British Columbia","15-04-2020",75,1561,955
+"Alberta","15-04-2020",48,1996,NA
+"Saskatchewan","15-04-2020",4,304,NA
+"Manitoba","15-04-2020",5,246,NA
+"Ontario","15-04-2020",385,8447,NA
+"Quebec","15-04-2020",487,14860,NA
+"Newfoundland and Labrador","15-04-2020",3,247,NA
+"New Brunswick","15-04-2020",0,117,NA
+"Nova Scotia","15-04-2020",3,549,NA
+"Prince Edward Island","15-04-2020",0,26,NA
+"Yukon","15-04-2020",0,8,NA
+"Northwest Territories","15-04-2020",0,5,NA
+"Nunavut","15-04-2020",0,0,NA
+"Repatriated travellers","15-04-2020",NA,13,NA
+"Canada","15-04-2020",1010,28381,NA
+"British Columbia","16-04-2020",75,1561,955
+"Alberta","16-04-2020",50,2158,NA
+"Saskatchewan","16-04-2020",4,305,NA
+"Manitoba","16-04-2020",5,250,NA
+"Ontario","16-04-2020",423,8961,NA
+"Quebec","16-04-2020",630,15857,NA
+"Newfoundland and Labrador","16-04-2020",3,252,NA
+"New Brunswick","16-04-2020",0,117,NA
+"Nova Scotia","16-04-2020",3,579,NA
+"Prince Edward Island","16-04-2020",0,26,NA
+"Yukon","16-04-2020",0,8,NA
+"Northwest Territories","16-04-2020",0,5,NA
+"Nunavut","16-04-2020",0,0,NA
+"Repatriated travellers","16-04-2020",NA,13,NA
+"Canada","16-04-2020",1193,30092,NA
+"British Columbia","17-04-2020",77,1575,955
+"Alberta","17-04-2020",50,2397,NA
+"Saskatchewan","17-04-2020",4,307,NA
+"Manitoba","17-04-2020",5,250,NA
+"Ontario","17-04-2020",478,9525,NA
+"Quebec","17-04-2020",688,16798,NA
+"Newfoundland and Labrador","17-04-2020",3,256,NA
+"New Brunswick","17-04-2020",0,117,NA
+"Nova Scotia","17-04-2020",4,606,NA
+"Prince Edward Island","17-04-2020",0,26,NA
+"Yukon","17-04-2020",0,9,NA
+"Northwest Territories","17-04-2020",0,5,NA
+"Nunavut","17-04-2020",0,0,NA
+"Repatriated travellers","17-04-2020",NA,13,NA
+"Canada","17-04-2020",1309,31884,NA
+"British Columbia","18-04-2020",78,1618,966
+"Alberta","18-04-2020",51,2562,1162
+"Saskatchewan","18-04-2020",4,313,234
+"Manitoba","18-04-2020",5,253,132
+"Ontario","18-04-2020",514,10010,4875
+"Quebec","18-04-2020",805,17521,3315
+"Newfoundland and Labrador","18-04-2020",3,257,189
+"New Brunswick","18-04-2020",0,118,87
+"Nova Scotia","18-04-2020",7,649,184
+"Prince Edward Island","18-04-2020",0,26,23
+"Yukon","18-04-2020",0,9,8
+"Northwest Territories","18-04-2020",0,5,3
+"Nunavut","18-04-2020",0,0,0
+"Repatriated travellers","18-04-2020",NA,13,NA
+"Canada","18-04-2020",1467,33354,11178
+"British Columbia","19-04-2020",78,1618,966
+"Alberta","19-04-2020",51,2562,1162
+"Saskatchewan","19-04-2020",4,315,234
+"Manitoba","19-04-2020",5,253,143
+"Ontario","19-04-2020",553,10578,5209
+"Quebec","19-04-2020",877,18357,3555
+"Newfoundland and Labrador","19-04-2020",3,257,191
+"New Brunswick","19-04-2020",0,118,92
+"Nova Scotia","19-04-2020",9,675,200
+"Prince Edward Island","19-04-2020",0,26,23
+"Yukon","19-04-2020",0,9,8
+"Northwest Territories","19-04-2020",0,5,3
+"Nunavut","19-04-2020",0,0,0
+"Repatriated travellers","19-04-2020",NA,13,NA
+"Canada","19-04-2020",1580,34786,11786
+"British Columbia","20-04-2020",86,1699,1039
+"Alberta","20-04-2020",59,2908,1230
+"Saskatchewan","20-04-2020",4,316,238
+"Manitoba","20-04-2020",6,254,143
+"Ontario","20-04-2020",584,11184,5515
+"Quebec","20-04-2020",939,19319,3847
+"Newfoundland and Labrador","20-04-2020",3,257,191
+"New Brunswick","20-04-2020",0,118,98
+"Nova Scotia","20-04-2020",9,721,248
+"Prince Edward Island","20-04-2020",0,26,23
+"Yukon","20-04-2020",0,11,8
+"Northwest Territories","20-04-2020",0,5,5
+"Nunavut","20-04-2020",0,0,0
+"Repatriated travellers","20-04-2020",NA,13,NA
+"Canada","20-04-2020",1690,36831,12585
+"British Columbia","21-04-2020",87,1724,1041
+"Alberta","21-04-2020",61,3095,1273
+"Saskatchewan","21-04-2020",4,320,252
+"Manitoba","21-04-2020",6,255,150
+"Ontario","21-04-2020",622,11735,5806
+"Quebec","21-04-2020",1041,20126,4048
+"Newfoundland and Labrador","21-04-2020",3,257,194
+"New Brunswick","21-04-2020",0,118,102
+"Nova Scotia","21-04-2020",10,737,286
+"Prince Edward Island","21-04-2020",0,26,23
+"Yukon","21-04-2020",0,11,8
+"Northwest Territories","21-04-2020",0,5,5
+"Nunavut","21-04-2020",0,0,0
+"Repatriated travellers","21-04-2020",NA,13,NA
+"Canada","21-04-2020",1834,38422,13188
+"British Columbia","22-04-2020",90,1795,1079
+"Alberta","22-04-2020",66,3401,1310
+"Saskatchewan","22-04-2020",4,326,261
+"Manitoba","22-04-2020",6,257,154
+"Ontario","22-04-2020",659,12245,6221
+"Quebec","22-04-2020",1134,20965,4291
+"Newfoundland and Labrador","22-04-2020",3,256,199
+"New Brunswick","22-04-2020",0,118,104
+"Nova Scotia","22-04-2020",12,772,330
+"Prince Edward Island","22-04-2020",0,26,24
+"Yukon","22-04-2020",0,11,8
+"Northwest Territories","22-04-2020",0,5,5
+"Nunavut","22-04-2020",0,0,0
+"Repatriated travellers","22-04-2020",NA,13,NA
+"Canada","22-04-2020",1974,40190,13986
+"British Columbia","23-04-2020",94,1824,1092
+"Alberta","23-04-2020",67,3720,1357
+"Saskatchewan","23-04-2020",4,331,270
+"Manitoba","23-04-2020",6,262,174
+"Ontario","23-04-2020",713,12879,6680
+"Quebec","23-04-2020",1243,21838,4484
+"Newfoundland and Labrador","23-04-2020",3,256,205
+"New Brunswick","23-04-2020",0,118,104
+"Nova Scotia","23-04-2020",16,827,358
+"Prince Edward Island","23-04-2020",0,26,24
+"Yukon","23-04-2020",0,11,8
+"Northwest Territories","23-04-2020",0,5,5
+"Nunavut","23-04-2020",0,0,0
+"Repatriated travellers","23-04-2020",NA,13,NA
+"Canada","23-04-2020",2146,42110,14761
+"British Columbia","24-04-2020",98,1853,1114
+"Alberta","24-04-2020",72,4017,1397
+"Saskatchewan","24-04-2020",4,341,280
+"Manitoba","24-04-2020",6,263,196
+"Ontario","24-04-2020",763,13519,7087
+"Quebec","24-04-2020",1340,22616,4724
+"Newfoundland and Labrador","24-04-2020",3,256,207
+"New Brunswick","24-04-2020",0,118,107
+"Nova Scotia","24-04-2020",16,850,392
+"Prince Edward Island","24-04-2020",0,26,24
+"Yukon","24-04-2020",0,11,8
+"Northwest Territories","24-04-2020",0,5,5
+"Nunavut","24-04-2020",0,0,0
+"Repatriated travellers","24-04-2020",NA,13,NA
+"Canada","24-04-2020",2302,43888,15541
+"British Columbia","25-04-2020",100,1948,1137
+"Alberta","25-04-2020",73,4233,1471
+"Saskatchewan","25-04-2020",4,349,288
+"Manitoba","25-04-2020",6,267,199
+"Ontario","25-04-2020",811,13995,7509
+"Quebec","25-04-2020",1446,23267,5057
+"Newfoundland and Labrador","25-04-2020",3,257,208
+"New Brunswick","25-04-2020",0,118,107
+"Nova Scotia","25-04-2020",22,865,412
+"Prince Edward Island","25-04-2020",0,26,24
+"Yukon","25-04-2020",0,11,8
+"Northwest Territories","25-04-2020",0,5,5
+"Nunavut","25-04-2020",0,0,0
+"Repatriated travellers","25-04-2020",NA,13,NA
+"Canada","25-04-2020",2465,45354,16425
+"British Columbia","26-04-2020",100,1948,1137
+"Alberta","26-04-2020",73,4480,1549
+"Saskatchewan","26-04-2020",4,353,288
+"Manitoba","26-04-2020",6,271,199
+"Ontario","26-04-2020",835,14432,8000
+"Quebec","26-04-2020",1515,24107,5342
+"Newfoundland and Labrador","26-04-2020",3,258,219
+"New Brunswick","26-04-2020",0,118,111
+"Nova Scotia","26-04-2020",24,873,439
+"Prince Edward Island","26-04-2020",0,26,24
+"Yukon","26-04-2020",0,11,8
+"Northwest Territories","26-04-2020",0,5,5
+"Nunavut","26-04-2020",0,0,0
+"Repatriated travellers","26-04-2020",NA,13,NA
+"Canada","26-04-2020",2560,46895,17321
+"British Columbia","27-04-2020",103,1998,1190
+"Alberta","27-04-2020",75,4696,1664
+"Saskatchewan","27-04-2020",5,365,288
+"Manitoba","27-04-2020",6,272,205
+"Ontario","27-04-2020",892,14856,8525
+"Quebec","27-04-2020",1599,24982,5517
+"Newfoundland and Labrador","27-04-2020",3,258,221
+"New Brunswick","27-04-2020",0,118,112
+"Nova Scotia","27-04-2020",24,900,509
+"Prince Edward Island","27-04-2020",0,26,24
+"Yukon","27-04-2020",0,11,8
+"Northwest Territories","27-04-2020",0,5,5
+"Nunavut","27-04-2020",0,0,0
+"Repatriated travellers","27-04-2020",NA,13,NA
+"Canada","27-04-2020",2707,48500,18268
+"British Columbia","28-04-2020",105,2053,1231
+"Alberta","28-04-2020",80,4850,1800
+"Saskatchewan","28-04-2020",5,366,291
+"Manitoba","28-04-2020",6,272,209
+"Ontario","28-04-2020",951,15381,8964
+"Quebec","28-04-2020",1682,25757,5841
+"Newfoundland and Labrador","28-04-2020",3,258,222
+"New Brunswick","28-04-2020",0,118,114
+"Nova Scotia","28-04-2020",27,915,522
+"Prince Edward Island","28-04-2020",0,27,24
+"Yukon","28-04-2020",0,11,8
+"Northwest Territories","28-04-2020",0,5,5
+"Nunavut","28-04-2020",0,0,0
+"Repatriated travellers","28-04-2020",NA,13,NA
+"Canada","28-04-2020",2859,50026,19231
+"British Columbia","29-04-2020",109,2087,1305
+"Alberta","29-04-2020",87,5165,1953
+"Saskatchewan","29-04-2020",6,383,291
+"Manitoba","29-04-2020",6,273,213
+"Ontario","29-04-2020",996,15728,9612
+"Quebec","29-04-2020",1761,26594,6048
+"Newfoundland and Labrador","29-04-2020",3,258,225
+"New Brunswick","29-04-2020",0,118,114
+"Nova Scotia","29-04-2020",28,935,529
+"Prince Edward Island","29-04-2020",0,27,24
+"Yukon","29-04-2020",0,11,8
+"Northwest Territories","29-04-2020",0,5,5
+"Nunavut","29-04-2020",0,0,0
+"Repatriated travellers","29-04-2020",NA,13,NA
+"Canada","29-04-2020",2996,51597,20327
+"British Columbia","30-04-2020",111,2112,1322
+"Alberta","30-04-2020",89,5355,2161
+"Saskatchewan","30-04-2020",6,389,295
+"Manitoba","30-04-2020",6,275,220
+"Ontario","30-04-2020",1082,16187,10205
+"Quebec","30-04-2020",1859,27538,6299
+"Newfoundland and Labrador","30-04-2020",3,258,225
+"New Brunswick","30-04-2020",0,118,114
+"Nova Scotia","30-04-2020",28,947,545
+"Prince Edward Island","30-04-2020",0,27,24
+"Yukon","30-04-2020",0,11,9
+"Northwest Territories","30-04-2020",0,5,5
+"Nunavut","30-04-2020",0,0,0
+"Repatriated travellers","30-04-2020",NA,13,NA
+"Canada","30-04-2020",3184,53236,21424
+"British Columbia","01-05-2020",112,2145,1357
+"Alberta","01-05-2020",92,5573,2359
+"Saskatchewan","01-05-2020",6,415,297
+"Manitoba","01-05-2020",6,279,235
+"Ontario","01-05-2020",1121,16608,10825
+"Quebec","01-05-2020",2022,28648,6700
+"Newfoundland and Labrador","01-05-2020",3,259,230
+"New Brunswick","01-05-2020",0,118,116
+"Nova Scotia","01-05-2020",29,959,592
+"Prince Edward Island","01-05-2020",0,27,24
+"Yukon","01-05-2020",0,11,11
+"Northwest Territories","01-05-2020",0,5,5
+"Nunavut","01-05-2020",0,0,0
+"Repatriated travellers","01-05-2020",NA,13,NA
+"Canada","01-05-2020",3391,55061,22751
+"British Columbia","02-05-2020",114,2171,1376
+"Alberta","02-05-2020",94,5670,2534
+"Saskatchewan","02-05-2020",6,421,302
+"Manitoba","02-05-2020",6,280,236
+"Ontario","02-05-2020",1176,17119,11390
+"Quebec","02-05-2020",2136,29656,6965
+"Newfoundland and Labrador","02-05-2020",3,259,231
+"New Brunswick","02-05-2020",0,118,118
+"Nova Scotia","02-05-2020",31,963,609
+"Prince Edward Island","02-05-2020",0,27,24
+"Yukon","02-05-2020",0,11,11
+"Northwest Territories","02-05-2020",0,5,5
+"Nunavut","02-05-2020",0,0,0
+"Repatriated travellers","02-05-2020",NA,13,13
+"Canada","02-05-2020",3566,56714,23801
+"British Columbia","03-05-2020",114,2171,1376
+"Alberta","03-05-2020",95,5766,2713
+"Saskatchewan","03-05-2020",6,433,305
+"Manitoba","03-05-2020",6,281,237
+"Ontario","03-05-2020",1216,17553,12005
+"Quebec","03-05-2020",2205,31865,7258
+"Newfoundland and Labrador","03-05-2020",3,259,232
+"New Brunswick","03-05-2020",0,118,118
+"Nova Scotia","03-05-2020",37,971,624
+"Prince Edward Island","03-05-2020",0,27,24
+"Yukon","03-05-2020",0,11,11
+"Northwest Territories","03-05-2020",0,5,5
+"Nunavut","03-05-2020",0,0,0
+"Repatriated travellers","03-05-2020",0,13,13
+"Canada","03-05-2020",3682,59474,24908
+"British Columbia","04-05-2020",117,2224,1417
+"Alberta","04-05-2020",104,5836,2942
+"Saskatchewan","04-05-2020",6,467,307
+"Manitoba","04-05-2020",6,281,238
+"Ontario","04-05-2020",1300,17923,12505
+"Quebec","04-05-2020",2280,32623,7578
+"Newfoundland and Labrador","04-05-2020",3,259,233
+"New Brunswick","04-05-2020",0,118,118
+"Nova Scotia","04-05-2020",38,985,638
+"Prince Edward Island","04-05-2020",0,27,25
+"Yukon","04-05-2020",0,11,11
+"Northwest Territories","04-05-2020",0,5,5
+"Nunavut","04-05-2020",0,0,0
+"Repatriated travellers","04-05-2020",NA,13,NA
+"Canada","04-05-2020",3854,60772,26017
+"British Columbia","05-05-2020",121,2232,1472
+"Alberta","05-05-2020",106,5893,3219
+"Saskatchewan","05-05-2020",6,487,310
+"Manitoba","05-05-2020",7,282,238
+"Ontario","05-05-2020",1361,18310,12779
+"Quebec","05-05-2020",2398,33417,7923
+"Newfoundland and Labrador","05-05-2020",3,259,241
+"New Brunswick","05-05-2020",0,119,118
+"Nova Scotia","05-05-2020",41,991,652
+"Prince Edward Island","05-05-2020",0,27,25
+"Yukon","05-05-2020",0,11,11
+"Northwest Territories","05-05-2020",0,5,5
+"Nunavut","05-05-2020",0,0,0
+"Repatriated travellers","05-05-2020",NA,13,NA
+"Canada","05-05-2020",4043,62046,26993
+"British Columbia","06-05-2020",124,2255,1494
+"Alberta","06-05-2020",112,5963,3552
+"Saskatchewan","06-05-2020",6,512,312
+"Manitoba","06-05-2020",7,284,242
+"Ontario","06-05-2020",1429,18722,13222
+"Quebec","06-05-2020",2510,34327,8284
+"Newfoundland and Labrador","06-05-2020",3,259,244
+"New Brunswick","06-05-2020",0,120,118
+"Nova Scotia","06-05-2020",41,998,661
+"Prince Edward Island","06-05-2020",0,27,26
+"Yukon","06-05-2020",0,11,11
+"Northwest Territories","06-05-2020",0,5,5
+"Nunavut","06-05-2020",0,0,0
+"Repatriated travellers","06-05-2020",NA,13,NA
+"Canada","06-05-2020",4232,63496,28171
+"British Columbia","07-05-2020",126,2288,1512
+"Alberta","07-05-2020",114,6017,3809
+"Saskatchewan","07-05-2020",6,531,329
+"Manitoba","07-05-2020",7,283,243
+"Ontario","07-05-2020",1477,19121,13569
+"Quebec","07-05-2020",2631,35238,8673
+"Newfoundland and Labrador","07-05-2020",3,261,244
+"New Brunswick","07-05-2020",0,120,118
+"Nova Scotia","07-05-2020",44,1007,708
+"Prince Edward Island","07-05-2020",0,27,26
+"Yukon","07-05-2020",0,11,11
+"Northwest Territories","07-05-2020",0,5,5
+"Nunavut","07-05-2020",0,0,0
+"Repatriated travellers","07-05-2020",NA,13,NA
+"Canada","07-05-2020",4408,64922,29247
+"British Columbia","08-05-2020",127,2315,1579
+"Alberta","08-05-2020",115,6098,4020
+"Saskatchewan","08-05-2020",6,544,335
+"Manitoba","08-05-2020",7,284,247
+"Ontario","08-05-2020",1540,19598,13990
+"Quebec","08-05-2020",2725,36150,8928
+"Newfoundland and Labrador","08-05-2020",3,261,244
+"New Brunswick","08-05-2020",0,120,118
+"Nova Scotia","08-05-2020",46,1008,722
+"Prince Edward Island","08-05-2020",0,27,27
+"Yukon","08-05-2020",0,11,11
+"Northwest Territories","08-05-2020",0,5,5
+"Nunavut","08-05-2020",0,0,0
+"Repatriated travellers","08-05-2020",NA,13,NA
+"Canada","08-05-2020",4569,66434,30226
+"British Columbia","09-05-2020",129,2330,1659
+"Alberta","09-05-2020",116,6157,4204
+"Saskatchewan","09-05-2020",6,553,340
+"Manitoba","09-05-2020",7,284,247
+"Ontario","09-05-2020",1599,19944,14383
+"Quebec","09-05-2020",2786,36986,9268
+"Newfoundland and Labrador","09-05-2020",3,261,244
+"New Brunswick","09-05-2020",0,120,118
+"Nova Scotia","09-05-2020",47,1011,743
+"Prince Edward Island","09-05-2020",0,27,27
+"Yukon","09-05-2020",0,11,11
+"Northwest Territories","09-05-2020",0,5,5
+"Nunavut","09-05-2020",0,0,0
+"Repatriated travellers","09-05-2020",NA,13,NA
+"Canada","09-05-2020",4693,67702,31249
+"British Columbia","10-05-2020",129,2330,1659
+"Alberta","10-05-2020",117,6253,4389
+"Saskatchewan","10-05-2020",6,564,349
+"Manitoba","10-05-2020",7,287,247
+"Ontario","10-05-2020",1634,20238,14772
+"Quebec","10-05-2020",2928,37721,9526
+"Newfoundland and Labrador","10-05-2020",3,261,244
+"New Brunswick","10-05-2020",0,120,118
+"Nova Scotia","10-05-2020",47,1018,749
+"Prince Edward Island","10-05-2020",0,27,27
+"Yukon","10-05-2020",0,11,11
+"Northwest Territories","10-05-2020",0,5,5
+"Nunavut","10-05-2020",0,0,0
+"Repatriated travellers","10-05-2020",NA,13,NA
+"Canada","10-05-2020",4871,68848,32096
+"British Columbia","11-05-2020",130,2353,1719
+"Alberta","11-05-2020",117,6300,4659
+"Saskatchewan","11-05-2020",6,568,363
+"Manitoba","11-05-2020",7,289,247
+"Ontario","11-05-2020",1669,20546,15131
+"Quebec","11-05-2020",3013,38469,9703
+"Newfoundland and Labrador","11-05-2020",3,261,244
+"New Brunswick","11-05-2020",0,120,118
+"Nova Scotia","11-05-2020",48,1019,767
+"Prince Edward Island","11-05-2020",0,27,27
+"Yukon","11-05-2020",0,11,11
+"Northwest Territories","11-05-2020",0,5,5
+"Nunavut","11-05-2020",0,0,0
+"Repatriated travellers","11-05-2020",NA,13,NA
+"Canada","11-05-2020",4993,69981,32994
+"British Columbia","12-05-2020",131,2360,1832
+"Alberta","12-05-2020",118,6345,4866
+"Saskatchewan","12-05-2020",6,573,374
+"Manitoba","12-05-2020",7,290,251
+"Ontario","12-05-2020",1725,20907,15391
+"Quebec","12-05-2020",3131,39225,10056
+"Newfoundland and Labrador","12-05-2020",3,261,247
+"New Brunswick","12-05-2020",0,120,118
+"Nova Scotia","12-05-2020",48,1020,864
+"Prince Edward Island","12-05-2020",0,27,27
+"Yukon","12-05-2020",0,11,11
+"Northwest Territories","12-05-2020",0,5,5
+"Nunavut","12-05-2020",0,0,0
+"Repatriated travellers","12-05-2020",NA,13,NA
+"Canada","12-05-2020",5169,71157,34042
+"British Columbia","13-05-2020",132,2376,1859
+"Alberta","13-05-2020",120,6407,5076
+"Saskatchewan","13-05-2020",6,577,385
+"Manitoba","13-05-2020",7,290,251
+"Ontario","13-05-2020",1765,21236,15845
+"Quebec","13-05-2020",3220,39931,10470
+"Newfoundland and Labrador","13-05-2020",3,261,247
+"New Brunswick","13-05-2020",0,120,118
+"Nova Scotia","13-05-2020",51,1024,870
+"Prince Edward Island","13-05-2020",0,27,27
+"Yukon","13-05-2020",0,11,11
+"Northwest Territories","13-05-2020",0,5,5
+"Nunavut","13-05-2020",0,0,0
+"Repatriated travellers","13-05-2020",NA,13,NA
+"Canada","13-05-2020",5304,72278,35164
+"British Columbia","14-05-2020",135,2392,1885
+"Alberta","14-05-2020",121,6457,5205
+"Saskatchewan","14-05-2020",6,582,398
+"Manitoba","14-05-2020",7,289,252
+"Ontario","14-05-2020",1798,21581,16204
+"Quebec","14-05-2020",3351,40724,10829
+"Newfoundland and Labrador","14-05-2020",3,261,248
+"New Brunswick","14-05-2020",0,120,118
+"Nova Scotia","14-05-2020",51,1026,909
+"Prince Edward Island","14-05-2020",0,27,27
+"Yukon","14-05-2020",0,11,11
+"Northwest Territories","14-05-2020",0,5,5
+"Nunavut","14-05-2020",0,0,0
+"Repatriated travellers","14-05-2020",NA,13,NA
+"Canada","14-05-2020",5472,73488,36091
+"British Columbia","15-05-2020",140,2407,1908
+"Alberta","15-05-2020",125,6515,5317
+"Saskatchewan","15-05-2020",6,590,408
+"Manitoba","15-05-2020",7,289,254
+"Ontario","15-05-2020",1825,21922,16641
+"Quebec","15-05-2020",3401,41420,11039
+"Newfoundland and Labrador","15-05-2020",3,260,248
+"New Brunswick","15-05-2020",0,120,119
+"Nova Scotia","15-05-2020",55,1034,918
+"Prince Edward Island","15-05-2020",0,27,27
+"Yukon","15-05-2020",0,11,11
+"Northwest Territories","15-05-2020",0,5,5
+"Nunavut","15-05-2020",0,0,0
+"Repatriated travellers","15-05-2020",NA,13,NA
+"Canada","15-05-2020",5562,74613,36895
+"British Columbia","16-05-2020",141,2428,1932
+"Alberta","16-05-2020",126,6587,5377
+"Saskatchewan","16-05-2020",6,591,433
+"Manitoba","16-05-2020",7,289,257
+"Ontario","16-05-2020",1858,22313,17020
+"Quebec","16-05-2020",3483,42183,11458
+"Newfoundland and Labrador","16-05-2020",3,260,249
+"New Brunswick","16-05-2020",0,120,120
+"Nova Scotia","16-05-2020",55,1037,930
+"Prince Edward Island","16-05-2020",0,27,27
+"Yukon","16-05-2020",0,11,11
+"Northwest Territories","16-05-2020",0,5,5
+"Nunavut","16-05-2020",0,0,0
+"Repatriated travellers","16-05-2020",NA,13,NA
+"Canada","16-05-2020",5679,75864,37819
+"British Columbia","17-05-2020",141,2428,1932
+"Alberta","17-05-2020",127,6644,5453
+"Saskatchewan","17-05-2020",6,592,444
+"Manitoba","17-05-2020",7,289,257
+"Ontario","17-05-2020",1881,22653,17360
+"Quebec","17-05-2020",3562,42920,11754
+"Newfoundland and Labrador","17-05-2020",3,260,249
+"New Brunswick","17-05-2020",0,120,120
+"Nova Scotia","17-05-2020",55,1040,938
+"Prince Edward Island","17-05-2020",0,27,27
+"Yukon","17-05-2020",0,11,11
+"Northwest Territories","17-05-2020",0,5,5
+"Nunavut","17-05-2020",0,0,0
+"Repatriated travellers","17-05-2020",NA,13,NA
+"Canada","17-05-2020",5782,77002,38550
+"British Columbia","18-05-2020",143,2444,1966
+"Alberta","18-05-2020",128,6683,5519
+"Saskatchewan","18-05-2020",6,592,455
+"Manitoba","18-05-2020",7,290,257
+"Ontario","18-05-2020",1904,22957,17638
+"Quebec","18-05-2020",3596,43627,12045
+"Newfoundland and Labrador","18-05-2020",3,260,249
+"New Brunswick","18-05-2020",0,120,120
+"Nova Scotia","18-05-2020",55,1043,946
+"Prince Edward Island","18-05-2020",0,27,27
+"Yukon","18-05-2020",0,11,11
+"Northwest Territories","18-05-2020",0,5,5
+"Nunavut","18-05-2020",0,0,0
+"Repatriated travellers","18-05-2020",NA,13,NA
+"Canada","18-05-2020",5842,78072,39238
+"British Columbia","19-05-2020",146,2446,1975
+"Alberta","19-05-2020",128,6716,5584
+"Saskatchewan","19-05-2020",6,599,470
+"Manitoba","19-05-2020",7,290,257
+"Ontario","19-05-2020",1919,23384,17898
+"Quebec","19-05-2020",3647,44197,12497
+"Newfoundland and Labrador","19-05-2020",3,260,250
+"New Brunswick","19-05-2020",0,120,120
+"Nova Scotia","19-05-2020",56,1044,956
+"Prince Edward Island","19-05-2020",0,27,27
+"Yukon","19-05-2020",0,11,11
+"Northwest Territories","19-05-2020",0,5,5
+"Nunavut","19-05-2020",0,0,0
+"Repatriated travellers","19-05-2020",NA,13,NA
+"Canada","19-05-2020",5912,79112,40050
+"British Columbia","20-05-2020",149,2467,2001
+"Alberta","20-05-2020",128,6716,5584
+"Saskatchewan","20-05-2020",6,620,470
+"Manitoba","20-05-2020",7,290,257
+"Ontario","20-05-2020",1962,23774,18190
+"Quebec","20-05-2020",3718,44775,12822
+"Newfoundland and Labrador","20-05-2020",3,260,250
+"New Brunswick","20-05-2020",0,120,120
+"Nova Scotia","20-05-2020",57,1045,956
+"Prince Edward Island","20-05-2020",0,27,27
+"Yukon","20-05-2020",0,11,11
+"Northwest Territories","20-05-2020",0,5,5
+"Nunavut","20-05-2020",0,0,0
+"Repatriated travellers","20-05-2020",NA,13,NA
+"Canada","20-05-2020",6030,80123,40693
+"British Columbia","21-05-2020",152,2479,2020
+"Alberta","21-05-2020",132,6768,5710
+"Saskatchewan","21-05-2020",7,622,509
+"Manitoba","21-05-2020",7,290,265
+"Ontario","21-05-2020",1993,24187,18509
+"Quebec","21-05-2020",3800,45495,13327
+"Newfoundland and Labrador","21-05-2020",3,260,253
+"New Brunswick","21-05-2020",0,121,120
+"Nova Scotia","21-05-2020",58,1046,959
+"Prince Edward Island","21-05-2020",0,27,27
+"Yukon","21-05-2020",0,11,11
+"Northwest Territories","21-05-2020",0,5,5
+"Nunavut","21-05-2020",0,0,0
+"Repatriated travellers","21-05-2020",NA,13,13
+"Canada","21-05-2020",6152,81324,41728
+"British Columbia","22-05-2020",155,2507,2042
+"Alberta","22-05-2020",134,6800,5801
+"Saskatchewan","22-05-2020",7,627,521
+"Manitoba","22-05-2020",7,292,267
+"Ontario","22-05-2020",2021,24628,18767
+"Quebec","22-05-2020",3865,46141,13819
+"Newfoundland and Labrador","22-05-2020",3,260,253
+"New Brunswick","22-05-2020",0,121,120
+"Nova Scotia","22-05-2020",58,1048,961
+"Prince Edward Island","22-05-2020",0,27,27
+"Yukon","22-05-2020",0,11,11
+"Northwest Territories","22-05-2020",0,5,5
+"Nunavut","22-05-2020",0,0,0
+"Repatriated travellers","22-05-2020",NA,13,13
+"Canada","22-05-2020",6250,82480,42607
+"British Columbia","23-05-2020",157,2517,2057
+"Alberta","23-05-2020",135,6818,5869
+"Saskatchewan","23-05-2020",7,630,535
+"Manitoba","23-05-2020",7,292,268
+"Ontario","23-05-2020",2048,25040,19146
+"Quebec","23-05-2020",3940,46838,14044
+"Newfoundland and Labrador","23-05-2020",3,260,254
+"New Brunswick","23-05-2020",0,121,120
+"Nova Scotia","23-05-2020",58,1049,969
+"Prince Edward Island","23-05-2020",0,27,27
+"Yukon","23-05-2020",0,11,11
+"Northwest Territories","23-05-2020",0,5,5
+"Nunavut","23-05-2020",0,0,0
+"Repatriated travellers","23-05-2020",NA,13,13
+"Canada","23-05-2020",6355,83621,43318
+"British Columbia","24-05-2020",157,2517,2057
+"Alberta","24-05-2020",135,6860,5924
+"Saskatchewan","24-05-2020",7,632,538
+"Manitoba","24-05-2020",7,292,268
+"Ontario","24-05-2020",2073,25500,19477
+"Quebec","24-05-2020",3984,47411,14331
+"Newfoundland and Labrador","24-05-2020",3,260,254
+"New Brunswick","24-05-2020",0,121,120
+"Nova Scotia","24-05-2020",58,1050,973
+"Prince Edward Island","24-05-2020",0,27,27
+"Yukon","24-05-2020",0,11,11
+"Northwest Territories","24-05-2020",0,5,5
+"Nunavut","24-05-2020",0,0,0
+"Repatriated travellers","24-05-2020",NA,13,13
+"Canada","24-05-2020",6424,84699,43998
+"British Columbia","25-05-2020",161,2530,2102
+"Alberta","25-05-2020",138,6879,5979
+"Saskatchewan","25-05-2020",7,634,546
+"Manitoba","25-05-2020",7,292,268
+"Ontario","25-05-2020",2102,25904,19698
+"Quebec","25-05-2020",4069,47984,14654
+"Newfoundland and Labrador","25-05-2020",3,260,254
+"New Brunswick","25-05-2020",0,121,120
+"Nova Scotia","25-05-2020",58,1051,974
+"Prince Edward Island","25-05-2020",0,27,27
+"Yukon","25-05-2020",0,11,11
+"Northwest Territories","25-05-2020",0,5,5
+"Nunavut","25-05-2020",0,0,0
+"Repatriated travellers","25-05-2020",NA,13,13
+"Canada","25-05-2020",6545,85711,44651
+"British Columbia","26-05-2020",161,2541,2122
+"Alberta","26-05-2020",139,6901,6048
+"Saskatchewan","26-05-2020",8,634,549
+"Manitoba","26-05-2020",7,292,269
+"Ontario","26-05-2020",2123,26191,19958
+"Quebec","26-05-2020",4139,48598,14999
+"Newfoundland and Labrador","26-05-2020",3,260,255
+"New Brunswick","26-05-2020",0,122,120
+"Nova Scotia","26-05-2020",59,1052,976
+"Prince Edward Island","26-05-2020",0,27,27
+"Yukon","26-05-2020",0,11,11
+"Northwest Territories","26-05-2020",0,5,5
+"Nunavut","26-05-2020",0,0,0
+"Repatriated travellers","26-05-2020",NA,13,13
+"Canada","26-05-2020",6639,86647,45352
+"British Columbia","27-05-2020",162,2550,2144
+"Alberta","27-05-2020",141,6926,6106
+"Saskatchewan","27-05-2020",10,637,559
+"Manitoba","27-05-2020",7,292,271
+"Ontario","27-05-2020",2155,26483,20372
+"Quebec","27-05-2020",4228,49139,15319
+"Newfoundland and Labrador","27-05-2020",3,260,255
+"New Brunswick","27-05-2020",0,123,120
+"Nova Scotia","27-05-2020",59,1053,975
+"Prince Edward Island","27-05-2020",0,27,27
+"Yukon","27-05-2020",0,11,11
+"Northwest Territories","27-05-2020",0,5,5
+"Nunavut","27-05-2020",0,0,0
+"Repatriated travellers","27-05-2020",NA,13,13
+"Canada","27-05-2020",6765,87519,46177
+"British Columbia","28-05-2020",164,2558,2153
+"Alberta","28-05-2020",143,6955,6160
+"Saskatchewan","28-05-2020",10,639,568
+"Manitoba","28-05-2020",7,294,273
+"Ontario","28-05-2020",2189,26866,20673
+"Quebec","28-05-2020",4302,49702,15618
+"Newfoundland and Labrador","28-05-2020",3,261,255
+"New Brunswick","28-05-2020",0,126,120
+"Nova Scotia","28-05-2020",59,1055,977
+"Prince Edward Island","28-05-2020",0,27,27
+"Yukon","28-05-2020",0,11,11
+"Northwest Territories","28-05-2020",0,5,5
+"Nunavut","28-05-2020",0,0,0
+"Repatriated travellers","28-05-2020",NA,13,13
+"Canada","28-05-2020",6877,88512,46853
+"British Columbia","29-05-2020",164,2562,2170
+"Alberta","29-05-2020",143,6979,6220
+"Saskatchewan","29-05-2020",10,641,570
+"Manitoba","29-05-2020",7,294,273
+"Ontario","29-05-2020",2230,27210,20983
+"Quebec","29-05-2020",4363,50232,15908
+"Newfoundland and Labrador","29-05-2020",3,261,255
+"New Brunswick","29-05-2020",0,128,120
+"Nova Scotia","29-05-2020",59,1055,978
+"Prince Edward Island","29-05-2020",0,27,27
+"Yukon","29-05-2020",0,11,11
+"Northwest Territories","29-05-2020",0,5,5
+"Nunavut","29-05-2020",0,0,0
+"Repatriated travellers","29-05-2020",NA,13,13
+"Canada","29-05-2020",6979,89418,47533
+"British Columbia","30-05-2020",164,2573,2181
+"Alberta","30-05-2020",143,6992,6245
+"Saskatchewan","30-05-2020",10,645,580
+"Manitoba","30-05-2020",7,294,278
+"Ontario","30-05-2020",2247,27533,21353
+"Quebec","30-05-2020",4439,50651,16070
+"Newfoundland and Labrador","30-05-2020",3,261,255
+"New Brunswick","30-05-2020",0,129,120
+"Nova Scotia","30-05-2020",60,1056,978
+"Prince Edward Island","30-05-2020",0,27,27
+"Yukon","30-05-2020",0,11,11
+"Northwest Territories","30-05-2020",0,5,5
+"Nunavut","30-05-2020",0,0,0
+"Repatriated travellers","30-05-2020",NA,13,13
+"Canada","30-05-2020",7073,90190,48116
+"British Columbia","31-05-2020",164,2573,2181
+"Alberta","31-05-2020",143,7010,6283
+"Saskatchewan","31-05-2020",11,646,582
+"Manitoba","31-05-2020",7,295,278
+"Ontario","31-05-2020",2266,27859,21810
+"Quebec","31-05-2020",4641,51059,16346
+"Newfoundland and Labrador","31-05-2020",3,261,255
+"New Brunswick","31-05-2020",0,132,120
+"Nova Scotia","31-05-2020",60,1056,981
+"Prince Edward Island","31-05-2020",0,27,27
+"Yukon","31-05-2020",0,11,11
+"Northwest Territories","31-05-2020",0,5,5
+"Nunavut","31-05-2020",0,0,0
+"Repatriated travellers","31-05-2020",NA,13,13
+"Canada","31-05-2020",7295,90947,48892
+"British Columbia","01-06-2020",165,2597,2207
+"Alberta","01-06-2020",143,7044,6501
+"Saskatchewan","01-06-2020",11,646,588
+"Manitoba","01-06-2020",7,295,278
+"Ontario","01-06-2020",2276,28263,22153
+"Quebec","01-06-2020",4661,51354,16597
+"Newfoundland and Labrador","01-06-2020",3,261,255
+"New Brunswick","01-06-2020",0,132,120
+"Nova Scotia","01-06-2020",60,1057,984
+"Prince Edward Island","01-06-2020",0,27,27
+"Yukon","01-06-2020",0,11,11
+"Northwest Territories","01-06-2020",0,5,5
+"Nunavut","01-06-2020",0,0,0
+"Repatriated travellers","01-06-2020",NA,13,13
+"Canada","01-06-2020",7326,91705,49739
+"British Columbia","02-06-2020",165,2601,2229
+"Alberta","02-06-2020",143,7057,6537
+"Saskatchewan","02-06-2020",11,646,602
+"Manitoba","02-06-2020",7,297,278
+"Ontario","02-06-2020",2293,28709,22484
+"Quebec","02-06-2020",4713,51593,16803
+"Newfoundland and Labrador","02-06-2020",3,261,256
+"New Brunswick","02-06-2020",0,133,120
+"Nova Scotia","02-06-2020",60,1057,992
+"Prince Edward Island","02-06-2020",0,27,27
+"Yukon","02-06-2020",0,11,11
+"Northwest Territories","02-06-2020",0,5,5
+"Nunavut","02-06-2020",0,0,0
+"Repatriated travellers","02-06-2020",NA,13,13
+"Canada","02-06-2020",7395,92410,50357
+"British Columbia","03-06-2020",166,2623,2243
+"Alberta","03-06-2020",145,7076,6587
+"Saskatchewan","03-06-2020",11,647,602
+"Manitoba","03-06-2020",7,298,282
+"Ontario","03-06-2020",2312,29047,22811
+"Quebec","03-06-2020",4794,51884,17098
+"Newfoundland and Labrador","03-06-2020",3,261,256
+"New Brunswick","03-06-2020",0,135,120
+"Nova Scotia","03-06-2020",60,1058,993
+"Prince Edward Island","03-06-2020",0,27,27
+"Yukon","03-06-2020",0,11,11
+"Northwest Territories","03-06-2020",0,5,5
+"Nunavut","03-06-2020",0,0,0
+"Repatriated travellers","03-06-2020",NA,13,13
+"Canada","03-06-2020",7498,93085,51048
+"British Columbia","04-06-2020",166,2632,2265
+"Alberta","04-06-2020",146,7091,6611
+"Saskatchewan","04-06-2020",11,648,608
+"Manitoba","04-06-2020",7,298,284
+"Ontario","04-06-2020",2357,29403,23208
+"Quebec","04-06-2020",4885,52143,17336
+"Newfoundland and Labrador","04-06-2020",3,261,256
+"New Brunswick","04-06-2020",1,136,120
+"Nova Scotia","04-06-2020",61,1058,995
+"Prince Edward Island","04-06-2020",0,27,27
+"Yukon","04-06-2020",0,11,11
+"Northwest Territories","04-06-2020",0,5,5
+"Nunavut","04-06-2020",0,0,0
+"Repatriated travellers","04-06-2020",NA,13,13
+"Canada","04-06-2020",7637,93726,51739
+"British Columbia","05-06-2020",167,2632,2272
+"Alberta","05-06-2020",146,7098,6624
+"Saskatchewan","05-06-2020",11,649,611
+"Manitoba","05-06-2020",7,300,284
+"Ontario","05-06-2020",2372,29747,23583
+"Quebec","05-06-2020",4935,52398,17764
+"Newfoundland and Labrador","05-06-2020",3,261,256
+"New Brunswick","05-06-2020",1,136,121
+"Nova Scotia","05-06-2020",61,1058,997
+"Prince Edward Island","05-06-2020",0,27,27
+"Yukon","05-06-2020",0,11,11
+"Northwest Territories","05-06-2020",0,5,5
+"Nunavut","05-06-2020",0,0,0
+"Repatriated travellers","05-06-2020",NA,13,13
+"Canada","05-06-2020",7703,94335,52568
+"British Columbia","06-06-2020",167,2632,2272
+"Alberta","06-06-2020",146,7138,6656
+"Saskatchewan","06-06-2020",11,650,611
+"Manitoba","06-06-2020",7,300,284
+"Ontario","06-06-2020",2407,30202,23947
+"Quebec","06-06-2020",4970,52624,18412
+"Newfoundland and Labrador","06-06-2020",3,261,256
+"New Brunswick","06-06-2020",1,136,121
+"Nova Scotia","06-06-2020",61,1058,999
+"Prince Edward Island","06-06-2020",0,27,27
+"Yukon","06-06-2020",0,11,11
+"Northwest Territories","06-06-2020",0,5,5
+"Nunavut","06-06-2020",0,0,0
+"Repatriated travellers","06-06-2020",NA,13,13
+"Canada","06-06-2020",7773,95057,53614
+"British Columbia","07-06-2020",167,2632,2272
+"Alberta","07-06-2020",146,7138,6656
+"Saskatchewan","07-06-2020",11,650,623
+"Manitoba","07-06-2020",7,300,284
+"Ontario","07-06-2020",2426,30617,24252
+"Quebec","07-06-2020",4978,52849,18714
+"Newfoundland and Labrador","07-06-2020",3,261,256
+"New Brunswick","07-06-2020",1,137,121
+"Nova Scotia","07-06-2020",61,1059,999
+"Prince Edward Island","07-06-2020",0,27,27
+"Yukon","07-06-2020",0,11,11
+"Northwest Territories","07-06-2020",0,5,5
+"Nunavut","07-06-2020",0,0,0
+"Repatriated travellers","07-06-2020",NA,13,13
+"Canada","07-06-2020",7800,95699,54233
+"British Columbia","08-06-2020",167,2659,2309
+"Alberta","08-06-2020",149,7202,6698
+"Saskatchewan","08-06-2020",13,654,624
+"Manitoba","08-06-2020",7,300,284
+"Ontario","08-06-2020",2450,30860,24492
+"Quebec","08-06-2020",4984,53047,18994
+"Newfoundland and Labrador","08-06-2020",3,261,256
+"New Brunswick","08-06-2020",1,146,121
+"Nova Scotia","08-06-2020",61,1059,999
+"Prince Edward Island","08-06-2020",0,27,27
+"Yukon","08-06-2020",0,11,11
+"Northwest Territories","08-06-2020",0,5,5
+"Nunavut","08-06-2020",0,0,0
+"Repatriated travellers","08-06-2020",NA,13,13
+"Canada","08-06-2020",7835,96244,54833
+"British Columbia","09-06-2020",167,2669,2319
+"Alberta","09-06-2020",151,7229,6722
+"Saskatchewan","09-06-2020",13,656,624
+"Manitoba","09-06-2020",7,300,285
+"Ontario","09-06-2020",2464,31090,24829
+"Quebec","09-06-2020",5029,53185,19361
+"Newfoundland and Labrador","09-06-2020",3,261,256
+"New Brunswick","09-06-2020",1,147,121
+"Nova Scotia","09-06-2020",62,1060,999
+"Prince Edward Island","09-06-2020",0,27,27
+"Yukon","09-06-2020",0,11,11
+"Northwest Territories","09-06-2020",0,5,5
+"Nunavut","09-06-2020",0,0,0
+"Repatriated travellers","09-06-2020",NA,13,13
+"Canada","09-06-2020",7897,96653,55572
+"British Columbia","10-06-2020",167,2680,2328
+"Alberta","10-06-2020",151,7276,6754
+"Saskatchewan","10-06-2020",13,658,624
+"Manitoba","10-06-2020",7,300,285
+"Ontario","10-06-2020",2475,31341,25380
+"Quebec","10-06-2020",5081,53341,19841
+"Newfoundland and Labrador","10-06-2020",3,261,256
+"New Brunswick","10-06-2020",1,151,121
+"Nova Scotia","10-06-2020",62,1061,994
+"Prince Edward Island","10-06-2020",0,27,27
+"Yukon","10-06-2020",0,11,11
+"Northwest Territories","10-06-2020",0,5,5
+"Nunavut","10-06-2020",0,0,0
+"Repatriated travellers","10-06-2020",NA,13,13
+"Canada","10-06-2020",7960,97125,56639
+"British Columbia","11-06-2020",167,2694,2344
+"Alberta","11-06-2020",149,7316,6788
+"Saskatchewan","11-06-2020",13,660,626
+"Manitoba","11-06-2020",7,300,286
+"Ontario","11-06-2020",2487,31544,25885
+"Quebec","11-06-2020",5105,53485,20299
+"Newfoundland and Labrador","11-06-2020",3,261,256
+"New Brunswick","11-06-2020",1,153,123
+"Nova Scotia","11-06-2020",62,1061,995
+"Prince Edward Island","11-06-2020",0,27,27
+"Yukon","11-06-2020",0,11,11
+"Northwest Territories","11-06-2020",0,5,5
+"Nunavut","11-06-2020",0,0,0
+"Repatriated travellers","11-06-2020",NA,13,13
+"Canada","11-06-2020",7994,97530,57658
+"British Columbia","12-06-2020",168,2709,2354
+"Alberta","12-06-2020",149,7346,6811
+"Saskatchewan","12-06-2020",13,663,627
+"Manitoba","12-06-2020",7,301,289
+"Ontario","12-06-2020",2498,31726,26187
+"Quebec","12-06-2020",5148,53666,20823
+"Newfoundland and Labrador","12-06-2020",3,261,256
+"New Brunswick","12-06-2020",1,154,125
+"Nova Scotia","12-06-2020",62,1061,995
+"Prince Edward Island","12-06-2020",0,27,27
+"Yukon","12-06-2020",0,11,11
+"Northwest Territories","12-06-2020",0,5,5
+"Nunavut","12-06-2020",0,0,0
+"Repatriated travellers","12-06-2020",NA,13,13
+"Canada","12-06-2020",8049,97943,58523
+"British Columbia","13-06-2020",168,2709,2354
+"Alberta","13-06-2020",150,7383,6830
+"Saskatchewan","13-06-2020",13,664,628
+"Manitoba","13-06-2020",7,303,289
+"Ontario","13-06-2020",2507,31992,26538
+"Quebec","13-06-2020",5195,53824,21281
+"Newfoundland and Labrador","13-06-2020",3,261,256
+"New Brunswick","13-06-2020",2,157,126
+"Nova Scotia","13-06-2020",62,1061,996
+"Prince Edward Island","13-06-2020",0,27,27
+"Yukon","13-06-2020",0,11,11
+"Northwest Territories","13-06-2020",0,5,5
+"Nunavut","13-06-2020",0,0,0
+"Repatriated travellers","13-06-2020",NA,13,13
+"Canada","13-06-2020",8107,98410,59354
+"British Columbia","14-06-2020",168,2709,2354
+"Alberta","14-06-2020",150,7433,6861
+"Saskatchewan","14-06-2020",13,665,628
+"Manitoba","14-06-2020",7,304,289
+"Ontario","14-06-2020",2519,32189,26961
+"Quebec","14-06-2020",5222,53952,21742
+"Newfoundland and Labrador","14-06-2020",3,261,256
+"New Brunswick","14-06-2020",2,157,129
+"Nova Scotia","14-06-2020",62,1061,996
+"Prince Edward Island","14-06-2020",0,27,27
+"Yukon","14-06-2020",0,11,11
+"Northwest Territories","14-06-2020",0,5,5
+"Nunavut","14-06-2020",0,0,0
+"Repatriated travellers","14-06-2020",NA,13,13
+"Canada","14-06-2020",8146,98787,60272
+"British Columbia","15-06-2020",168,2745,2395
+"Alberta","15-06-2020",151,7453,6862
+"Saskatchewan","15-06-2020",13,683,629
+"Manitoba","15-06-2020",7,304,292
+"Ontario","15-06-2020",2527,32370,27213
+"Quebec","15-06-2020",5242,54054,22213
+"Newfoundland and Labrador","15-06-2020",3,261,257
+"New Brunswick","15-06-2020",2,160,129
+"Nova Scotia","15-06-2020",62,1061,996
+"Prince Edward Island","15-06-2020",0,27,27
+"Yukon","15-06-2020",0,11,11
+"Northwest Territories","15-06-2020",0,5,5
+"Nunavut","15-06-2020",0,0,0
+"Repatriated travellers","15-06-2020",NA,13,13
+"Canada","15-06-2020",8175,99147,61042
