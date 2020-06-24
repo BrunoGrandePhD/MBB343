@@ -121,6 +121,8 @@ covid[,c("month", "territory", "cases")]
 select(covid, month, territory, cases)
 ```
 
+TODO: demonstrate tidyselect functions (e.g.,`starts_with()`)
+
 Goal: Clarify that population is for 2018.
 
 Using `rename()`.
