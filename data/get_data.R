@@ -24,7 +24,8 @@ covid19_cases_worldwide <-
             territory = countriesAndTerritories, continent = continentExp,
             population = popData2019, cases, deaths) %>%
   filter(!territory %in% nonterritories,
-         year >= 2020) %>%
+         year >= 2020,
+         month <= 6) %>%
   write_csv("data/covid19_cases_worldwide.csv")
 
 
