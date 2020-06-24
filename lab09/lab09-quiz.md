@@ -1,6 +1,6 @@
 # Lab 09: Quiz
 
-Q09.1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -8,7 +8,7 @@ Q09.1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.2) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.2) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -16,7 +16,7 @@ Q09.2) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.3) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.3) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -24,7 +24,7 @@ Q09.3) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.4) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.4) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -32,7 +32,7 @@ Q09.4) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.5) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.5) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -40,7 +40,7 @@ Q09.5) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.6) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.6) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -48,7 +48,7 @@ Q09.6) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.7) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.7) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -56,7 +56,7 @@ Q09.7) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.8) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.8) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -64,7 +64,7 @@ Q09.8) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.9) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.9) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -72,7 +72,7 @@ Q09.9) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.10) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.10) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -80,7 +80,7 @@ Q09.10) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.11) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.11) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -88,7 +88,7 @@ Q09.11) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.12) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.12) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -96,7 +96,7 @@ Q09.12) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.13) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.13) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -104,7 +104,7 @@ Q09.13) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.14) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.14) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -112,7 +112,7 @@ Q09.14) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.15) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.15) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -120,7 +120,7 @@ Q09.15) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.16) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.16) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -128,7 +128,7 @@ Q09.16) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.17) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.17) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -136,7 +136,7 @@ Q09.17) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.18) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.18) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -144,7 +144,7 @@ Q09.18) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.19) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.19) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -152,7 +152,7 @@ Q09.19) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q09.20) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q9.20) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.

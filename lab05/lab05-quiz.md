@@ -1,6 +1,6 @@
 # Lab 05: Quiz
 
-Q05.1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -8,7 +8,7 @@ Q05.1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.2) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.2) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -16,7 +16,7 @@ Q05.2) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.3) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.3) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -24,7 +24,7 @@ Q05.3) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.4) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.4) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -32,7 +32,7 @@ Q05.4) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.5) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.5) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -40,7 +40,7 @@ Q05.5) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.6) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.6) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -48,7 +48,7 @@ Q05.6) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.7) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.7) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -56,7 +56,7 @@ Q05.7) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.8) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.8) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -64,7 +64,7 @@ Q05.8) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.9) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.9) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -72,7 +72,7 @@ Q05.9) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.10) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.10) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -80,7 +80,7 @@ Q05.10) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.11) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.11) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -88,7 +88,7 @@ Q05.11) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.12) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.12) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -96,7 +96,7 @@ Q05.12) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.13) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.13) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -104,7 +104,7 @@ Q05.13) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.14) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.14) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -112,7 +112,7 @@ Q05.14) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.15) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.15) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -120,7 +120,7 @@ Q05.15) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.16) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.16) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -128,7 +128,7 @@ Q05.16) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.17) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.17) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -136,7 +136,7 @@ Q05.17) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.18) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.18) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -144,7 +144,7 @@ Q05.18) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.19) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.19) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
@@ -152,7 +152,7 @@ Q05.19) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - D.
 - E. None of the above
 
-Q05.20) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Q5.20) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 - A.
 - B.
