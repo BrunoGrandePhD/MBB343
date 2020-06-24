@@ -8,8 +8,7 @@ output: html_notebook
 ### Learning Objectives
 
 - Manipulate data frames in R using the `dplyr` package
-  - Combine multiple `dplyr` commands using pipes (`%>%`)
-  - Group rows using `group_by()` and `group_nest()`
+  - Group rows using `group_by()` and `nest_by()`
   - Compute aggregate statistics using `summarize()`
   - Differentiate the behaviour of `mutate()` and `summarize()`
 - Transform data frame layout using the `tidyr` package
@@ -20,7 +19,513 @@ output: html_notebook
 
 ### Context
 
-### Stuff
+In the previous tutorial, we were introduced to the concept of packages and how powerful they can be. In particular, we started using `readr` and `dplyr`, two of the most downloaded packages on CRAN. While everything we touched upon in the previous tutorial is possible in base R, we tend to use these packages because they provide a succinct and user-friendly syntax for importing and manipulating data frames. Admittedly, we haven't achieved much that wasn't already possible in Excel. That changes today.
+
+In this tutorial, we will learn about the most powerful pair of functions in `dplyr`, namely `group_by()` and `summarize()`. On their own, these two functions help answer a wide range of questions when faced with a dataset. As soon as we have to calculate aggregate statistics—ranging from a simple average to computing statistical tests—these functions will almost certainly make an appearance. That said, `group_by()` is also useful in combination with `mutate()`, and we will see when to use one or the other.
+
+For the second half of this tutorial, we will introduce `tidyr`, another `tidyverse` package. As its name implies, it comes with a suite of functions capable of tidying and wrangling data. Here, we will focus on arguably the two star functions of `tidyr`, namely `pivot_longer()` and `pivot_wider()`. These functions allow us to seamlessly convert a data frame between long and wide layouts. By the end of this tutorial, we'll know what these layouts mean and when we want to convert our data frames between each of them.
+
+### `dplyr`: The Heart of the Tidyverse (Continued)
+
+#### Explicit Grouping with `nest_by()`
+
+First, load packages and data
+
+We're also fixing the month column as a factor with the proper month order
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+covid <- read_csv("data/covid19_cases_worldwide_monthly.csv")
+
+month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun")
+covid$month <- factor(covid$month, month_order)
+
+head(covid)
+```
+
+Use `nest_by()` (explicit groups) to introduce `group_by()` (implicit groups)
+
+Show variable number of rows in each row of `data` column
+
+Same number of columns in each row of `data` column
+
+The six columns correspond to the columns in the input data frame minus the grouped column (continent)
+
+```{r}
+covid_nest_continent <- nest_by(covid, continent)
+tibble:::print.tbl(covid_nest_continent)
+```
+
+Functions that work on data frames are useful here
+
+```{r}
+mutate(covid_nest_continent, num_rows = nrow(data))
+```
+
+But most functions work on vectors, not data frames
+
+While we can work with the columns within the data frames in `data`, it's clunky
+
+For these functions, a more direct approach uses `group_by()` instead
+
+```{r}
+mutate(covid_nest_continent, num_rows = sum(data$cases))
+```
+
+
+#### Implicit Grouping with `group_by()`
+
+Most summary statistics are calculated from a vector, not a data frame
+
+This is usually when you want to use `group_by()`
+
+At this point, we will start using the pipe operator we learned in the last tutorial
+
+As you can see, unlike the output of `nest_by()`, the output of `group_by()` looks like the input
+
+```{r}
+covid_by_continent <- 
+  covid %>% 
+  group_by(continent)
+
+covid_by_continent
+```
+
+However, if you look at the class or structure, you can see there is a difference
+
+The class is a `grouped_df`, and there's an attribute called `groups`
+
+This information is used by `summarize()` to perform calculations per group (rather than on the whole data frame)
+
+This is what we mean by implicit grouping
+
+```{r}
+class(covid_by_continent)
+str(covid_by_continent)
+```
+
+#### Summarizing data with `summarize()`
+
+On its own, `summarize()` is not very useful
+
+Its output is a one-row data frame, not a vector
+
+For calculating statistics on the entire dataset, it's usually simpler to run the functions on the column directly
+
+Here, we are calculating the total number of cases worldwide
+
+```{r}
+covid %>% 
+  summarize(total_cases = sum(cases))
+
+sum(covid$cases)
+```
+
+As we saw above, `group_by()` is pretty useless on its own too
+
+However, combined with `summarize()`, they make a formidable pair
+
+Let's calculate the total number of cases so far on each continent using the `sum()` function
+
+Notice that the number of rows in the output equals the number of groups
+
+It's the same number of rows as the output from `nest_by()`
+
+```{r}
+covid %>% 
+  group_by(continent) %>% 
+  summarize(total_cases = sum(cases))
+```
+
+The beauty of `group_by()` is that it's trivial to add additional groups
+
+For example, if we want to calculate the case counts per continent per month, it's easy
+
+```{r}
+covid %>% 
+  group_by(continent, month) %>% 
+  summarize(total_cases = sum(cases))
+```
+
+If we restrict to the months of April and May, we can tell which continents were able to quickly flatten their curve, namely Europe and Oceania
+
+```{r}
+covid %>% 
+  group_by(continent, month) %>% 
+  summarize(total_cases = sum(cases)) %>% 
+  filter(month %in% c("Apr", "May"))
+```
+
+Just as we can add additional groups, we can also add additional summaries
+
+```{r}
+covid %>% 
+  group_by(continent, month) %>% 
+  summarize(total_cases = sum(cases), 
+            total_deaths = sum(deaths))
+```
+
+Let's say we want to figure out which has been the most deadly month worldwide
+
+We wouldn't want to group by continent anymore
+
+It looks like April was the most deadly month worldwide
+
+```{r}
+covid %>% 
+  group_by(month) %>% 
+  summarize(total_deaths = sum(deaths))
+```
+
+#### Calculating New Columns on Grouped Data with `mutate()`
+
+`group_by()` is not only useful with `summarize()`
+
+Some calculations are based on group-specific values and row-specific values
+
+One example is the percentage of deaths in each month per continent
+
+Let's start by calculating the total number of cases per continent per month
+
+```{r}
+deaths_per_continent_per_month <- 
+  covid %>% 
+  group_by(continent, month) %>% 
+  summarize(deaths = sum(deaths))
+
+deaths_per_continent_per_month
+```
+
+You probably noticed the message from `summarize()` about regrouping output by `continent`
+
+This has to do with a longstanding behaviour of `summarize()`, where it will "remove" the last group
+
+Here, the groups went from continent and month to just continent
+
+You can change this behaviour using the `.groups` argument, as the message suggests
+
+In this case, the behaviour is exactly what we want
+
+If we want to calculate the percentge of death in each month, we need the denominator, _i.e._ the total number of deaths in all months
+
+Here, we use `mutate()` on a grouped data frame to calculate this number
+
+```{r}
+deaths_per_continent_per_month %>% 
+  mutate(total_deaths = sum(deaths))
+```
+
+If might be a bit weird to see the same number repeated in multiple rows
+
+However, we need this to take advantage of R's vectorization when calculating the percentage
+
+With the denominator calculated, we can now derive the percentage
+
+```{r}
+deaths_per_continent_per_month %>% 
+  mutate(total_deaths = sum(deaths),
+         pct_deaths = deaths / total_deaths * 100)
+```
+
+We achieved what we want, but there are a few optional tweaks we can make
+
+First, we don't need to keep the redundant `total_deaths` column
+
+We could remove it, but it's simpler to avoid creating it in the first place by calculating the total number of deaths on the fly, _i.e._ in the denominator when we calculate the percentage
+
+Second, I personally don't like having 10 decimal places (not practical), so I usually round off decimal numbers
+
+Here, because some percentages are small, we will actually round the percentages based on the number of significant digits (using `signif()`) rather than the number of decimal points (using `round()`)
+
+While I could wrap the percentage calculation with `signif()`, it would make that line pretty cluttered and harder to read, so I will calculate it on a separate line
+
+See how I can start using new columns right away within the same call to `mutate()`, and I can reassign the column
+
+```{r}
+deaths_per_continent_per_month %>% 
+  mutate(pct_deaths = deaths / sum(deaths) * 100,
+         pct_deaths = signif(pct_deaths, 2))
+```
+
+#### Removing Groups with `ungroups()`
+
+As quick final note about `group_by()`, as you can see, it can affect the output of `summarize()` and `mutate()`
+
+As a result, it's suggested to remove groups as soon as you no longer need them
+
+You can easily do this with the `ungroup()` function
+
+The output won't look any different, but you will notice that the `grouped_df` has been dropped from the class
+
+```{r}
+deaths_per_continent_per_month <- 
+  deaths_per_continent_per_month %>% 
+  mutate(pct_deaths = deaths / sum(deaths) * 100,
+         pct_deaths = signif(pct_deaths, 2)) %>% 
+  ungroup()
+
+class(deaths_per_continent_per_month)
+```
+
+### `tidyr`: Wrangling Data Frames
+
+#### Wide Versus Long Layout
+
+Let's start with examples for each layout
+
+This is a wide layout
+
+```{r, echo=FALSE}
+covid %>% 
+  filter(territory %in% c("Canada", "United_States_of_America")) %>%
+  pivot_wider(id_cols = territory, names_from = month, 
+              values_from = cases) %>% 
+  knitr::kable()
+```
+
+This is a long layout
+
+```{r, echo=FALSE}
+covid %>% 
+  filter(territory %in% c("Canada", "United_States_of_America")) %>% 
+  select(territory, month, cases) %>% 
+  knitr::kable()
+```
+
+As you can see, both layouts are very different
+
+Generally speaking, the wide layout is more human-friendly (do you prefer it?) whereas the long layout is more machine/R-friendly
+
+One reason why the long layout is preferred by R is that all of the data is within the data frame (as opposed to within the column names)
+
+It's hard to do much with the month names if they're stuck in the column names
+
+To make matters worse, because humans tend to prefer the wide layout, you will often receive datasets in this form, forcing you to convert to a longer layout
+
+Conversely, you might end up in situations where you want to generate a report for human eyes, and thus it might make more sense to switch to a wider layout
+
+Fortunately for us, the `tidyr` package recently got a new pair of functions that make converting between both layouts a breeze
+
+#### Converting to a Wide Layout with `pivot_wider()`
+
+As a starting point, let's retrieve our earlier summary for the total number of deaths per continent per month
+
+```{r}
+deaths_per_continent_per_month
+```
+
+This rather long layout isn't very appealing to human eyes, so let's convert it into a wider layout, where each month is a different column
+
+For most simple cases, you need to care about three arguments in `pivot_wider()` (other than the data frame itself): `id_cols`, `names_from`, and `values_from`
+
+`id_cols` should be set to the columns that will uniquely identify (hence, `id_cols`) the rows, which would be `territory` in this case
+
+`names_from` should be set to the columns where the new column names will be taken from, which should be `month` in this case
+
+You might have noticed the use of columns in the plural form; we will look at situations where it's useful to combine different columns to form column names
+
+`values_from` should be set to the columns where the values within the new columns will be taken from, which should be `cases` in this case
+
+As with `names_from`, `values_from` can specify more than one column, but this is rarely used in practice
+
+```{r}
+deaths_per_continent_per_month_wide <- 
+  deaths_per_continent_per_month %>% 
+  pivot_wider(id_cols = continent, names_from = month, values_from = deaths)
+
+deaths_per_continent_per_month_wide
+```
+As you can see, the wide format is much easier to read and would be perfect for a report
+
+For a slightly more complex operation, we will generate a similar input data frame, but one with both case and death numbers
+
+```{r}
+covid_per_continent_per_month <- 
+  covid %>% 
+  group_by(continent, year, month) %>% 
+  summarize(cases = sum(cases), 
+            deaths = sum(deaths)) %>% 
+  ungroup()
+
+covid_per_continent_per_month
+```
+
+Let's attempt the same conversion, but specifying two columns for either `names_from` or `values_from`
+
+As you can see, `pivot_wider()` automatically concatenates the values in the columns provided to `names_from` with underscores
+
+In this case, we only have data for 2020, but if we had data from other years, you could end up with a really wide data frame
+
+It's ultimately up to the analyst to make a call on what format is best suited for the goal at hand
+
+The widest possible layout isn't always for most practical
+
+```{r}
+covid_per_continent_per_month %>% 
+  pivot_wider(id_cols = continent, names_from = c(month, year), 
+              values_from = cases)
+```
+
+When specifying more than one column for `values_from`, the outcome might come as a surprise to some
+
+After all, `values_from` has to do with what does into the new columns, but here, the column names are affected by what is provided to `values_from`
+
+In the documentation for `pivot_wider()` (you can obtain by running `?pivot_wider`), there is this quote:
+
+> If values_from contains multiple values, the value will be added to the front of the output column.
+
+In other words, to differentiate between columns with the number of cases and columns with the number of deaths, `pivot_wider()` had to amend the column names somehow
+
+Again, this results in a really wide layout, which is fairly impractical
+
+Let's say you want to have two rows per continent, one with case counts and one with death counts
+
+Stay tuned, as we can do this with the next `tidyr` function we will learn, `pivot_longer()`
+
+```{r}
+covid_per_continent_per_month_wide <- 
+  covid_per_continent_per_month %>% 
+  pivot_wider(id_cols = continent, names_from = month, 
+              values_from = c(cases, deaths))
+
+covid_per_continent_per_month_wide
+```
+
+#### Converting to a Long Layout with `pivot_longer()`
+
+While `pivot_wider()` is useful for creating tables meant for humans, `pivot_longer()` comes in handy when preparing data for R functions
+
+Notably, long data frames are particularly useful when used with the `ggplot2` visualization package, which we will learn in the next tutorial
+
+Before tackling a more complicated task, let's start by simply undoing the first `pivot_wider()` operation we performed earlier
+
+```{r}
+deaths_per_continent_per_month_wide
+```
+
+Here, we have the total number of deaths per continent for each month, but the months are in the column names, which might be problematic for some calculations
+
+For example, let's say we want to calculate the median number of deaths per continent
+
+In its current wide format, this would require an operation across columns, which is always trickier than operating between rows
+
+Before continuing, it's worth addressing what might have been your first instinct
+
+```{r}
+deaths_per_continent_per_month_wide %>% 
+  mutate(average = median(c(Jan, Feb, Mar, Apr, May, Jun)))
+```
+
+There are two issues with the above approach
+
+First, instead of calculating the median per row, it's calculating the median across all rows
+
+This can be fixed by running `group_by()` first for `continent`
+
+However, the second problem, which is harder to solve, is that you need to spell out every column
+
+It's not too bad here with six columns, but it can quickly become unsustainable
+
+In general, there are many ways of achieving the same outcome in R
+
+Here, we will use `pivot_longer()` to produce a longer data frame that we can use with `group_by()` and `summarize()`
+
+The main argument for `pivot_longer()` (other than the data frame itself) are: `cols`, `names_to`, and `values_to`.
+
+`cols` should be set to the columns whose names will be stored in one column and whose values should be stored in a parallel column
+
+This will make more sense once you see the output
+
+`names_to` should be set to the name of the column that will store the names of the columns specified in `cols`
+
+`values_to` should be set to the name of the column that will store the values of the columns specified in `cols`
+
+You might have noticed the parallel with the `names_from` and `values_from` argument names in `pivot_wider()`
+
+Importantly, because `names_to` and `values_to` are set to the names of columns that don't yet exist, they should be quoted
+
+In every other instance so far, we have been using unquoted column names because we have been dealing with existing columns
+
+```{r}
+deaths_per_continent_per_month_wide %>% 
+  pivot_longer(cols = c(Jan, Feb, Mar, Apr, May, Jun), 
+               names_to = "month", values_to = "deaths")
+```
+
+Some of you might notice that this does not address the earlier issue of having to specify each month
+
+Fortunately, `pivot_longer()` and `pivot_wider()` also work by specifying the columns we don't want by using a negative sign (`-`)
+
+In this case, rather than selecting each individual month column, we can just say that we want every column except for `continent`
+
+As you can see, this syntax is more concise
+
+```{r}
+deaths_per_continent_per_month_long <- 
+  deaths_per_continent_per_month_wide %>% 
+  pivot_longer(cols = -continent, names_to = "month", values_to = "deaths")
+
+deaths_per_continent_per_month_long
+```
+
+With this long data frame in hand, we can now calculate the median number of deaths per continent
+
+```{r}
+deaths_per_continent_per_month_long %>% 
+  group_by(continent) %>% 
+  summarize(median_deaths = median(deaths))
+```
+
+Just as we were able to create columns for multiple variables by concatenating names with an underscore separator with `pivot_wider()`, we can perform the opposite operation with `pivot_longer()`
+
+```{r}
+covid_per_continent_per_month_wide
+```
+
+The key here is to notice that the column names, which is normally stored in a column given to the `names_to` argument, is actually composed of two parts
+
+Here, the two parts are the type of count (cases/deaths) and the month
+
+Intuitively, you can specify that there are two parts in the `names_to` argument by simply providing two names
+
+However, if you do so, you will run into this error:
+
+> Error: If you supply multiple names in `names_to` you must also supply one of `names_sep` or `names_pattern`.
+
+This is because `pivot_longer()` doesn't want to make any assumptions about how the two parts are combined
+
+The easy solution here is to specify `names_sep = "_"`
+
+```{r}
+covid_per_continent_per_month_long <- 
+  covid_per_continent_per_month_wide %>% 
+  pivot_longer(cols = starts_with(c("cases", "deaths")), 
+               names_to = c("type", "month"),
+               names_sep = "_",
+               values_to = "count")
+
+covid_per_continent_per_month_long
+```
+
+This results in a really long data frame that can be useful for a number of purposes
+
+In the next tutorial, it will become clear how this longer format is amenable for `ggplot2`
+
+For now, we can simply appreciate the utility of this layout for running `group_by()` and `summarize()`
+
+For instance, we can easily find the month-continent pair with the highest number of cases and deaths
+
+April was deadly for Europe, and June has seen the highest number of cases in America
+
+```{r}
+covid_per_continent_per_month_long %>% 
+  group_by(type) %>% 
+  filter(count == max(count))
+```
 
 ## More Resources
 
@@ -29,3 +534,13 @@ output: html_notebook
 - http://www-stat.wharton.upenn.edu/~moneyball/module3.html
 
 ## Assignment
+
+```{r}
+covid_per_continent_per_month_wide %>% 
+  pivot_longer(cols = starts_with(c("cases", "deaths")), 
+               names_to = c("type", "month"),
+               names_sep = "_",
+               values_to = "count") %>% 
+  pivot_wider(id_cols = c(continent, type), names_from = month,
+              values_from = count)
+```
