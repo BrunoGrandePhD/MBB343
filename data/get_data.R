@@ -43,3 +43,19 @@ covid19_cases_canada_monthly <-
   filter(territory == "Canada") %>%
   select(-continent, -population) %>%
   write_csv("data/covid19_cases_canada_monthly.csv")
+
+
+# E-MTAB-6701 - human first trimester fetal-maternal interface single cell transcriptomics - 10x data ----------------------
+
+### will take a few minutes
+download.file(url = "https://www.ebi.ac.uk/arrayexpress/files/E-MTAB-6701/E-MTAB-6701.processed.1.zip", destfile = "data/fetal_transcriptomics_raw.zip")
+unzip(zipfile = "data/fetal_transcriptomics_raw.zip", exdir="data/")
+data <- read.table("data/raw_data_10x.txt")
+download.file(url = "https://www.ebi.ac.uk/arrayexpress/files/E-MTAB-6701/E-MTAB-6701.processed.2.zip", destfile = "data/fetal_transcriptomics_meta.zip")
+unzip(zipfile = "data/fetal_transcriptomics_meta.zip", exdir="data/")
+meta <- read.table("data/meta_10x.txt")
+
+
+
+
+

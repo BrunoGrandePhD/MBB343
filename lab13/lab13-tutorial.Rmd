@@ -5,6 +5,10 @@ output: html_notebook
 
 ## Tutorial
 
+Once your research team has understood the basic mechanisms of covid-19 pathgenesis, you want to investigate whether the virus have vertical transmission potential (i.e it can be transmitted from pregnant women to the fetuses). Based on prior studies, you know that SARS-CoV uses ACE2 as one of the main receptors to enter the host cells. You decided that a good place to start would be to look at gene expression data in the placenta issue. Fortunately, we have a dataset on [single-cell reconstruction of the early maternal-fetal interface in humans](https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-6701/) hosted on the European Bioinformatics Institute (EMBL-EBI) website for research uses. We can analyze this RNA seq data to better understand which cell types in placenta might be "susceptible" (allowing virus entry) due to the present of ACE2 receptors.
+
+> analysis tutorial will be based on [this paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230295)
+
 ### Learning Objectives
 
 - Perform linear dimensional reduction using PCAs
@@ -20,12 +24,18 @@ output: html_notebook
 
 ### Context
 
+
+
 ### Stuff
+
+
+## Assignment
+
+
 
 ## More Resources
 
+- Reference for this tutorial: [The SARS-CoV-2 receptor ACE2 expression of maternal-fetal interface and fetal organs by single-cell transcriptome study](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230295)
 - https://github.com/kdkorthauer/FestivalWorkshopVignettes/blob/master/SingleCellAnalyses.Rmd
 - https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
 - https://github.com/STAT540-UBC/STAT540-UBC.github.io/blob/master/seminars/seminars_winter_2020/seminar6/sm06_clustering-pca.md
-
-## Assignment
