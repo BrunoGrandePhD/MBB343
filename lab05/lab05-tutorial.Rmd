@@ -1,6 +1,6 @@
 ---
 title: "Lab 05 – Data Visualization: At Least 1,000 Words"
-output: html_notebook
+output: html_document
 ---
 
 ## Tutorial
@@ -17,14 +17,426 @@ output: html_notebook
   - Configure how the axes of the individual facets are laid out
   - Save a plot to disk as PDF and PNG images
   - Differentiate between PDF and PNG images
-  - Combine different plots using the `patchwork` package
 
 ### Context
 
-### Stuff
+In the previous tutorial, we rounded off our data wrangling and exploration toolbox with `group_by()`/`summarize()` and `pivot_wider()`/`pivot_longer()` from the `dplyr` and `tidyr` packages. Any data scientist worth their salt must be able to summarize datasets and switch between wide and long layouts, and they must be able to effectively visualize data, which is the topic of this tutorial.
+
+Today, we will use the `ggplot2` package to visually explore various datasets. While summarizing data in tables (_i.e._ data frames) can be useful, our brains are more effective at noticing patterns in images. There are many avenues for visualization in R, including base R and the `lattice` package. Here, we focus on `ggplot2` because it offers an elegant interface based on the grammar of graphics. In this tutorial, we will learn what this grammar consists of and how we can use it to quickly and iteratively visualize data.
+
+Indeed, speed is of the essence. Our research team is becoming reputable, and we have been invited to a TV show to discuss the facts and myths surrounding COVID-19. We will only have 5 minutes to review the facts of the pandemic following by a 25-minute Q&A, so we need to make our points succinctly. What better way to achieve this than  by illustrating real data! 
+
+### Principles of Data Visualization
+
+Data visualization is the process of graphically representing data. For most people, it's easier to glean the salient features of a dataset when presented graphically. A good graph can convey facts to your audience and effectively drive one's point home whereas a bad figure can confuse or in the worst case, mislead the audience. Many factors determine the quality of a visualization, including the visual components such as colours, shapes, labels, etc. These components are also known as aesthetics in the grammar of graphics. We will revisit these aesthetics in the context of `ggplot2 shortly. 
+
+Visualizing data isn't only important for communicating data between scientists. It's also critical for science communication, an increasingly important aspect of research. Graphs can bridge the growing gap between scientists and the general audience. We need to shed the idea that researchers should operate in ivory towers. Scientists do what they do to better society (I hope), and keeping the public in the dark is doing everyone a disservice. 
+
+There are entire courses on the principles of data visualization. While impossible to cover them all in this tutorial, we will learn a few common sense principles. That said, if the topic interests you, check out the resources below for useful links covering these important principles.
+
+### `ggplot2`: The Reason to Learn R
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
+```{r}
+canada <- read_csv("data/covid19_cases_provinces_weekly.csv")
+
+canada
+```
+
+Let's get straight to plotting!
+
+```{r}
+ggplot(canada, aes(x = week, y = cases, colour = province)) +
+  geom_line()
+```
+
+Breaking down the components of a basic ggplot2 plot
+
+1. Data: A data frame (can be piped in)
+2. Aesthetics: Assigning columns in the data to visual components (also known as aesthetics), such as x, y, colour, fill, shape, size, and label
+3. Geometry: Visual representation of the data, such as point, line, boxplot, col (column), density, histogram, abline (mx + b), hline/vline (horizontal/vertical line)
+
+```
+ggplot(<data>, aes(<aesthetics>)) +
+  geom_<geometry>()
+```
+
+If you tried plotting without the geometry, it doesn't work
+
+Although, the axes make sense
+
+```{r}
+ggplot(canada, aes(x = week, y = cases, colour = province))
+```
+
+Another important aspect of ggplot2 is that every geom is a layer
+
+```{r}
+ggplot(canada, aes(x = week, y = cases, colour = province)) +
+  geom_line() +
+  geom_point()
+```
+
+The layer order is important
+
+```{r}
+ggplot(canada, aes(x = week, y = cases, colour = province)) +
+  geom_line() +
+  geom_point(colour = "black")
+
+ggplot(canada, aes(x = week, y = cases, colour = province)) +
+  geom_point(colour = "black") +
+  geom_line()
+```
+
+The above example shows that we can assign constant values to an aesthetic like colour
+
+These are done outside of `aes()`
+
+Otherwise, it thinks that the given value is a data value rather than an aesthetic value (like "black" or "blue")
+
+```{r}
+ggplot(canada, aes(x = week, y = cases, colour = province)) +
+  geom_line() +
+  geom_point(aes(colour = "black"))
+```
+
+Keep in mind that ggplot2 has to convert data values (like "Ontario" and "Quebec") to aesthetic values (like "blue" and "purple")
+
+Similarly, columns assigned to the X and Y axes need to be converted from data values (like "2020-03-09" and "3011") into positions in the figure (x and y coordinates in pixels)
+
+This is done using scales
+
+ggplot2 tries its best to automate this as much as possible, but the user can always tweak this
+
+For example, ggplot2 defaults to converting continuous variables one-to-one to pixel distances
+
+However, the user can change this to a log scale
+
+Note that the user updates the scale for a given aesthetic, here the y aesthetic
+
+```{r}
+ggplot(canada, aes(x = week, y = cases, colour = province)) +
+  geom_line() +
+  scale_y_log10()
+```
+
+In this case, the log scale is problematic because of zeros, whose log is an infinite value
+
+We can do calculations within `aes()`, but this should be done sparingly because it makes it harder to read
+
+Here, by adding 1 to the number of cases, we ensure that there are no zeros
+
+```{r}
+ggplot(canada, aes(x = week, y = cases + 1, colour = province)) +
+  geom_line() +
+  scale_y_log10()
+```
+
+Using the pipe, we can combine `dplyr` and `ggplot2` code
+
+For example, we can avoid the calculation in `aes()` by running it in a separate `mutate()` function call
+
+This works because the first argument of `ggplot()` is the data
+
+Be careful: use the pipe (`%>%`) up until `ggplot()`, and the plus (`+`) afterwards
+
+You cannot switch back to the pipe after using the plus sign (due to operator precedence)
+
+```{r}
+canada %>% 
+  mutate(cases = cases + 1) %>% 
+  ggplot(aes(x = week, y = cases, colour = province)) +
+  geom_line() +
+  scale_y_log10()
+```
+
+Another common use case of performing a calculation in `aes()` is logical operations
+
+For instance, let's say we want to highlight the BC line using line type
+
+Here, we are using `!=` instead of `==` so that BC is the full line and the other provinces are the dashed lines
+
+```{r}
+canada %>% 
+  mutate(cases = cases + 1) %>% 
+  ggplot(aes(x = week, y = cases, colour = province)) +
+  geom_line(aes(linetype = province != "British Columbia")) +
+  scale_y_log10()
+```
+
+A common pattern is to drop any useless legends
+
+Here, the linetype legend doesn't tell us anything that the colour legend doesn't already tell us
+
+A common tactic is to set `breaks = NULL` for the scale in question, in this case, `scale_linetype`
+
+```{r}
+canada %>% 
+  mutate(cases = cases + 1) %>% 
+  ggplot(aes(x = week, y = cases, colour = province)) +
+  geom_line(aes(linetype = province != "British Columbia")) +
+  scale_y_log10() +
+  scale_linetype(breaks = NULL)
+```
+
+Let's update this plot to show the case rate per million people to adjust for population
+
+Here, we can use our existing mutate call to create this column
+
+As you can see, based on the rate, BC is performing only 
+
+```{r}
+canada %>% 
+  mutate(cases = cases + 1,
+         cases_rate = cases / population * 1000000) %>%
+  ggplot(aes(x = week, y = cases_rate, colour = province)) +
+  geom_line(aes(linetype = province != "British Columbia")) +
+  scale_y_log10() +
+  scale_linetype(breaks = NULL)
+```
+
+One problematic aspect of the log scale is that the lines are very jittery
+
+We can revert back to a untransformed scale, but a few provinces cause everything else to be squished at the bottom
+
+```{r}
+canada %>% 
+  mutate(cases = cases + 1,
+         cases_rate = cases / population * 1000000) %>%
+  ggplot(aes(x = week, y = cases_rate, colour = province)) +
+  geom_line(aes(linetype = province != "British Columbia")) +
+  scale_linetype(breaks = NULL)
+```
+
+To overcome this, we can zoom into the area we care about, which would be anything below 200 cases
+
+There are many ways of doing this zooming, but the best way is using `coord_cartesian()`
+
+```{r}
+canada %>% 
+  mutate(cases = cases + 1,
+         cases_rate = cases / population * 1000000) %>%
+  ggplot(aes(x = week, y = cases_rate, colour = province)) +
+  geom_line(aes(linetype = province != "British Columbia")) +
+  scale_linetype(breaks = NULL) +
+  coord_cartesian(ylim = c(0, 200))
+```
+
+Organize the provinces into regions using facets
+
+```{r}
+ggplot(canada, aes(x = week, y = cases)) +
+  geom_col() +
+  facet_grid(rows = vars(region))
+```
+
+Allow the Y axes to be different
+
+```{r}
+ggplot(canada, aes(x = week, y = cases)) +
+  geom_col() +
+  facet_grid(rows = vars(region), scales = "free_y")
+```
+
+
+Scale facet height to number of cases (not practical here)
+
+```{r}
+ggplot(canada, aes(x = week, y = cases)) +
+  geom_col() +
+  facet_grid(rows = vars(region), scales = "free_y", space = "free_y")
+```
+
+Plot cases and deaths on same figure
+
+Because cases and deaths are in different columns, we can't assign both to the y aesthetic
+
+To address this, we need to convert our data into a longer format so that one column will contain both the case and death counts
+
+```{r}
+canada_long <- 
+  canada %>% 
+  pivot_longer(cols = c(cases, deaths), names_to = "type", 
+               values_to = "count")
+
+ggplot(canada_long, aes(x = week, y = count, fill = type)) +
+  geom_col() +
+  facet_grid(rows = vars(region), scales = "free_y")
+```
+
+For bar plots, it's sometimes more useful to place the coloured bars side-by-side
+
+```{r}
+ggplot(canada_long, aes(x = week, y = count, fill = type)) +
+  geom_col(position = "dodge") +
+  facet_grid(rows = vars(region), scales = "free_y")
+```
+
+Here, we would like to assign better colours to cases vs deaths
+
+```{r}
+ggplot(canada_long, aes(x = week, y = count, fill = type)) +
+  geom_col(position = "dodge") +
+  facet_grid(rows = vars(region), scales = "free_y") +
+  scale_fill_manual(values = c(deaths = "firebrick", cases = "dodgerblue"))
+```
+
+Plot cases as lines over time
+
+```{r}
+ggplot(canada, aes(x = week, y = cases, colour = province)) +
+  geom_line() +
+  facet_grid(rows = vars(region), scales = "free_y")
+```
+
+We can plot cases on X axis and deaths on Y axis
+
+```{r}
+canada_totals <- 
+  canada %>% 
+  group_by(region, province, province_code) %>% 
+  summarize(cases = sum(cases), deaths = sum(deaths))
+
+ggplot(canada_totals, aes(x = cases, y = deaths, colour = province)) +
+  geom_point()
+```
+
+Log scales for both axes allow for more even spread of provinces
+
+```{r}
+ggplot(canada_totals, aes(x = cases, y = deaths, colour = province)) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10()
+```
+
+Instead of coloured points, we can simply plot the province codes using `geom_text()` on the scatter plot
+
+```{r}
+ggplot(canada_totals, aes(x = cases, y = deaths, label = province_code)) +
+  geom_text() +
+  scale_x_log10() +
+  scale_y_log10()
+```
+
+By adding 1 to the number of cases and deaths, we ensure that there are no infinite values
+
+```{r}
+ggplot(canada_totals, aes(x = cases + 1, y = deaths + 1, 
+                          label = province_code)) +
+  geom_text() +
+  scale_x_log10() +
+  scale_y_log10()
+```
+
+Improve labels
+
+```{r}
+ggplot(canada_totals, aes(x = cases + 1, y = deaths + 1, colour = province,
+                          label = province_code)) +
+  geom_text() +
+  scale_x_log10() +
+  scale_y_log10() +
+  scale_colour_discrete(breaks = NULL) +
+  labs(x = "Number of cases (log)", y = "Number of deaths (log)")
+```
+
+Time to save some plots for later viewing
+
+Two formats to focus on today: PNG and PDF
+
+PNG is a raster image format, i.e., information is encoded as coloured pixels
+
+In other words, if you zoom in, the image will be pixelated or blurry
+
+That said, it's a widely supported format, useful for sharing online
+
+The `ggsave()` function allows you to save your last plot and infers the format from the file extension
+
+```{r}
+ggsave("provinces.png")
+```
+
+Alternatively, you can always store your ggplot2 plot in a variable
+
+If you want to preview it, you can just use the variable
+
+And the second argument to `ggsave()` can be that variable
+
+```{r}
+curves_plot <- 
+  ggplot(canada, aes(x = week, y = cases, colour = province)) +
+  geom_line()
+
+curves_plot
+
+ggsave("curves.png", curves_plot)
+```
+
+Lastly, you can save figures as PDF files
+
+PDF is a vector image format, i.e., information is encoded as shapes and lines
+
+In other words, PDF plots won't get blurry as they're enlarged
+
+PDF images are ideal for inclusion in documents (Word) and presentations (PowerPoint)
+
+```{r}
+ggsave("curves.pdf", curves_plot)
+```
 
 ## More Resources
 
 - http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2
+- https://paldhous.github.io/ucb/2016/dataviz/week2.html
 
 ## Assignment
+
+Imagine you get the following questions from the audience. You must address their concerns using data visualization. For each question, you are given a relevant dataset. For each question, please do the following:
+
+- Inspect the data and understand what each column contains.
+- Conceptualize the visualization that can most effectively answer the question with the given data. 
+- Wrangle data if need be and explain your reasoning for these steps.
+- Plot the graph. Make sure your graph is easy to understand (_e.g._ with descriptive labels) and addresses the audience question.
+- Narrate your graph by describing what it illustrates.
+
+### Which countries/territories have been hit the hardest?
+
+Countries/territories around the world have been hit differently by the COVID-19 pandemic. Which of them have been hit the hardest? You might get different answers depending on whether you look at the number of cases or the number of deaths. We aren't asking about the economic impact because that data isn't as readily available. Be sure to account for the varying population between countries. You can ignore countries with fewer than 1 million inhabitants. 
+
+```{r}
+cases_worldwide <- read_csv("data/covid19_cases_worldwide.csv")
+
+cases_worldwide
+```
+
+### What is the demographic breakdown for cases in British Columbia (BC)?
+
+BC has released some demographic data on all COVID-19 cases in the province. Create one or two plots that effectively summarize the demographics of the COVID-19 pandemic in BC. Consider looking up the available aesthetics for each "geom" to figure out how to best display multiple variables on a plot.
+
+```{r}
+cases_bc <- read_csv("data/covid19_cases_bc.csv")
+
+cases_bc
+```
+
+### Why the 2 meter social distancing?
+
+"Some people are wondering how the government come up 2 meter. Why 2 meter? Why not 3 meter or 1 meter?" Bob asked. 
+
+
+### What masks should we wear?
+
+
+### Has the stay at home recommendation in BC helps? 
+
+"People are wondering if shutting down the restaurants and asking people to stay at home have helped with flattening the curve, could you elaborate on that", he asked. You decided you will show the audience the graph of new cases in Canada in time series, with some reference points of some key dates in Canada.
+
+(plot the days since stay at home order.)
