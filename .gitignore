@@ -7,3 +7,6 @@
 
 # R Markdown output files
 *.html
+
+# Large files
+/data/large

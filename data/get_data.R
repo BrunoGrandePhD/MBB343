@@ -1,6 +1,7 @@
 
 # Load packages -----------------------------------------------------------
 
+library(data.table)
 library(tidyverse)
 library(lubridate)
 
@@ -147,10 +148,28 @@ covid19_cases_bc <-
 # Homepage:
 # https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230295
 
-### will take a few minutes
-download.file(url = "https://www.ebi.ac.uk/arrayexpress/files/E-MTAB-6701/E-MTAB-6701.processed.1.zip", destfile = "data/fetal_transcriptomics_raw.zip")
-unzip(zipfile = "data/fetal_transcriptomics_raw.zip", exdir="data/")
-data <- read.table("data/raw_data_10x.txt")
-download.file(url = "https://www.ebi.ac.uk/arrayexpress/files/E-MTAB-6701/E-MTAB-6701.processed.2.zip", destfile = "data/fetal_transcriptomics_meta.zip")
-unzip(zipfile = "data/fetal_transcriptomics_meta.zip", exdir="data/")
-meta <- read.table("data/meta_10x.txt")
+fetal_scrnaseq_rooturl <-
+  "https://www.ebi.ac.uk/arrayexpress/files/E-MTAB-6701/"
+
+fetal_metadata_url <-
+  paste0(fetal_scrnaseq_rooturl, "E-MTAB-6701.processed.2.zip")
+download.file(url = fetal_metadata_url,
+              destfile = "data/large/6701.processed.2.zip")
+unzip(zipfile = "data/large/6701.processed.2.zip", exdir="data/large/")
+
+fetal_scrnaseq_url <-
+  paste0(fetal_scrnaseq_rooturl, "E-MTAB-6701.processed.1.zip")
+download.file(url = fetal_scrnaseq_url,
+              destfile = "data/large/E-MTAB-6701.processed.1.zip")
+unzip(zipfile = "data/large/E-MTAB-6701.processed.1.zip", exdir="data/large/")
+
+fetal_metadata <-
+  read.delim("data/large/meta_10x.txt", stringsAsFactors = FALSE) %>%
+  rownames_to_column("cell") %>%
+  as_tibble() %>%
+  rename(fetus = Fetus)
+
+fetal_scrnaseq <-
+  fread("data/large/raw_data_10x.txt") %>%
+  column_to_rownames("Gene") %>%
+  as.matrix()
