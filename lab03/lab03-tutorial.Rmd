@@ -76,6 +76,8 @@ Confirm column types.
 
 Advantages of readr over base R.
 
+Date parsing
+
 Explain `stringsAsFactors` default value.
 
 ```{r}
