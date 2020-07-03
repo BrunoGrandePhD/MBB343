@@ -10,6 +10,7 @@ output: html_notebook
 - Describe the main vector types (logical, integer, double, character)
   - Define vectors of length 1 for each type (without the `c()` function)
   - Define longer vectors using the `c()` function
+  - Create sequences of integers using the colon (`:`) notation
   - Explain how vector types are enforced (type coercion)
   - Determine the type of an existing vector
   - Explain vectorization in R and why it's powerful

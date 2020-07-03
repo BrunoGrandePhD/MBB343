@@ -1,6 +1,8 @@
 ---
-title: "Lab 01 – Getting Started with R and RStudio: Tools of the Trade"
-output: html_notebook
+title: 'Lab 01 – Getting Started with R and RStudio: Tools of the Trade'
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Tutorial
@@ -8,8 +10,6 @@ output: html_notebook
 ### Learning Objectives
 
 - Set up the R programming language and the RStudio IDE
-  - Install R and RStudio on a local computer or laptop
-  - Create an account on rstudio.cloud
 - Navigate the RStudio interface
   - Customize RStudio options for reproducibility and convenience
   - Describe the purpose of the main panes in RStudio (Source, Console, Environment, History, Files, Plots, Packages, Help)
@@ -20,10 +20,8 @@ output: html_notebook
   - Perform simple arithmetic calculations
   - List arithmetic operators (+, -, \*, /, ^, ()) and their precedence
   - Compare values with logical operators (`==`/`!=`, `<`/`<=`, `>`/`>=`)
-  - Define a variable with a valid name and retrieve its contents
-  - Differentiate between variables and objects
-  - Create sequences of integers using the colon (`:`) notation
   - Describe the structure and behaviour of a function call
+  - Define a variable with a valid name and retrieve its contents
 - Identify where to look when seeking for help
   - Locate the help page for functions and special operators
   - Resolve an error message using a web search tool
@@ -31,12 +29,275 @@ output: html_notebook
 
 ### Context
 
-### Stuff
+There are a lot of moving parts in data science, but what better place to start than with the tools. While simple data science can be accomplished in graphical tools like Excel, programming languages can open up a world of possibilities and bring together a community of like-minded individuals. In this series of tutorials, we choose R over other languages such as Python and Julia because it was designed with data at its heart and is surrounded by a thriving and helpful community. 
+
+Another reason we choose R is its tight integration with the RStudio integrated development environment (IDE). IDEs serve to streamline the process of development. One key benefit of RStudio compared to other IDEs is that it shares the same free and open-source philosophy as the R programming language. Over the coming tutorials, you will come to appreciate the many features offered by RStudio. For today, we will focus on its integrated text editor and R console. 
+
+In this tutorial, we will familiarize ourselves with the RStudio interface and begin to write our first R code. If this is your first time programming, then you're in for a rewarding journey! We will be introduced to fundamental programming concepts like operators and variables. We will also see functions in actions and why they're so useful in programming. Finally, we will start practicing right away with seeking for help. This skill is critical for a data scientist.
+
+### The RStudio Interface
+
+If you are using a personal computer, you will first need to [install R](https://cran.r-project.org/) and [RStudio](https://www.rstudio.com/). Alternatively, you can use [RStudio Cloud](https://rstudio.cloud/) to avoid the hassle of installing software on a local computer. 
+
+Once R and RStudio are installed, you should be able to open RStudio and see the following interface. By default, you are greeted by the following three panes. The tabs in bold are the ones we will be using in these tutorials the most. 
+
+- The **Console**/Terminal/Jobs pane (left)
+- The **Environment**/History/Connections/Tutorial pane (top-right)
+- The **Files**/**Plots**/**Packages**/**Help**/Viewer pane (bottom-right)
+
+![Default RStudio Inferface](screenshots/3panes.png)
+
+The fourth and final Source pane can be brought up when files are opened (top-left). Here, we created a new Untitled R script via the top menu under File > New File > R script. The Console pane moves to the bottom-left when the Source pane is open.
+
+![New Script in RStudio](screenshots/4panes.png)
+
+Before doing anything else, we are going to change two RStudio settings. These changes will help ensure that you don't run into any unexpected behaviour. You can access the RStudio settings via the top menu under Tools > Global Options. You will want to disable the following two options, which should appear in the General (Basic tab) section under Workspace:
+
+- "Restore .RData into workspace at startup"
+- "Save workspace to .RData on exit" (set to Never)
+
+![RStudio Global Options](screenshots/options.png)
+
+There is a wide range of options that you can configure in RStudio based on your personal preference. For example, under the Appearance section, you can change the zoom level (how big visual elements like icons appear in RStudio), the font and font size, and the colour scheme. 
+
+![RStudio Appearance](screenshots/appearance.png)
+
+You can also change the pane locations under the Pane Layout section. Many RStudio users prefer having their Console pane at the top-right next to the Source pane because these two panes tend to be the most important. 
+
+![RStudio Pane Layout](screenshots/layout.png)
+
+Take some time to explore the available settings in the Global Options. What else did you tweak?
+
+Obviously, another important aspect of RStudio is running R code. There are two general approaches to this:
+
+1. Run code directly in the Console pane
+    - This option is convenient for small tasks, but it doesn't scale to larger analyses.
+    - Relying on the R History for keeping track of past commands is tedious and error-prone.
+2. Write code in the Source pane and selectively run code in the Console
+    - This is the recommended approach to running R code in RStudio.
+    - By storing code in files, you can easily re-run previously used code.
+    - Button and keyboard shortcuts in RStudio make it easy to run bits of code in the console.
+
+When you want to selectively run R code in the Console, you can click the "Run" button at the top-right of the Source pane. If you have code selected, this will run the selected code. Otherwise, it will run the line of code where your flashing text cursor is located. If you hover over the "Run" button for a few seconds, you should see an associated keyboard shortcut. By default, it should be Cmd-Enter on macOS or Ctrl-Enter on Windows.
+
+![RStudio Source to Console](screenshots/run.png)
+
+You can open a keyboard shortcut summary via the top menu under Tools > Keyboard Shortcuts Help. You can also edit keyboard shortcuts under Tools > Modify Keyboard Shortcuts. These shortcuts can minimize the time you spend using your mouse/trackpad, which in turn increases your productivity. It's worthwhile looking up or setting keyboard shortcuts for anything you do repeatedly.
+
+![RStudio Source to Console](screenshots/shortcuts.png)
+
+### Mathematical Operators
+
+Now that we have a handle on the RStudio interface, let's get our hands dirty with some R code! You can start writing any code posted below in a new R script and run each line using the Run button (or keyboard shortcut).
+
+Let's start with a simple calculation and break it down. Here, we are adding two numbers, 1 and 100, together using the `+` operator. When this statement (_i.e._ a bit of R code) is run in the Console, you get the total, which is 101. For now, you can ignore the `[1]` appearing before the total. Briefly, the notation indicates that the number appearing to its right is the first value of the output. As we will see later, we are not restricted to single values as outputs.
+
+```{r}
+1 + 100
+```
+
+Obviously, we have access to the usual set of arithmetic operations in R. They follow the same precedence as in mathematics, namely:
+
+- Parentheses: `(` and `)`
+- Exponents: `^` or `**`
+- Multiply: `*`
+- Divide: `/`
+- Add: `+`
+- Subtract: `-`
+
+To demonstrate operator precedence, consider the following statement:
+
+```{r}
+3 + 5 * 2
+```
+
+As expected, you can override the order of operations with parentheses, as follows. 
+
+```{r}
+(3 + 5) * 2
+```
+
+You can also choose to add parentheses to improve readability. This is a careful balance. As we can see in the first example below, too many parentheses can hinder readability.
+
+```{r}
+(3 + (5 * (2 ^ 2)))  # hard to read
+3 + 5 * 2 ^ 2        # clear, if you remember the rules
+3 + 5 * (2 ^ 2)      # if you forget some rules, this might help
+```
+
+In the above code, we can notice the text prefixed with the pound/hash sign (`#`). These are called code comments. They are completely ignored by the computer when running code. Comments can either be on their own line (shown below) or they can be appended to the right of a line (shown above).
+
+```{r}
+12 / 3
+# 20 / 10
+```
+
+If you generate an output consisting of a small number, you might run into the scientific notation. For example, two millionth is displayed as `2e-06`, which can be interpreted as $2 \times 10^{-6}$. 
+
+```{r}
+2 / 1000000
+```
+
+You can also use this notation to express very large or small numbers. 
+
+```{r}
+-2.3e7
+4e-5
+```
+
+Sooner or later, your console will look something like this:
+
+```
+> 2 *
++ 
+```
+
+The usual `>` character that indicates where you can run code is called the prompt. The prompt becomes a plus sign (`+`) when it wants to indicate that it's expecting additional input. Here, we can expect R to expect more because we haven't provided the second value for the multiplication. Note that the `+` prompt has nothing to do with the `+` operator. 
+
+To get rid of the issue, you can either complete the operation. In this case, if we provide a second value in the Console and press Enter, you obtain the expected output. 
+
+```
+> 2 *
++ 4
+[1] 8
+```
+
+Alternatively, you can press the Escape key to cancel the current operation. In this case, the operation will not produce any output, and the usual `>` prompt will return. 
+
+```
+> 2 *
++ 
+
+>
+```
+
+### Mathematical Functions
+
+So far, we've been using operators like `+` and `*` for performing mathematical calculations. As you can imagine, there are only so many characters on a keyboard to use to represent various operations. As a result, a more general approach exist in the form of functions.
+
+Functions are similar to the mathematical concept: they generally take in some input and produce some output. For example, we can calculate the natural logarithm (shown below). This is called a function call (_i.e._ when you use/call a function). There are three components:
+
+1. The function name (here, `log`)
+2. The parentheses to indicate you are using/calling the function
+3. The (optional) input to the function within parentheses
+
+The inputs are also known as function arguments. They determine the behaviour of the function. If we continue with our analogy with mathematical functions such as $y = 2x + 5$, the arguments are the independent variables, like $x$ in this case.
+
+```{r}
+log(1)
+```
+
+If you attempt to run a function without parentheses, you will instead obtain the function definition, _i.e._ the code that tells R what to do when the function is called, usually processing the input in some way.
+
+```{r}
+log
+```
+
+Also, without parentheses, you cannot provide any input. So, don't forget to add parentheses every time you use a function, even if you don't have to provide an input. 
+
+There are countless functions available in R, but you don't have to worry about remembering them all. It's more practical to rely on Google whenever you need to look up a function. Over time, you will come to know the most useful functions
+
+```{r}
+sin(1)    # trigonometry
+exp(0.5)  # e^(1/2)
+sqrt(9)   # square root of 9
+```
+
+It's worth noting that functions aren't restricted to one input value. For example, the following function returns one random value (first argument) from a normal distribution centred at a mean of 10 (second argument). As you can see, the arguments are separated by commas. 
+
+```{r}
+rnorm(1, 10)
+```
+
+It's important to realize that the order matters. For example, if we swap the two arguments, we get 10 random values from a normal distribution centred at a mean of 1.
+
+```{r}
+rnorm(10, 1)
+```
+
+We can avoid this pitfall by explicitly naming our arguments. This way, R doesn't assume the order of the arguments.
+
+```{r}
+rnorm(mean = 10, n = 1)
+```
+
+Now, you might be wondering how you could possibly remember all of these function arguments and their order (or their names). A really useful feature of R is that you can open the help page (also called a manual) for any function by running `?` followed by the function name. Note that in this case, you don't include the parentheses because you don't want to run the function. If you do this in RStudio, it will open the function help page in the Help pane, where the Files are usually located.
+
+These help pages can be esoteric and hard to read. Don't panic. You will get used to them over time. There are a few common sections: Title, Description, Usage, Arguments, Details, Value, and Examples. Generally, these manuals are useful to learn about function arguments and to see working examples in action. If the function help page isn't enough, you can always use Google to find more information online.
+
+### Logical Comparisons
+
+In addition to arithmetic operations, we can perform the following logical comparisons:
+
+- `==`: Is equal to (note the double equal sign)
+- `!=`:  Is unequal to
+- `>` and `>=`: Is greater than (or equal to)
+- `<` and `<=`: Is lesser than (or equal to)
+
+Comparisons with these operators can be done with numbers, as expected. The output of these operations can be one of two values: `TRUE` or `FALSE`. In other programming languages, these are called boolean values. In R, they are referred to as logical values.
+
+```{r}
+1 == 1
+2 > 5
+5 != 6
+```
+
+One important aspect of numeric comparisons in R (and any programming language, for that matter) is that you need to take special caution when comparison decimal numbers (also known as floating point numbers). Because computers represents everything as zeros and ones, two decimal numbers that look the same (and should be the same) might not be considered the same when using the `==` operator. For more technical details, you should check out the [Floating Point Guide](http://floating-point-gui.de/). The workaround is to use the `all.equal()` function, which will tolerate tiny differences when comparing floating point numbers.
+
+### Storing Values in Variables
+
+Rarely will you need to open R and perform one operation. In virtually every situation, you will need to perform a series of operations, each building on top of previous ones. To simplify the re-use of values, programming languages offer the ability to define variables. A variable can store a value, also known as an object, for later retrieval. You can retrieve the contents of a variable by referring to its name.
+
+Here, we are calculating the product of 3 and 7 first, and then storing the result of this calculation in a variable called `x`. Notice that unlike our operations from above, there is not output. That's because the output was "captured" and stored in the variable.
+
+```{r}
+x <- 3 * 7
+```
+
+If we wanted to see the contents of the variable `x`, we simply refer to it by name, as follows:
+
+```{r}
+x
+```
+
+However, the utility of variables is the ability to use them in other operations. For instance, we can calculate the natural logarithm of the value stored in `x`. Alternatively, we can store that new value in another variable called `y`.
+
+```{r}
+log(x)
+
+y <- log(x)
+```
+
+As we define these variables, you will notice that new entries appear in the Environment pane in RStudio, each corresponding to a variable. This is a convenient way of keeping track of all existing variables. Unless you are storing large amounts of data in variables, there is practically no limit on the number of variables you can create. 
+
+An important concept to grasp regarding variables is that they don't act like formulas in Excel. In other words, if you update one variable, this doesn't cause a change in other variables that were calculated based on that one variable. Case in point, the value stored in `y` was calculated from the natural logarithm of the value stored in `x`. Let's recall both values here: 
+
+```{r}
+x
+y
+```
+
+If we update `x` to another value, you can see that the value of `y` remains unchanged. This is also reflected in the Environment pane. If you want to update the value of `y`, you would need to re-run the calculation from earlier (included below in a code comment). As a side note, the code below also demonstrates that variables can be updated after they're defined. They're not constant or fixed.
+
+```{r}
+x <- 1 / 40
+x
+y
+# y <- log(x)
+```
+
+So far, we've been using single-character variable names. This is not a requirement. In fact, you are encouraged to use more descriptive variable names, because it helps make code more readable. That said, there are rules surrounding variables names:
+
+- They can contain letters, numbers, underscores and periods, but no spaces.
+- They must start with a letter or a period followed by a letter. 
+- They cannot start with a number nor an underscore. 
+- Variables beginning with a period are hidden variables. 
+- Different people use different conventions for long variable names, including `periods.between.words`, `underscores_between_words`, or `camelCaseToSeparateWords`.
+
+The last bullet point is a matter of personal taste. Whatever you choose, **be consistent**.
 
 ## More Resources
 
 - http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro
 - http://swcarpentry.github.io/r-novice-gapminder/03-seeking-help
 - https://ariel.rbind.io/workshop/rbasics/#interactive-tutorials
-
-## Assignment
