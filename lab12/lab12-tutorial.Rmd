@@ -1,6 +1,10 @@
 ---
-title: "Lab 12 – Hierarchical Clustering: Putting Things in Buckets"
-output: html_notebook
+title: "Lab 12: Hierarchical Clustering"
+author: "Bruno Grande"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Tutorial
@@ -14,11 +18,316 @@ output: html_notebook
   - Perform clustering using `hclust()`
   - Visualize clustering using the `ggdendro` package
   - Perform and visualize clustering using the `pheatmap` package
-  - Evaluate clustering using the `ConsensusClusterPlus` package
 
 ### Context
 
-### Stuff
+### Exploring the data
+
+```{r, warning=FALSE}
+library(tidyverse)
+library(pheatmap)
+```
+
+```{r}
+metadata <- read_csv("data/pannets_metadata.csv")
+
+metadata
+```
+
+```{r}
+rnaseq <- read_csv("data/pannets_expr_rnaseq.csv.gz")
+
+rnaseq_long <- pivot_longer(rnaseq, cols = -Gene, 
+                            names_to = "Tumour",
+                            values_to = "Expr")
+
+rnaseq_wide <- pivot_wider(rnaseq_long, id_cols = Tumour,
+                           names_from = Gene, 
+                           values_from = Expr)
+
+head(rnaseq)
+```
+
+### Hierarchical clustering
+
+Another common approach to unsupervised clustering is hierarchical clustering
+
+For gene expression data, this is typically done hand-in-hand with heatmaps showing the underlying data 
+
+The most basic output from hierarchical clustering is a dendrogram, which displays all pairwise relationships between samples (or genes)
+
+Here, we will focus on the relationship between samples 
+
+We will use the 3000 most variably expressed genes to speed things up without losing much
+
+Most of the functions for this operate on matrices rather than data frames, so let's prepare a matrix
+
+```{r}
+expr_matrix <- 
+  rnaseq_wide %>% 
+  select(Tumour, one_of(genes_mostvar)) %>% 
+  as.data.frame() %>% 
+  column_to_rownames("Tumour") %>% 
+  as.matrix()
+
+expr_matrix[1:5, 1:5]
+```
+
+Once you have a matrix, there are two steps to perform hierarchical clustering
+
+First, you need to calculate some distance metric between every pair of samples
+
+There are many kinds of distance metrics, but for gene expression data, the most commonly used are euclidean (the default) and Pearson correlation
+
+Second, you need to perform the clustering on the distance matrix using a specific agglomeration method
+
+Just like distance metrics, there are many agglomeration methods, but the more common ones are complete (default) and Ward clustering
+
+The resulting object from running `hclust()` can be plotted as a dendrogram
+
+From this default analysis, we can already see two general clusters forming
+
+```{r}
+eucl_dists <- dist(expr_matrix)
+eucl_clust <- hclust(eucl_dists)
+
+plot(eucl_clust)
+```
+
+However, we will perform clustering based on the method in the paper, which used Pearson correlation as the distance metric and Ward clustering as the agglomeration method
+
+An important thing to realize is that `cor()` calculates the correlation between columns, whereas `dist()` calculates the distance between rows
+
+As a result, we need to transpose our matrix before calculating the correlations
+
+Also, correlation is a similarity metric, not a distance metric
+
+Since correlation coefficients are between 0 and 1, we can simply calculate 1 minus the correlation coefficients
+
+(This assumes that all correlations are positive, which is the case)
+
+With both of these changes, we can see that the tree looks very different
+
+You can experiment with this to figure out if most of the change comes from the different distance metric or the different agglomeration approach (or both)
+
+```{r}
+pear_corrs <- t(expr_matrix) %>% cor()
+
+all(pear_corrs > 0)
+
+pear_dists <- as.dist(1 - pear_corrs)
+pear_clust <- hclust(pear_dists, method = "ward.D2")
+
+plot(pear_clust)
+```
+
+Sadly, when visualizing the dendrogram this way, it's difficult to make tweaks
+
+Fortunately, the `ggdendro` package provides functions to extract the important data from the `hclust` objects for visualizing in `ggplot2`
+
+We need to extract the dendrogram from the `hclust` object, and then extract the "tree data" (segments and labels) from the dendrogram
+
+```{r}
+library(ggdendro)
+
+eucl_dend <- as.dendrogram(eucl_clust) %>% dendro_data()
+pear_dend <- as.dendrogram(pear_clust) %>% dendro_data()
+
+segment(pear_dend) %>% head()
+label(pear_dend) %>% head()
+```
+
+Once you have the "dendrogram data", you can plot them using ggplot2
+
+Here is one basic example
+
+Notice how we are providing the segments and the labels as data frames to different layers (geoms)
+
+Because their aesthetics are completely unrelated, we also specify the mapping individually for each layer (rather than in `ggplot()`)
+
+```{r}
+ggplot() +
+  geom_segment(data = segment(pear_dend),
+               aes(x, y, xend = xend, yend = yend)) +
+  geom_text(data = label(pear_dend),
+            aes(x, y, label = label),
+            angle = 90, hjust = 1)
+```
+
+One issue with the above plot is the truncated labels
+
+This is because labels are anchored at a single point
+
+There isn't an invisible square around the label that ggplot avoids truncating
+
+We could use `coord_cartesian()` as we have in the past to address this
+
+To demonstrate another method, we will use the handy `expand_limits()` to make sure that a specific point for an aesthetic (in this case, `y`) is visible
+
+```{r}
+ggplot() +
+  geom_segment(data = segment(pear_dend),
+               aes(x, y, xend = xend, yend = yend)) +
+  geom_text(data = label(pear_dend),
+            aes(x, y, label = label),
+            angle = 90, hjust = 1) +
+  expand_limits(y = -0.5)
+```
+
+We now have the basic structure of the dendrogram visualized, but the whole point of this is to be able to colour the labels to see where the subtypes land in the clustering
+
+For this, we will need to annotate the labels data frame with the subtypes
+
+We will do this for both clustering solutions
+
+We are cheating a bit by doing a mini-pipe within the ggplot2 code
+
+We are also adding `theme_dendro()` to simplify the theme
+
+Both dendrograms show clear separation between the A-D-M WT and mutant tumours, consistent with the PCA results
+
+However, the layout of the dendrogram differs in an important way: the branch lengths
+
+The separation between both major clusters is much greater when using Pearson correlation compared to Euclidean distance
+
+We also see shorter overall branch lengths within the mutant cluster, indicating that these tumours are more similar to one another, consistent with the correlation heatmap from an earlier tutorial
+
+Another difference is that in the top result, DM1_MK44 is the outlier, whereas WT_MK50 is the outlier in the bottom result
+
+This sheds light on an important aspect to consider when performing hierarchical clustering: selecting an optimal approach (e.g., distance metric, agglomeration method) 
+
+When presented with two results like these, it's hard to determine which one is better or more correct
+
+It's often tempting to select the one that presents the most coherent or compelling story about the data, but be cautious
+
+Your decision should ideally be made ahead of time based on expert advice or conventions in the literature
+
+This way, you don't open yourself up to confirmation bias
+
+```{r, fig.asp=1}
+subtypes <- select(metadata, label = Tumour, Subtype)
+
+eucl_plot <-
+  ggplot() +
+  geom_segment(data = segment(eucl_dend),
+               aes(x, y, xend = xend, yend = yend)) +
+  geom_text(data = label(eucl_dend) %>% left_join(subtypes),
+            aes(x, y, label = label, colour = Subtype),
+            angle = 90, hjust = 1, size = 3) +
+  expand_limits(y = -65) +
+  theme_dendro() +
+  labs(title = "Complete linkage on euclidean distance")
+
+pear_plot <-
+  ggplot() +
+  geom_segment(data = segment(pear_dend),
+               aes(x, y, xend = xend, yend = yend)) +
+  geom_text(data = label(pear_dend) %>% left_join(subtypes),
+            aes(x, y, label = label, colour = Subtype),
+            angle = 90, hjust = 1, size = 3) +
+  expand_limits(y = -0.5) +
+  theme_dendro() +
+  labs(title = "Ward clustering on Pearson correlation")
+
+eucl_plot / pear_plot
+```
+
+Most papers featuring hierarchical clustering will display the results as a heatmap
+
+This way, both the clustering and the underlying data are displayed
+
+Fortunately, there are many packages for displaying heatmaps, and many offer the ability to automatically cluster and add dendrograms to the plot
+
+A commonly used package is `pheatmap` (short for pretty heatmap), which has a single function called `pheatmap()`
+
+It's one of those tools that literally does one thing, and it does it well
+
+That said, it offers a lot of flexibility, as can be seen from the `pheatmap()` help page
+
+The simplest way of running `pheatmap()` is by providing a numeric matrix, like our gene expression matrix from earlier
+
+```{r}
+library(pheatmap)
+
+pheatmap(expr_matrix) 
+```
+
+This first heatmap leaves a lot to be desired though
+
+First, genes are conventionally displayed as rows, not columns
+
+Second, with 3000 genes, we cannot display the gene names
+
+Third, we would like to annotate the tumours with various variables, including the subtype
+
+Fourth, to highlight the variation across tumours, we will scale the genes (subtracting mean and dividing by standard deviation)
+
+```{r, fig.asp=1}
+heat_annot <- 
+  metadata %>% 
+  select(Tumour, Subtype, Metastasis, Sex) %>% 
+  mutate(across(.fns = as.factor)) %>% 
+  as.data.frame() %>% 
+  column_to_rownames("Tumour")
+
+pheatmap(t(expr_matrix), show_rownames = FALSE, scale = "row",
+         treeheight_row = 0, clustering_method = "ward.D2",
+         clustering_distance_cols = "correlation",
+         annotation_col = heat_annot)
+```
+
+This second version is significantly better, but everything looks yellow
+
+We can adjust the colour scheme to highlight whatever variation exists
+
+Here, we need to provide a colour palette (7 values), borrowed from the paper, and the breaks mapping the data to colours (8 values)
+
+```{r, fig.asp=1}
+library(RColorBrewer)
+
+pheatmap(t(expr_matrix), show_rownames = FALSE, scale = "row",
+         treeheight_row = 0, clustering_method = "ward.D2",
+         clustering_distance_cols = "correlation",
+         annotation_col = heat_annot,
+         color = rev(brewer.pal(7, "RdBu")),
+         breaks = seq(-2, 2, length.out = 8))
+```
+
+So far, we've been plotting the 3000 most variably expressed genes to ensure that the clustering is relatively unsupervised
+
+However, if we wanted to specifically highlight two cluster, such as the A-D-M subtypes, we could perform a more supervised clustering by selecting specific genes
+
+In this case, we could display the expression of the most upregulated and downregulated genes in the A-D-M mutant tumours
+
+For this, let's fall back on our Wilcoxon tests
+
+In this latest heatmap, we can see a very clean separation between subtypes, which is expected given the genes we selected
+
+We can also see that the genes cluster in two groups based on whether they are upregulated or downregulated in the A-D-M mutant subtype
+
+We can see that most differentially expressed genes in the mutant subtype are upregulated
+
+```{r, fig.asp=1}
+topgenes_matrix <- 
+  rnaseq_long %>% 
+  left_join(metadata, by = "Tumour") %>% 
+  nest_by(Gene) %>% 
+  filter(sd(data$Expr) > 0) %>% 
+  mutate(test = tidy(wilcox.test(Expr ~ Subtype, data, exact = FALSE))) %>%
+  ungroup() %>% 
+  slice_min(test$p.value, n = 50) %>% 
+  unnest(data) %>% 
+  pivot_wider(id_cols = Gene, names_from = Tumour, values_from = Expr) %>% 
+  as.data.frame() %>% 
+  column_to_rownames("Gene") %>% 
+  as.matrix()
+
+pheatmap(topgenes_matrix, scale = "row", clustering_method = "ward.D2",
+         clustering_distance_cols = "correlation",
+         annotation_col = heat_annot,
+         color = rev(brewer.pal(11, "RdBu")),
+         breaks = seq(-3, 3, length.out = 12))
+```
 
 ## More Resources
 

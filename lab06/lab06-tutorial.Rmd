@@ -1,6 +1,10 @@
 ---
-title: "Lab 06 – Correlation and Two-Sample Tests"
-output: html_notebook
+title: "Lab 06: Correlation and Two-Sample Tests"
+author: "Bruno Grande"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Tutorial
@@ -23,7 +27,257 @@ output: html_notebook
 
 ### Context
 
-### Stuff
+In the previous tutorial, you learned how to visualize data using the popular `ggplot2` package. Data visualization is essential at every step of data science. First, you plot data to control for quality and determine what needs to be tidied up. Second, you plot data to explore it and identify patterns that would be interesting to follow up on. Third, you plot data to graphically represent the outcome of statistical tests. And so on. 
+
+These skills will follow you for the rest of your career in data science. In fact, as you are shown how to perform various statistical tests over the coming tutorials, you will also learn how to visualize data in each context. Human intuition is unparalleled in noticing patterns in data, and this ability can only be unlocked when data is presented in an accessible way, primarily through visualization. 
+
+In this tutorial, you will begin to assemble your statistical toolbox with two fundamental methods: correlation and two-sample tests. These are inescapable in the life sciences. You will learn what each tool can achieve, what information they can provide, how to interpret the outcome, and how to visualize the results. 
+
+### Exploring the data
+
+The next few tutorials will explore the gene expression data from the following paper. In this study, the authors analyzed the tumour transcriptomes of a rare subtype of pancreatic cancer called pancreatic neuroendocrine tumours (PanNETs). They performed both RNA sequencing and microarray assays on 33 PanNETs, which 
+
+> Chan, C.S., Laddha, S.V., Lewis, P.W. et al. ATRX, DAXX or MEN1 mutant pancreatic neuroendocrine tumors are a distinct alpha-cell signature subgroup. Nat Commun 9, 4158 (2018). https://doi.org/10.1038/s41467-018-06498-2
+
+```{r}
+library(readr)
+
+metadata <- read_csv("data/pannets_metadata.csv")
+
+metadata
+```
+
+```{r}
+rnaseq <- read_csv("data/pannets_expr_rnaseq.csv.gz")
+
+rnaseq_long <- pivot_longer(rnaseq, cols = -Gene, 
+                            names_to = "Tumour",
+                            values_to = "Expr")
+
+rnaseq_wide <- pivot_wider(rnaseq_long, id_cols = Tumour,
+                           names_from = Gene, 
+                           values_from = Expr)
+
+head(rnaseq)
+```
+
+```{r}
+array <- read_csv("data/pannets_expr_array.csv.gz")
+
+array_long <- pivot_longer(array, cols = -Gene, 
+                           names_to = "Tumour",
+                           values_to = "Expr")
+
+array_wide <- pivot_wider(array_long, id_cols = Tumour,
+                          names_from = Gene, 
+                          values_from = Expr)
+
+head(array)
+```
+
+### Correlation
+
+Compare actin-beta (ACTB) housekeeping gene expression between RNA-seq and microarray
+
+```{r}
+actb <- data.frame(
+  tumour = rnaseq_wide$Tumour,
+  rnaseq = rnaseq_wide$ACTB,
+  array = array_wide$ACTB
+)
+```
+
+```{r}
+ggplot(actb, aes(x = rnaseq, y = array)) +
+  geom_point() +
+  labs(title = "ACTB expression")
+```
+
+```{r}
+cor(actb$rnaseq, actb$array, method = "pearson")
+cor(actb$rnaseq, actb$array, method = "spearman")
+```
+
+Filter to remove low expression outliers
+
+```{r}
+actb_nolow <- filter(actb, rnaseq >= 10.25)
+
+cor(actb_nolow$rnaseq, actb_nolow$array, method = "pearson")
+cor(actb_nolow$rnaseq, actb_nolow$array, method = "spearman")
+```
+
+```{r}
+cor.test(actb_nolow$rnaseq, actb_nolow$array, method = "pearson")
+cor.test(actb_nolow$rnaseq, actb_nolow$array, method = "spearman")
+```
+
+```{r}
+cor_coef <- 
+  inner_join(rnaseq_long, array_long, by = c("Gene", "Tumour"),
+             suffix = c("_R", "_A")) %>% 
+  group_by(Gene) %>% 
+  summarize(cor_coef = cor(Expr_R, Expr_A, method = "pearson"))
+
+cor_coef
+```
+
+```{r}
+cor_coef <- 
+  inner_join(rnaseq_long, array_long, by = c("Gene", "Tumour"),
+             suffix = c("_R", "_A")) %>% 
+  group_by(Gene) %>% 
+  filter(sd(Expr_R) > 0, sd(Expr_A) > 0) %>% 
+  summarize(cor_coef = cor(Expr_R, Expr_A, method = "pearson"))
+
+cor_coef
+```
+
+```{r}
+ggplot(cor_coef, aes(x = cor_coef)) +
+  geom_histogram()
+```
+
+```{r}
+ggplot(cor_coef, aes(cor_coef)) +
+  geom_histogram(binwidth = 0.05, colour = "white", boundary = 0)
+```
+
+After comparing the expression of specific genes between two methods, we are going to compare the expression of all genes between tumours
+
+```{r}
+tumour_corr <- 
+  rnaseq %>% 
+  column_to_rownames("Gene") %>% 
+  cor(method = "pearson")
+
+pheatmap(tumour_corr)
+```
+
+Not very interesting because we are looking at all genes
+
+What if we omit genes that don't change much between tumours
+
+In other words, let's select the most variable genes (using variance)
+
+```{r}
+most_variable_genes <- 
+  rnaseq_long %>% 
+  group_by(Gene) %>% 
+  summarise(variance = var(Expr)) %>% 
+  slice_max(variance, prop = 0.1) %>% 
+  pull(Gene)
+
+tumour_corr_most_var <- 
+  rnaseq %>% 
+  filter(Gene %in% most_variable_genes) %>% 
+  column_to_rownames("Gene") %>% 
+  cor(method = "pearson")
+
+pheatmap(tumour_corr_most_var)
+```
+
+Let's add annotation track
+
+```{r}
+annotations <- 
+  metadata %>% 
+  select(Tumour, Subtype) %>% 
+  as.data.frame() %>% 
+  column_to_rownames("Tumour")
+
+pheatmap(tumour_corr_most_var, annotation_col = annotations)
+```
+
+TODO: Explore anti-correlation between tumour purity and immune score
+
+Each sample has an associated tumour purity (how much of the sequenced sample consists of tumour) and immune score (the presence of immune cells in the sample)
+
+```{r}
+ggplot(metadata, aes(Tumour_purity, Immune_score)) + 
+  geom_point()
+```
+
+### Two-sample tests
+
+Let's compare the expression of the mutated genes using RNA-seq data
+
+Check for normality with `shapiro.test()` function (significant P-value means not normal)
+
+Expression in ATRX-wildtype tumours is non-normal, and the lack of significance in ATRX-mutant tumours is presumably due to lack of tumours
+
+```{r}
+ggplot(metadata, aes(x = ATRX_Expr)) + 
+  geom_histogram() +
+  facet_grid(rows = vars(ATRX_Mut))
+
+shapiro.test(metadata$ATRX_Expr[metadata$ATRX_Mut])
+shapiro.test(metadata$ATRX_Expr[!metadata$ATRX_Mut])
+```
+
+ATRX
+
+```{r}
+ggplot(metadata, aes(x = ATRX_Mut, y = ATRX_Expr)) + 
+  geom_boxplot()
+
+wilcox.test(ATRX_Expr ~ ATRX_Mut, metadata)
+```
+
+DAXX
+
+```{r}
+ggplot(metadata, aes(x = DAXX_Mut, y = DAXX_Expr)) + 
+  geom_boxplot()
+
+wilcox.test(ATRX_Expr ~ ATRX_Mut, metadata)
+```
+
+```{r}
+ggplot(metadata, aes(x = MEN1_Mut, y = MEN1_Expr)) + 
+  geom_boxplot()
+
+wilcox.test(ATRX_Expr ~ ATRX_Mut, metadata)
+```
+
+To highlight an example of a differentially expressed gene, let's compare the expression of the XIST gene, which is located on chromosome X, between males and females
+
+In the boxplot below, we can see how XIST is virtually unexpressed in male tumours, as we would expect
+
+The P-value from the Wilcoxon test is unsurprisingly very small
+
+```{r}
+xist_expr <- 
+  rnaseq_wide %>% 
+  select(Tumour, XIST) %>% 
+  left_join(metadata, by = "Tumour")
+
+ggplot(xist_expr, aes(x = Sex, y = XIST)) +
+  geom_boxplot()
+
+wilcox.test(xist_expr$XIST ~ xist_expr$Sex)
+```
+
+TODO: Do the same analysis with MKI67 as a proxy for proliferation (close call, P-value ~ 0.09)
+
+Let's find all differentially expressed genes
+
+```{r}
+wilcoxon_tests <- 
+  rnaseq_long %>% 
+  left_join(metadata, by = "Tumour") %>% 
+  group_by(Gene) %>% 
+  filter(sd(Expr) > 0) %>% 
+  summarize(test = wilcox.test(Expr ~ Subtype, exact = FALSE)$p.value)
+
+wilcoxon_tests %>% 
+  filter(test <= 0.05) %>% 
+  nrow()
+```
+
+This is roughly 1/4 of all genes
+
+One issue will be addressed in future tutorial: multiple test correction
 
 ## More Resources
 

@@ -1,6 +1,10 @@
 ---
-title: "Lab 08 – Simple Linear Regression"
-output: html_notebook
+title: "Lab 08: Simple Linear Regression"
+author: "Bruno Grande"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Tutorial
@@ -19,7 +23,316 @@ output: html_notebook
 
 ### Context
 
-### Stuff
+### Exploring the data
+
+```{r, warning=FALSE}
+library(tidyverse)
+```
+
+```{r, warning=FALSE}
+metadata <- read_csv("data/pannets_metadata.csv")
+
+metadata
+```
+
+```{r}
+rnaseq <- read_csv("data/pannets_expr_rnaseq.csv.gz")
+
+rnaseq_long <- pivot_longer(rnaseq, cols = -Gene, 
+                            names_to = "Tumour",
+                            values_to = "Expr")
+
+rnaseq_wide <- pivot_wider(rnaseq_long, id_cols = Tumour,
+                           names_from = Gene, 
+                           values_from = Expr)
+
+head(rnaseq)
+```
+
+### Simple Linear Regression
+
+Let's come back to our ACTB correlation between RNA-seq and microarray data
+
+```{r}
+ggplot(actb, aes(x = rnaseq, y = array)) +
+  geom_point() +
+  labs(title = "ACTB expression")
+```
+
+We previously calculated the calculated the correlation between both methods
+
+However, this correlation doesn't give us a way of understanding the relationship between both methods (just the correlation)
+
+```{r}
+cor(actb$rnaseq, actb$array, method = "pearson")
+```
+
+The classic method for achieving this is the simple linear regression, which is known as a trendline in Excel
+
+It's your old school `y = mx + b` formula
+
+From a dataset, R can estimate the values for the slope (m) and the Y-axis intercept (b) using the `lm()` function (short for linear model)
+
+Before computing the linear regression, we should remove the outliers that we've previously identified, namely those below 10.15 (rnaseq)
+
+To highlight how important this step is, let's compare what a linear regression would look like with and without the outliers
+
+You can easily visualize a linear model with ggplot using the `geom_smooth()` geometry, which is often added as a layer on top of `geom_point()`
+
+The black line represents the model using all data while the salmon line represents the model when excluding the outliers (using the same definition as the previous lab)
+
+Something new here is the `data` argument in the second `geom_smooth()`
+
+You can provide a function, which is run with the ggplot data as input
+
+In this case, the function filters the data for non-outliers
+
+```{r}
+actb %>% 
+  mutate(is_outlier = rnaseq < 10.15) %>% 
+  ggplot(aes(x = rnaseq, y = array)) +
+  geom_point(aes(colour = is_outlier)) +
+  geom_smooth(method = "lm", colour = "black") +
+  geom_smooth(data = function (x) filter(x, is_outlier == FALSE), 
+              method = "lm", colour = "salmon")
+```
+
+We can see the difference is important, so we will drop the outliers from all further computations
+
+```{r}
+actb <- filter(actb, rnaseq >= 10.15)
+```
+
+The first argument is the variables that you want to examine as a formula
+
+Formulas in R use the `~` symbol, and in this case, the left-hand side (LHS) corresponds to the dependent variables and the right-hand side (RHS) corresponds to the independent variables
+
+Roughly speaking, the `~` splits the variables like the `=` in the formula above
+
+In this case, let's set the RNA-seq data as the independent variable
+
+The second argument is the data frame
+
+The output is a special value that when printed, displays the coefficients
+
+Here, given the equation `y = mx + b`, `m` is equal to 0.670 and `b` is equal to 6.355
+
+```{r}
+actb_lm <- lm(array ~ rnaseq, actb)
+
+actb_lm
+```
+You can obtain the coefficients directly using the `coef()` function
+
+```{r}
+coef(actb_lm)
+```
+
+There are a number of functions that can be run on the `lm` value, but the main one is `summary()`
+
+The most important parts of the summary are the extra details on the coefficients, including whether they significantly deviate from 0
+
+```{r}
+summary(actb_lm)
+```
+
+A few additional observations can be made from this output
+
+First, the square-root of the multiple R-squared corresponds to the Pearson correlation coefficient from earlier
+
+```{r}
+sqrt(0.7251)
+```
+
+Second, the P-value associated with the rnaseq variable (which is equal to the P-value of the overall model at the bottom) is the same as the P-value from the Pearson correlation test
+
+This confirms the underlying linear nature of the Pearson correlation
+
+```{r}
+cor.test(actb$rnaseq, actb$array, method = "pearson")
+```
+
+So far, we haven't learned much from the linear model that we didn't  already know from the correlation test
+
+The utility of linear models is that they can be used to predict new values
+
+```{r}
+new_data <- data.frame(
+  rnaseq = c(10, 11, 12)
+)
+
+new_data$array <- predict(actb_lm, new_data)
+
+new_data
+```
+
+As expected, if we plotted these new data points, they land on the linear model line
+
+You can also see how you can override the data for a given layer
+
+It works here because the new dataset uses the same columns names as the original datasets
+
+```{r}
+ggplot(actb, aes(x = rnaseq, y = array)) +
+  geom_point() +
+  geom_smooth(method = "lm", fullrange = TRUE) +
+  geom_point(data = new_data, colour = "red", size = 3)
+```
+
+In short, if we trusted this model, we could rely on it to predict the microarray values for ACTB from the rnaseq values
+
+That's a big IF though
+
+Visually, the actual data points do hover around the line, but not particularly close for most points
+
+Quantitatively, the vertical difference between the data points and the line is called the residual
+
+For a perfect model, the residuals would all be zero because there would be no distance between the points and the line
+
+However, that's practically never the case
+
+Here, in the plot below, you can see how almost every point is not at zero
+
+```{r}
+actb %>% 
+  mutate(residual = actb_lm$residuals) %>% 
+  ggplot(aes(x = rnaseq, y = residual)) +
+  geom_hline(yintercept = 0) +
+  geom_point()
+```
+
+If we wanted to build a model to convert rnaseq values to microarray values, putting trust into a single gene would be unwise
+
+Let's instead fit a linear model between both methods for all genes and plot the resulting coefficients to see how much they vary
+
+In this case, I don't need to specify the data
+
+We are also calculating the mean expression for later exploration
+
+Note that we are not excluding outliers in this analysis, which we know can negatively affect the performance of the model fitting
+
+```{r}
+lm_coefs <- 
+  inner_join(rnaseq_long, array_long, by = c("Gene", "Tumour"),
+             suffix = c("_R", "_A")) %>% 
+  group_by(Gene) %>% 
+  filter(sd(Expr_R) > 0, sd(Expr_A) > 0) %>% 
+  summarize(Mean_R = mean(Expr_R), 
+            Mean_A = mean(Expr_A),
+            Model = list(lm(Expr_A ~ Expr_R))) %>% 
+  rowwise() %>% 
+  mutate(Intercept = coef(Model)[[1]],
+         Slope = coef(Model)[[2]])
+```
+
+If we plot the distribution of the Y intercepts, there is quite a bit of variation, but there is a noticeable peak
+
+```{r}
+ggplot(lm_coefs, aes(x = Intercept)) +
+  geom_histogram(boundary = 0, binwidth = 0.5, colour = "white")
+```
+
+Let's plot the intercept as a function of the average value in the RNA-seq
+
+A simple scatter plot is not very useful due to the density of points
+
+```{r}
+ggplot(lm_coefs, aes(x = Mean_R, y = Intercept)) +
+  geom_point()
+```
+
+In this situations, a 2D version of the histogram can be useful
+
+`geom_bin2d()` and `geom_hex()` are two good options
+
+Below, you can see that a predominance of points have a specific intercept value when the average expression is zero
+
+Hence, this peak is probably an artifact
+
+```{r}
+ggplot(lm_coefs, aes(x = Mean_R, y = Intercept)) +
+  geom_hex()
+```
+
+In the case of the slope values, the histogram is made useless because of presumably an outlier
+
+```{r}
+ggplot(lm_coefs, aes(x = Slope)) +
+  geom_histogram()
+```
+
+Indeed, the maximum value is much higher than the median, mean and even the 3rd quartile
+
+```{r}
+summary(lm_coefs$Slope)
+```
+
+From the fixed histogram, we can see that the slopes vary considerably
+
+There is no peak though like the intercepts
+
+But if anything, this tells us that one model is unlikely to perform  very well with predicting the microarray values from rnaseq values
+
+Gene-specific models would probably be better suited
+
+```{r}
+ggplot(lm_coefs, aes(x = Slope)) +
+  geom_histogram(binwidth = 0.1, boundary = 0, colour = "white") +
+  coord_cartesian(xlim = c(-0.5, 2.5))
+```
+
+Example above, we explored the relationship between continuous variables
+
+However, linear regression can also be used to explore the relationship between an independent categorical variable and a dependent continuous variable
+
+Dependent categorical variables will be the subject of a future tutorial, where we will learn logistic regression
+
+Let's start with the simplest case, where we have only two possible values for the independent categorical variable
+
+The trick is to encode one value as 0 and the other as 1, which is known as a dummy variable or one-hot encoding
+
+You can think of these binary 0/1 variables as No/Yes variables for various states
+
+We can re-use our earlier example when we compared the expression of XIST between males and females
+
+In this case, we will encode females as 1 and males as 0
+
+```{r}
+xist_expr <- 
+  xist_expr %>% 
+  mutate(Is_Female = ifelse(Sex == "F", 1, 0))
+
+ggplot(xist_expr, aes(x = Is_Female, y = XIST)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  scale_x_continuous(breaks = c(0, 1))
+
+xist_lm <- lm(XIST ~ Is_Female, xist_expr)
+
+summary(xist_lm)
+```
+
+In the above plot, we can see a clear association between the Is_Female binary (0/1) variable and XIST expression
+
+The P-value is 2.28e-09, which is tiny
+
+The coefficient for `Is_Female` corresponds to the average difference when "you go from being a male to a female"
+
+We can calculate the same value using dplyr
+
+```{r}
+xist_expr %>% 
+  group_by(Is_Female) %>% 
+  summarize(mean = mean(XIST))
+```
+
+Ultimately, what we've done so far can also be done using a t-test or Wilcoxon test (at least for calculating P-values)
+
+So, how does one deal with categorical variables with more than two possible values?
+
+Well, we scale up the idea of one-hot encoding
+
+TODO: Design an example using a factor with 3+ levels
 
 ## More Resources
 

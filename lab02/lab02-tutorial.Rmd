@@ -1,6 +1,10 @@
 ---
-title: "Lab 02 – Data Structures: What Data Looks Like in R"
-output: html_notebook
+title: "Lab 02: Data Structures in R"
+author: "Bruno Grande and Santina Lin"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Tutorial
@@ -30,48 +34,51 @@ output: html_notebook
 
 ### Context
 
-In the previous tutorial, we learned how to navigate the RStudio interface and ran your first bits of R code. Today, we're going to take a look at what data looks like in R. This tutorial will focus on a particular data structure, the data frame, and its key component, the vector. These data structures are fundamental to data science in R, so pay close attention.
+In the previous tutorial, you learned how to navigate the RStudio interface and ran your first bits of R code. You should now be familair with operators like `+` (mathematical) and `==` (logical) as well as functions like `sqrt()`. Don't worry: you don't have to remember every function and their respective arguments (_i.e._ inputs). You can use Google and the R help pages for this, like every other data scientist. 
 
-In fact, we don't have much time to lose. A deadly pandemic has struck the planet and we need to act quickly to better understand the virus behind it all. Virologists call it Severe Acute Respiratory Syndrome Coronavirus 2 (SARS-CoV-2), but the public more generally refer to the associated disease, COVID-19. The European Union (EU) has been collecting data on this global outbreak and has asked our team, Pandemic Intelligence, for any insights we can glean from this dataset.
+Today, we're going to take a look at what data looks like in R. Each programming language organizes their data in different ways. These are known as data structures. This tutorial will focus on the most important data structure in R, the data frame, and its key component, the vector. These data structures are fundamental to data science in R, so pay close attention.
 
-In this tutorial, we will start by exploring the Canadian statistics for the first six months of 2020. The data was originally downloaded from the [EU Open Data Portal](https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data). It was lightly processed and filtered for this tutorial. Note that the last month might not be complete if the data was downloaded mid-month.
+You will be exploring the Canadian COVID-19 statistics for the first six months of 2020. The data was originally downloaded from the [EU Open Data Portal](https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data). It was lightly processed for this tutorial. 
 
 ### The Data Frame
 
 #### Loading the Data Frame
 
-Let's start by loading our data. We will learn more about this process in a future tutorial. For now, we are going to simply load the data from the Internet and preview it. The `read.csv()` function can take a file path or a URL and returns a data frame. Let's see it in action!
+Let's start by loading the data. You will learn more about this process in a future tutorial. For now, you are going to simply load the data from the Internet and preview it. The `read.csv()` function can take a file path or a URL and returns a data frame. Let's see it in action!
+
+As you can see, a data frame is nothing more than a two-dimensional table consisting of rows and columns. This one has six rows (one for each month) and five columns. The columns contain different types of information: either integers or text.
+
+In many respects, data frames look like Excel tables. However, data frames in R are strictly rectangular. Every column has the same length, and the same rule applies to rows. This doesn't mean you can't have missing data. Rather, you will see missing data indicated by the value `NA` (not seen here in `covid`).
 
 ```{r}
-# Load the data frame into R
-covid <- read.csv("data/covid19_cases_canada_monthly.csv",
-                  stringsAsFactors = FALSE)
+covid <- read.csv("https://bit.ly/cov-ca")
 
-# Preview the data frame
 covid
 ```
+
+The class is another way to refer to what kind of data structure is stored in a variable. Here, we can confirm that the `covid` variable contains a data frame.
 
 ```{r}
 class(covid)
 ```
 
-A data frame is two-dimensional. In other words, it has rows and columns, just like any table in Excel. However, unlike Excel, data frames in R are strictly rectangular. Every column has the same length, and the same rule applies to rows. This doesn't mean you can't have missing data. Rather, missing data is made explicit with the `NA` value (not seen here) as opposed to being implicit with the absence of data.
-
 #### Exploring the Data Frame
 
-As far as datasets come, this one is a baby, but it's a perfect starting point. From the preview, you can see that the `covid` data frame has six rows and five columns. In R, you can find this out using the `nrow()` and `ncol()` functions, respectively.
+As we saw in the previous tutorial, functions can be very useful. In fact, there are a number of functions that work well with data frames. Notably, the `nrow()` and `ncol()` functions can be used to count the number of rows and columns in the input, respectively. Admittedly, this is more useful with larger datasets.
 
 ```{r}
-# Number of r ows
 nrow(covid)
 
-# Number of columns
 ncol(covid)
 ```
+
+Another useful function is called `summary()` which will display statistics for numeric columns and tabulate values in text columns.
 
 ```{r}
 summary(covid)
 ```
+
+The `head()` and `tail()` functions are useful for extracting the first or last few rows in a data frame. These are especially useful for larger data frames.
 
 ```{r}
 head(covid, 2)
@@ -147,6 +154,8 @@ str(new_vector)
 
 Concatenation
 
+The `[1]` just indicates that the number appearing to its right is the first value of the output. As you will see later, the output of statements in R is not restricted to single values.
+
 ```{r}
 lgl_vector <- c(TRUE, FALSE, FALSE)
 
@@ -185,6 +194,7 @@ typeof(chr_vector)
 
 Mixing types
 little difference between integer and numeric/double
+Integers can be specified with the `L` suffix, but this is rarely needed in practice
 
 ```{r}
 mixed_vector <- c(FALSE, TRUE)

@@ -1,6 +1,10 @@
 ---
-title: "Lab 09 – Multiple Linear Regression and PCA: Using ALL of the Variables"
-output: html_notebook
+title: "Lab 09: Multiple Linear Regression and Principal Component Analysis"
+author: "Bruno Grande"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Tutorial
@@ -22,12 +26,394 @@ output: html_notebook
 
 ### Context
 
-### Stuff
+In the previous tutorial, you were introduced to simple linear regression. As you saw, our models were restricted to one independent variable, which is also known as a predictor variable, an explanatory variable, or a feature. You used the `lm()` function to calculate the optimal intercept and coefficient to mathematically describe the relationship between the predictor variable and the dependent variable, commonly known as the response variable in statistics. 
+
+While already powerful with one predictor variable, linear models can be generalized to multiple independent variables. Unsurprisingly, this process is known as multiple linear regression. While having multiple predictor variables is harder to conceptualize compared to a simple trendline, the advantage is clear: more data is made available to the model, which often results in improved performance. That said, this is not always the case, as you will see later, because of an issue known as overfitting.
+
+In today's tutorial, you will use multiple linear regression to understand the immune score associated with each tumour in our dataset. The authors of the study analyzed their data with the ESTIMATE bioinformatic tool, which produces an immune score. This score is intended to act as an indirect measurement for the presence of infiltrating immune cells in the tumour sample. We will attempt to reverse-engineer a linear regression model to estimate this immune score.
+
+### Exploring the data
+
+```{r, warning=FALSE}
+library(tidyverse)
+library(broom)
+library(patchwork)
+```
+
+Let's start by loading our data and exploring the immune score to understand it better. The immune score along with a few other useful variables are included in the metadata table.
+
+```{r, warning=FALSE}
+metadata <- read_csv("data/pannets_metadata.csv")
+
+metadata
+```
+
+You can load the RNA-seq data and immediately create the long and wide formats because they are all useful depending on the context.
+
+```{r}
+rnaseq <- read_csv("data/pannets_expr_rnaseq.csv.gz")
+
+rnaseq_long <- pivot_longer(rnaseq, cols = -Gene, 
+                            names_to = "Tumour",
+                            values_to = "Expr")
+
+rnaseq_wide <- pivot_wider(rnaseq_long, id_cols = Tumour,
+                           names_from = Gene, 
+                           values_from = Expr)
+
+head(rnaseq)
+```
+
+If we compare the immune score with the tumour purity, another metric provided by ESTIMATE, we can see that both are anti-correlated. This relationship is consistent with our expectation: as more immune cells infiltrate the tumour, the tumour cells represent a smaller fraction of the tumour mass. 
+
+In this plot, we also added the result of a simple linear model using the same approach demonstrated in the previous tutorial. The data points are coloured by the genetic subtype. Throwing in these colour or fill aesthetics are useful to explore for any unexpected relationships. Here, none are apparent: tumour purity and immune score both seem unrelated to the subtype status. 
+
+It's worth noting that the colour aesthetic is specified in `geom_point()` rather than in `ggplot()`. You can test for yourselves, but you'll see that if we move the colour aesthetic within `ggplot()`, the linear model line from `geom_smooth()` will be split by colour, which isn't what we want here.
+
+```{r}
+ggplot(metadata, aes(x = Tumour_purity, y = Immune_score)) + 
+  geom_smooth(method = "lm") +
+  geom_point(aes(colour = Subtype))
+```
+
+In the following plot, you can compare the immune score between tumours from patients of both sexes. Within each sex, we also split by whether the patient has a metastasis or not. Again, this is simply to look for any unexpected trends in the data. Once again, nothing stands out other than perhaps a difference based on metastasis status among female patients, but the difference isn't very convincing.
+
+```{r}
+ggplot(metadata, aes(x = Sex, y = Immune_score, fill = Metastasis)) + 
+  geom_boxplot()
+```
+
+If you wanted to be sure whether this difference is meaningful or not, you can perform a quick Wilcoxon test. You first have to filter for female patients. Then, you can use the formula interface for investigating the relationship between immune score and metastasis status. 
+
+Because the `wilcox.test()` function takes the data frame as the second argument, we need to provide the dot (`.`) as the second argument. This dot indicates to the pipe operator (`%>%`) where to provide the left-hand side. By default, it provides the left-hand side as the first argument, which is usually the case for most functions in the tidyverse (_e.g._ `dplyr`, `tidyr`). However, in this case, `wilcox.test()` is from base R. In fact, most of these test or modelling functions accept the data frame as the second argument. Hence, you need to use the dot to override the default behaviour of providing the left-hand side as the first argument.
+
+You can see that the P-value for this test is not significant. While a trend is visible, this shows how important it is to investigate using statistics, because some differences might just be random due to small samples sizes.
+
+```{r}
+metadata %>% 
+  filter(Sex == "F") %>% 
+  wilcox.test(Immune_score ~ Metastasis, .)
+```
+
+### Multiple linear regression
+
+#### Using the most variably expressed genes
+
+With that out of the way, we can proceed with reverse-engineering the immune score calculation. You will be using the RNA-seq gene expression dataset. In order to evaluate how well you can calculate the immune score, you will set aside a few samples that will not be used at all when training the model. This is known as a training-test data split. 
+
+The idea is that you will fit your linear model using the training data only, and afterwards, you can assess the model using the test data. Because the test data hasn't been encountered by the model before, this approach results in a more accurate assessment of the model performance. If you test the model using training data, you will almost certainly overestimate performance depending on how "overfit" the model is. 
+
+Overfitting happens when the model is too precisely attuned to the training data. As a result, the model can't be readily generalizable to other datasets. This tends to be a bigger issue for more flexible models. Fortunately, linear regression is fairly constrained because it is linear and is thus less likely to fall into the trap of overfitting. Nonetheless, it remains more accurate to assess the model using completely new test data. 
+
+Since you don't have an abundance of samples (just 33), you will only set aside 3 samples for testing and train on the remaining 30. Under normal circumstances, you should have many more training and testing samples.
+
+You will notice that I am using the `set.seed()` function. This function ensures that any random processes, such as the `sample()` function, are still random, but deterministic. In other words, if I re-run this code later, I will obtain the same three samples for the test dataset. You should also obtain the same three samples. Can you confirm this?
+
+```{r}
+set.seed(42)
+
+test_tumours <- sample(metadata$Tumour, 3)
+
+test_tumours
+```
+
+You can now split the metadata into two data frames: one for training and one for testing. Then, by using `inner_join()`, you can subset the RNA-seq data to only those cases in `metadata_training` and `metadata_test`.
+
+```{r}
+metadata_training <- filter(metadata, !Tumour %in% test_tumours)
+metadata_test <- filter(metadata, Tumour %in% test_tumours)
+
+data_training <- inner_join(rnaseq_wide, metadata_training, by = "Tumour")
+data_test <- inner_join(rnaseq_wide, metadata_test, by = "Tumour")
+```
+
+With the training-test split done, you can now train the model. As we said earlier, we will be using gene expression as our predictor variables. Because we don't have many samples, we need to restrict the number of genes used in our model. We can't train using all 20,000+ genes. This is a process called feature selection.
+
+One approach to selecting interesting genes is to filter based on variance. In other words, you can select the most variably expressed genes. You will arbitrarily select the top three genes. 
+
+In our raw RNA-seq dataset, the genes are represented as rows. Unfortunately, it's challenging to calculate metrics such as variance across columns (in this case, tumours). It's easier to pivot the data into a longer format and perform the calculation using `group_by()` and `summarize()`. 
+
+For selecting the top three genes, you can order the genes using `arrange()` based on the variance. It's important to note that many `dplyr` functions operate within groups. In other words, if you didn't ungroup the data, you might reorder the rows within each group. Now, in this case, `summarize()` automatically ungroups the last grouping variable, which is the only grouping variable, _i.e._ `Gene`. That said, it's still useful to explicitly state your intention in case you need to edit this code later. You can either use the `ungroup()` function that we've seen earlier, or you can specify `.groups = "drop"` in `summarize()`. I will opt for the latter since it mutes the following warning message. 
+
+```
+`summarise()` ungrouping output (override with `.groups` argument)
+```
+
+Lastly, the `pull()` function is useful for picking out a specific column and returning it as a vector. Otherwise, you are stuck with a data frame and would have to manually extract the column every time.
+
+```{r}
+genes_mostvar <- 
+  rnaseq_long %>%
+  group_by(Gene) %>% 
+  summarize(Variance = var(Expr), .groups = "drop") %>%
+  arrange(desc(Variance)) %>% 
+  pull(Gene)
+
+genes_mostvar[1:3]
+```
+
+With the three most variably expressed genes identified, you can train your multiple linear regression model, which also uses the `lm()` function. The only difference is that you will have more than one variable specified on the right-hand side of the formula (right of `~`).
+
+```{r}
+lm_mostvar <- lm(Immune_score ~ INS + SPINK1 + SST, data_training)
+```
+
+If you look at the model summary, you will notice that the output is similar to that of simple linear regression models. In this case, none of the coefficients significantly deviate from zero. You might be wondering how this can be the case since some of the estimates are far from zero, but don't forget to look at the standard error. The fact that zero is within one standard error of the estimate indicates the lack of a robust association.
+
+```{r}
+summary(lm_mostvar)
+```
+
+The model model leaves much to be desired. It's perhaps not surprising that we don't get a useful model from just selecting the top three most variably expressed genes. It's very likely that these genes have nothing to do with the immune cells. In fact, it's also possible that these genes are the top picks due to noise. 
+
+A more informed approach would be to select genes based on their relevance to the response variable, the immune score. Because the immune score and gene expression are all continuous, we could measure the correlation between the immune score and the expression of each gene. That's what we're doing below. 
+
+Note that we are removing genes with zero variation to avoid `cor()` throwing a bunch of "the standard deviation is zero" warnings. We also want to select genes based on the absolute correlation coefficient. It doesn't matter whether it's positive or negative; both can be leveraged by the linear regression.
+
+```{r}
+genes_mostcor <- 
+  rnaseq_long %>% 
+  left_join(metadata, by = "Tumour") %>% 
+  group_by(Gene) %>% 
+  filter(var(Expr) > 0) %>% 
+  summarize(Corr = cor(Immune_score, Expr), .groups = "drop") %>% 
+  mutate(Corr_Abs = abs(Corr)) %>% 
+  slice_max(Corr_Abs, n = 3) %>% 
+  pull(Gene)
+
+genes_mostcor
+```
+As a quick check, you can visualize the correlation between these top genes and the immune score. In order to display all three genes on the same plot, you must transform the data frame a longer format. It's clear from this plot that all three genes have a clear association with the immune score.
+
+```{r}
+data_training %>% 
+  pivot_longer(cols = genes_mostcor, 
+               names_to = "Gene", 
+               values_to = "Expr") %>% 
+  ggplot(aes(x = Immune_score, y = Expr, colour = Gene)) +
+  geom_point()
+```
+
+If we re-train a multiple linear regression model, we can immediately see the improvement. First, the model's overall P-value is significant by a large margin. Second, one gene has a significant association with the immune score using a P-value threshold of 0.05, whereas the other genes did have P-values less than 0.1. It's fair to expect this model to better predict the immune score for the three test tumours.
+
+Interestingly, while all three genes were selected using the same metric (correlation), they do not have the same degree of association with the response variable. Once again, the correlation coefficients are high for all three genes, but only _SASH3_ has a sufficiently low standard error for a significant association. 
+
+```{r}
+lm_mostcor <- lm(Immune_score ~ SASH3 + IRF8 + ARHGAP30, data_training)
+
+summary(lm_mostcor)
+```
+
+The smaller association between the immune score and the other two genes could be explained by the fact that the three genes are correlated with one another in addition to being correlated with the immune score. This is obvious when you look at the last plot we generated. 
+
+Intuitively, what happens is that after accounting for one of the three genes, there isn't much variation left that can be accounted for by the remaining two genes. This is caused by collinearity between the predictor variables, and you always need to be careful when dealing with collinear variables. Linear models can become unreliable when being trained with collinear variables.
+
+```{r}
+last_plot()
+```
+
+When building a linear regression model, it's important to evaluate whether the data conforms to the assumptions required for the model to be valid. Fortunately, R provides built-in facilities to examine some important quality control (QC) plots for the output of `lm()`. The easiest way of doing this is using the built-in `plot()` function.
+
+If you were to run `plot(lm_mostvar)`, R would present five plots sequentially. Here, we will cover the most important QC plots individually by providing an integer from 1 to 6 as the second argument to `plot()`.
+
+First, we can inspect the linearity of the data with the "Residuals vs Fitted" plot, shown below. Residuals represent the difference between the actual value for the response variable (from the input data frame) and the fitted/predicted value (from the regression model). 
+
+A red line shows the average residual across the range of fitted values considered by the model. A flat red line near zero is considered ideal. Here, the red line isn't very flat, suggesting that the data doesn't abide to the assumption of linearity. In this scenario, data transformation can sometimes help with achieving linearity, such as a log or square-root transformation.
+
+```{r}
+plot(lm_mostvar, 1)
+```
+
+Second, it's important that the residuals are normally distributed. Typically, normality is inspecting using a quantile-quantile (Q-Q) plot, shown below. 
+
+The dashed diagonal line indicates where the data points about line up if the residuals were normally distributed. In this case, there are deviations from this line, but it's not clear whether these deviations are significant. 
+
+We can use the Shapiro–Wilk test to determine whether the residuals confirm to the null hypothesis that they follow a normal distribution. The statistical test failed to reject the null hypothesis, indicating that the residuals are roughly normally distributed.
+
+```{r}
+plot(lm_mostvar, 2)
+
+shapiro.test(lm_mostvar$residuals)
+```
+
+Third, the variance for the residuals should be relatively constant across the range of fitted values. In other words, the residuals should be homoskedastic. This QC step is best evaluated with the Scale-Location plot, shown below. As with the "Residuals vs Fitted" plot, a flat red line is ideal. Unfortunately, we fail to see that here. 
+
+There seems to be reduced variance for immune scores around -350 to -400. This is potentially explained by the preponderance of fitted values in this range.
+
+```{r}
+plot(lm_mostvar, 3)
+
+hist(lm_mostvar$fitted.values, breaks = 10, col = "grey40")
+```
+
+Fourth, special care needs to be taken when handling outliers and high-leverage points. Outliers are defined as data points with extreme values for the response variable, whereas high-leverage points are those with extreme values for any of the predictor variables. Both types of data points can be problematic when fitting linear regression models because they can have a disproportionate effect on coefficient estimation.
+
+The "Residuals vs Leverage" plot can help identify these points, shown below. Rules of thumb for identifying potentially problematic data points are as follows: (1) outliers are those whose absolute standardized residuals (Y axis) is greater than 3; and (2) high-leverage points are those whose leverage is greater than `2(p + 1)/n`, where `p` is the number of predictor variables and `n` is the number of samples/observations. 
+
+In this case, there are no points whose absolute standardized residual is greater than 3; the range is restricted to roughly -2 to 2. Similarly, there are no data points whose leverage is greater than 1.7 (`2(25 + 1)/30`). 
+
+```{r}
+plot(lm_mostvar, 5)
+```
+
+Now that you're done with the QC, you can evaluate both models using the test data. You can use the same test data frame, which contains all of the genes, with the two `lm()` outputs (also known as `lm` objects). The reason this works is because the `lm()` objects include the formula that you originally used when training the model. It defaults to using the same formula with the new dataset.
+
+```{r}
+preds_mostvar <- predict(lm_mostvar, data_test)
+preds_mostcor <- predict(lm_mostcor, data_test)
+```
+
+To compare the performance of both models, you can calculate the absolute difference between the model predictions and the actual values for the immune score. Qualitatively, it's clear that the second model (`mostcor`) performs better give that the absolute differences are consistent and much lower than the largest absolute difference from the first model (`mostvar`). 
+
+Evidently, even this second model does a poor job at emulating ESTIMATE for estimating the immune score. It's safe to assume that ESTIMATE relies on a much larger set of genes. The only reason we cannot scale up our approach here to more than three genes is our limited sample size. The authors of the ESTIMATE tool presumably trained whatever model they used on a large sample size.
+
+```{r}
+data_test %>% 
+  select(Immune_score) %>% 
+  mutate(Pred_mostvar = preds_mostvar,
+         Diff_mostvar = abs(Pred_mostvar - Immune_score),
+         Pred_mostcor = preds_mostcor,
+         Diff_mostcor = abs(Pred_mostcor - Immune_score))
+```
+
+### Principal component analysis (PCA)
+
+So far in this series of tutorials, we have looked at specific relationships within the data: the correlation between RNA-seq and microarray data, the differential expression based on the genetic subtype, and the association between specific categorical variables such as metastasis status and sex. These are supervised approaches towards data analysis. However, what if you were looking for these relationships in the first place? How does one generate hypotheses when faced with a novel dataset?
+
+That's where unsupervised methods come in, and you will start with a classic method: principal component analysis (PCA). PCA is especially useful when dealing with high-dimensional datasets, like the gene expression matrix we have been using in the past few tutorials.
+
+Briefly, PCA uses matrix decomposition to identify **linear** combinations of the variables (in this case, genes), known as principal components (PCs), which capture the **maximum variance** in the dataset. PCs are meant to be uncorrelated with one another. 
+
+While it's possible to perform PCA on the entire gene expression matrix, it slows down the computation. Since PCA operates on the variation within the dataset, it's common practice to subset the genes for the most variably expressed. We will restrict to the top 3,000 genes, as per the paper. That said, it remains an arbitrary number. In an actual analysis, you would ideally test different numbers of genes to ensure that any result you obtain is robust.
+
+You can re-use the same vector that you generated earlier when training the first multiple linear regression model above. You can see that the first three genes are the same as before.
+
+```{r}
+head(genes_mostvar[1:3000])
+```
+
+The function you will be using is `prcomp()`, which has a few options for providing the input (see `?prcomp`). In this case, the simplest is to create a matrix consisting only of the genes of interest. Since all values in a matrix must conform to the same type and the expression values are numeric, we will store the gene names as row names (analogous to column names).
+
+For any function that takes a matrix as input, it's important to verify whether it operates on rows or columns. Sadly, it's not always consistent. In this case, `prcomp()` operates on columns, just like the `cor()` function. Accordingly, because you want to analyze the unsupervised relationship between samples, you want tumours as the columns and genes as the rows. Luckily, it's easy to transpose a matrix that has the opposite (genes as columns and tumours as rows) using the `t()` function.
+
+One last important step before running the PCA is scaling and centring. It's almost always recommended when performing PCA. Because the relevant `scale()` function takes a matrix as input, you should check how it scales the input. Here, you can read from the manual that `scale()` scales the columns. Accordingly, because we want to scale within each gene, we will use the `scale()` function before transposing the matrix. Otherwise, we would be scaling within each tumour. 
+
+You can see in the small preview of the matrix that we have genes along the rows and tumours along the columns. This can now be used as input for `prcomp()`.
+
+```{r}
+rnaseq_matrix <- 
+  rnaseq_wide %>% 
+  select(Tumour, one_of(genes_mostvar[1:3000])) %>% 
+  column_to_rownames("Tumour") %>% 
+  as.matrix() %>% 
+  scale() %>% 
+  t()
+
+rnaseq_matrix[1:5, 1:5]
+```
+
+With the matrix being ready, performing PCA is as easy as running `prcomp()` on the matrix. If you check the summary for the output from `prcomp()`, you can see that 33 PCs were calculated. Each PC has an associated standard deviation, a proportion of variance (explained), and the cumulative proportion (of variance explained). You can see that by PC33, 100% of the variation in the dataset has been accounted for.
+
+```{r}
+rnaseq_pca <- prcomp(rnaseq_matrix)
+
+summary(rnaseq_pca)
+```
+
+While you have 33 PCs that altogether account for all variation in you data, you generally care about the first few because they generally account for the sources of maximum variation. This can be visualized using a scree plot, shown below. A scree plot is considered an essential QC step when performing PCA. It simply displays the percent variance explained by each PC. 
+
+Here, you can use the `broom` package to conveniently extract these values for all 33 PCs. It's important to specify `matrix = "d"` in `tidy()`, because you will otherwise obtain different gene-level or tumour-level information rather than PC-level statistics. 
+
+Ideally, you want to be looking at a steady decrease in percent variance explained. On the other hand, a (potentially) problematic scree plot would show a very high first PC followed by very low siubsequent PCs. In this case, we have a very clean gradual decrease in the percent variance explained. Also, you can see that the amount of variance explained beyond the 5th PC is less than 5% each.
+
+```{r}
+rnaseq_pca_stats <- tidy(rnaseq_pca, matrix = "d")
+
+rnaseq_pca_stats %>% 
+  mutate(percent = percent * 100,
+         percent_label = signif(percent, 2),
+         percent_label = paste0(percent_label, "%")) %>% 
+  ggplot(aes(x = PC, y = percent, label = percent_label)) +
+  geom_col() +
+  geom_text(size = 3, angle = 90, hjust = 0, nudge_y = 0.2) +
+  scale_x_continuous(breaks = 1:33) +
+  expand_limits(y = 16) +
+  labs(x = "Principal component", y = "Percent variance explained",
+       title = "PCA scree plot")
+```
+
+Since the scree plot looks good, we can now explore the actual results from the PCA. This is typically done using biplots, which are scatterplots between two PCs. Generally, you plot the PC1 vs PC2, and then perhaps PC1 vs PC3 and PC2 vs PC3. Here, we will only consider the first three PCs. 
+
+Once again, you can use the `tidy()` function to extract a tidy data frame from the `prcomp` output. By default, this data frame is in a long format, so we can pivot it into a wider format where each PC is in a different column. We will also merge the metadata with this wide data frame for later use.
+
+```{r}
+rnaseq_pcs <- 
+  tidy(rnaseq_pca, matrix = "v") %>% 
+  pivot_wider(id_cols = column, 
+              names_from = PC, 
+              names_prefix = "PC",
+              values_from = value) %>% 
+  select(Tumour = column, PC1:PC3) %>% 
+  left_join(metadata, by = "Tumour")
+
+head(rnaseq_pcs)
+```
+
+From the PC1-vs-PC2 biplot, you can see two rough clusters arranged in an inverted V shape. Recall that you didn't give any information to the PCA about the tumour metadata. These PCs are purely based on gene expression data. This is how PCA is considered an unsupervised method. 
+
+```{r}
+ggplot(rnaseq_pcs, aes(x = PC1, y = PC2)) +
+  geom_point()
+```
+
+It's standard practice to visualize these biplots by colouring points based on known variables. Here, we selected all binary variables from the metadata table, namely sex, metastasis status, and genetic subtype. We're also using the `patchwork` package to easily combine multiple ggplot2 plots into one multi-panel figure. 
+
+Strikingly, the genetic subtype perfectly associates with the variation along PC1, forming two clean clusters of tumours. Again, this result was obtained despite `prcomp()` being completely unaware of the genetic subtype for each tumour. Admittedly, PCA results that are this clean don't happen often in science, but this example still demonstrates the value of unsupervised analyses.
+
+Astute readers will also notice an imperfect association between PC1 and the metastasis status. This is consistent with an observation we made in an earlier tutorial where we saw a significant correlation between the genetic subtype and the metastasis status using a Fisher's exact test.
+
+```{r, fig.asp=1}
+biplot_sex <- 
+  ggplot(rnaseq_pcs, aes(x = PC1, y = PC2, colour = Sex)) +
+  geom_point()
+
+biplot_metastasis <- 
+  ggplot(rnaseq_pcs, aes(x = PC1, y = PC2, colour = Metastasis)) +
+  geom_point()
+
+biplot_subtype <- 
+  ggplot(rnaseq_pcs, aes(x = PC1, y = PC2, colour = Subtype)) +
+  geom_point()
+
+biplot_sex / biplot_metastasis / biplot_subtype
+```
+
+For the sake of completion, you can also visualize the PC2-vs-PC3 biplots using the same metadata variables. Unsurprisingly, there are no striking associations like the one described above. 
+
+```{r, fig.asp=1}
+biplot2_sex <- 
+  ggplot(rnaseq_pcs, aes(x = PC2, y = PC3, colour = Sex)) +
+  geom_point()
+
+biplot2_metastasis <- 
+  ggplot(rnaseq_pcs, aes(x = PC2, y = PC3, colour = Metastasis)) +
+  geom_point()
+
+biplot2_subtype <- 
+  ggplot(rnaseq_pcs, aes(x = PC2, y = PC3, colour = Subtype)) +
+  geom_point()
+
+biplot2_sex / biplot2_metastasis / biplot2_subtype
+```
+
+This is only scratching the surface though of what can be done with the PCA results. For instance, it's possible to determine which genes contribute most to PC1, which in turn is associated with the genetic subtype. Another possibility is that one of these PCs is correlated with the immune score and could be used in a simple or multiple linear regression model to calculate the immune score. This flexibility is part of the beauty with PCA. 
 
 ## More Resources
 
+- https://pubmed.ncbi.nlm.nih.gov/26650184/
+- http://www.sthda.com/english/articles/39-regression-model-diagnostics/161-linear-regression-assumptions-and-diagnostics-in-r-essentials/
+- https://data.library.virginia.edu/diagnostic-plots/
 - https://www.geeksforgeeks.org/principal-component-analysis-with-r-programming/
 - https://microbiome.github.io/tutorials/Ordination.html
-- https://pubmed.ncbi.nlm.nih.gov/26650184/
 
 ## Assignment

@@ -1,6 +1,10 @@
 ---
-title: "Lab 11 – Random Forest Classification: Wisdom of the Forest"
-output: html_notebook
+title: "Lab 11: Random Forest Classification"
+author: "Bruno Grande"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Tutorial
@@ -16,7 +20,183 @@ output: html_notebook
 
 ### Context
 
-### Stuff
+### Exploring the data
+
+```{r, warning=FALSE}
+library(tidyverse)
+```
+
+```{r}
+metadata <- read_csv("data/pannets_metadata.csv")
+
+metadata
+```
+
+```{r}
+rnaseq <- read_csv("data/pannets_expr_rnaseq.csv.gz")
+
+rnaseq_long <- pivot_longer(rnaseq, cols = -Gene, 
+                            names_to = "Tumour",
+                            values_to = "Expr")
+
+rnaseq_wide <- pivot_wider(rnaseq_long, id_cols = Tumour,
+                           names_from = Gene, 
+                           values_from = Expr)
+
+head(rnaseq)
+```
+
+### Random forest
+
+In the previous tutorial, we trained logistic regression models for predicting the A-D-M subtype based on the expression of the three associated genes, ATRX, DAXX, and MEN1
+
+In this tutorial, we will attempt the same exercise using a different type of method: the random forest
+
+The random forest works very differently from the logistic regression
+
+Briefly, a number of decision trees are individually trained on random subsets of the data using random subsets of variables
+
+Then, for new observations, each tree gets a vote, and the majority determines the classification predicted by the overall model
+
+This ensemble approach is known as bagging
+
+There are actually many packages for training random forest models, but we will use the original one, `randomForest`
+
+If you are working on a classification problem, like we are here, you should ensure that the independent/response variable is encoded as a factor
+
+Here, we are setting `importance = TRUE` so that the `randomForest()` function calculates the relative important of each dependent variable, which is not done by default
+
+This importance metric can give insight into the model, analogous to coefficients in linear or logistic regression models
+
+In the output of the `randomForest` object, we can see that each tree was trained with one variable, which is not surprising since we only provided with three variables to begin with
+
+Importantly, the out-of-bag (OOB) estimate of error rate is 45%
+
+This OOB estimate is good for predicting the error rate if we were to test this model on completely new samples
+
+Obviously, this error rate is very high
+
+The confusion matrix below gives insight into where the errors are happening
+
+Specifically, the model is struggling to identify the A-D-M WT tumours and generally assuming that most samples are mutant
+
+```{r}
+library(randomForest)
+
+rf_model <- randomForest(Subtype ~ ATRX_Expr + DAXX_Expr + MEN1_Expr,
+                         data = logistic_data, importance = TRUE)
+
+rf_model
+```
+
+We will come back to the performance of this model in a bit
+
+For now, let's look at the variable important plots
+
+As expected, by both metrics, the `DAXX_Expr` variable is the most important as deemed by the random forest
+
+Interestingly, the inclusion of the `ATRX_Expr` variable decreased accuracy on average
+
+This suggests that the model might perform better if we trained using the other two variables on their own (similar to the regularized logistic regression model)
+
+```{r}
+varImpPlot(rf_model)
+```
+
+If we calculate the ability to predict the subtype for the tumours, it's 100% accurate
+
+If this raises red flags for you, then your instinct is correct
+
+Perfectly accurate models are virtually impossible with real-world data
+
+What's happened here is that we are testing the model with the same data that we trained it with
+
+In other words, the model is very aware of any idiosyncrasies of our data (possible overfit to them), and thus we overestimate accuracy
+
+Keep in mind that our OOB estimate for error rate was on the order of 45%
+
+```{r}
+subtype_probs_rf <- predict(rf_model, logistic_data, type = "prob")
+
+rf_results <- 
+  logistic_data %>% 
+  mutate(Subtype_Prob = subtype_probs_rf[,2],
+         Subtype_Pred = ifelse(Subtype_Prob > 0.5, 
+                               "A-D-M Mutant", "A-D-M WT"),
+         Pred_Correct = Subtype == Subtype_Pred)
+
+rf_results
+
+mean(rf_results$Pred_Correct)
+```
+
+To demonstrate the dramatic difference between testing a model on the original training data and a completely separate test dataset, we are going to re-train a model on 70% of our data and test on the remaining 30%
+
+We will randomly subsample 24 rows of our 33-row dataset
+
+Here, the OOB estimate of error rate is a bit lower with 33%, but the training error rate (that is, the error rate when predicting the subtype on the original training data) is 100%, like before
+
+```{r}
+set.seed(123)
+
+train_indices <- sample.int(nrow(logistic_data), size = 24)
+
+rf_data_train <- logistic_data[train_indices,]
+rf_data_test <- logistic_data[-train_indices,]
+
+rf_model_split <- randomForest(Subtype ~ ATRX_Expr + DAXX_Expr + MEN1_Expr,
+                               data = rf_data_train)
+
+rf_model_split
+
+subtype_probs_rf_train <- predict(rf_model_split, rf_data_train, type = "prob")
+
+rf_results_split_train <- 
+  rf_data_train %>% 
+  mutate(Subtype_Prob = subtype_probs_rf_train[,2],
+         Subtype_Pred = ifelse(Subtype_Prob > 0.5, 
+                               "A-D-M Mutant", "A-D-M WT"),
+         Pred_Correct = Subtype == Subtype_Pred)
+
+mean(rf_results_split_train$Pred_Correct)
+```
+
+However, if we apply the same model on the 9 rows that the model has never seen, the accuracy is only 56%, barely better than a coin flip
+
+This error rate (100-56=44%) is close to our original OOB estimate (45%)
+
+The second OOB estimate is probably not as accurate due to the limited sample size
+
+```{r}
+subtype_probs_rf_test <- predict(rf_model_split, rf_data_test, type = "prob")
+
+rf_results_split_test <- 
+  rf_data_test %>% 
+  mutate(Subtype_Prob = subtype_probs_rf_test[,2],
+         Subtype_Pred = ifelse(Subtype_Prob > 0.5, 
+                               "A-D-M Mutant", "A-D-M WT"),
+         Pred_Correct = Subtype == Subtype_Pred)
+
+mean(rf_results_split_test$Pred_Correct)
+```
+
+If we train the random forest (back to using the whole dataset) without the `ATRX_Expr` variable, we can see that the OOB estimate of error rate is actually smaller
+
+```{r}
+randomForest(Subtype ~ DAXX_Expr + MEN1_Expr, data = logistic_data)
+```
+
+But something important to note is the stochastic nature of random forests
+
+As the name implies, the process of training a random forest involve random processes, namely when selecting samples to train each tree and selecting variables for each tree
+
+As a result, the OOB estimate for error rate and other features of the model will most likely vary from run to run
+
+For example, the code below is identical to the code above, but the output will likely differ
+
+```{r}
+randomForest(Subtype ~ DAXX_Expr, data = logistic_data)
+```
 
 ## More Resources
 

@@ -1,6 +1,10 @@
 ---
-title: "Lab 10 – Logistic Regression: First Steps with Classification"
-output: html_notebook
+title: "Lab 10: Logistic Regression"
+author: "Bruno Grande"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Tutorial
@@ -16,7 +20,227 @@ output: html_notebook
 
 ### Context
 
-### Stuff
+### Exploring the data
+
+```{r, warning=FALSE}
+library(tidyverse)
+library(broom)
+```
+
+```{r, warning=FALSE}
+metadata <- read_csv("data/pannets_metadata.csv")
+
+metadata
+```
+
+```{r}
+rnaseq <- read_csv("data/pannets_expr_rnaseq.csv.gz")
+
+rnaseq_long <- pivot_longer(rnaseq, cols = -Gene, 
+                            names_to = "Tumour",
+                            values_to = "Expr")
+
+rnaseq_wide <- pivot_wider(rnaseq_long, id_cols = Tumour,
+                           names_from = Gene, 
+                           values_from = Expr)
+
+head(rnaseq)
+```
+
+### Random forest
+
+Logistic regression is similar to linear regression, but the dependent/response variable is binary
+
+In the previous tutorials, we have found that the A-D-M subtype determines a lot about the biology of the disease
+
+We also know that these cases are associated with metastasis
+
+Therefore, it would be useful to predict the subtype from gene expression data in the event that mutation data is unavailable
+
+Let's start with a simple model consisting of the expression of the three genes (ATRX, DAXX, MEN1) and some simple demographic variables such as age and sex
+
+Here, I'm creating a separate data frame to ensure that the categorical variables are encoded as factors with the proper reference level
+
+For example, the `Subtype` column would use `A-D-M Mutant` as the default reference level since it's alphabetically before `A-D-M WT`, while the opposite makes more sense
+
+We're also setting `M` as the reference level for sex to be consistent with our earlier work
+
+We also printed the summary of the model below
+
+We can see that the coefficients for most independent variables are close to zero, indicating a minimal effect on the dependent variable
+
+Recall that a coefficient of zero means that the corresponding independent variable has no effect on the output
+
+After training the model, we can see that only one variable, `DAXX_Expr`, has a coefficient subtantially deviated from zero, and whose P-value indicates that it is significantly associated with the subtype
+
+```{r}
+logistic_data <- 
+  metadata %>% 
+  transmute(Subtype = fct_relevel(Subtype, "A-D-M WT"),
+            ATRX_Expr, DAXX_Expr, MEN1_Expr)
+
+logistic_simple <- glm(Subtype ~ ATRX_Expr + DAXX_Expr + MEN1_Expr, 
+                       data = logistic_data, family = "binomial")
+
+summary(logistic_simple)
+```
+
+To obtain an overall P-value for the model, we need to compare it with a "null model", which is a model using no information at all
+
+Usually, that involves setting the right-hand side (RHS) to 1
+
+The comparison is done with the `anova()` function in R
+
+Here, we can see that the logistic model that we trained is indeed better than the null model, which is not surprising since we have at least one independent variable that is significantly associated with the subtype
+
+```{r}
+logistic_null <- 
+  glm(Subtype ~ 1, data = logistic_data, family = "binomial")
+
+anova(logistic_null, logistic_simple, test = "Chisq")
+```
+
+To put performance in more practical terms, let's use this model to predict the subtype for the training data
+
+Note that we haven't done a training-test data split, so this performance will be an overestimate since we are testing the model on the data that was used for training
+
+We use the `predict()` function with `type = "response"` to ensure the output is a series of probabilities
+
+We set a threshold at 0.5: since we defined the WT as the reference level, then less than 0.5 is WT and more than 0.5 is mutant
+
+The `Pred_Correct` column indicates whether the prediction is correct based on what we know for sure about the subtype
+
+Sadly, only 70% of cases were accurately described
+
+```{r}
+subtype_probs <- predict(logistic_simple, logistic_data, type = "response")
+
+logistic_results <- 
+  logistic_data %>% 
+  mutate(Subtype_Prob = subtype_probs,
+         Subtype_Pred = ifelse(Subtype_Prob > 0.5, 
+                               "A-D-M Mutant", "A-D-M WT"),
+         Pred_Correct = Subtype == Subtype_Pred)
+
+logistic_results
+
+mean(logistic_results$Pred_Correct)
+```
+
+Lasso logistic regression
+
+Lasso is one approach to regularization, which in turn is a method for minimizing the number of features in a automated way
+
+Most models will "perform" better on the training data or have a "better" fit as you provide more features, even if these features are not related to the independent/response variable
+
+For this reason, a number of regularization methods exist to penalize for the number of variable used in a model
+
+Here, we will use the popular `glmnet` package, which uses a method called cross-validation to optimize the magnitude of regularization, known as lambda
+
+If we plot the output object from `cv.glmnet()`, we get the the error associated with the model for various values of lambda
+
+By default, the function evaluates 100 values of lambda, but we will restrict to 30 for simplicity
+
+Along the top of the plot is the number of non-zero coefficients
+
+As you can see, as lambda increases, the number of non-zero coefficients decrease
+
+Here, the optimal lambda results in one non-zero coefficient, which we can predict to be `DAXX_Expr`
+
+Conveniently, the optimal lambda is stored in `logistic_lasso$lambda.min`
+
+```{r}
+library(glmnet)
+
+logistic_data_x <- logistic_data[-1] %>% as.matrix()
+logistic_data_y <- 
+  (logistic_data[[1]] == "A-D-M Mutant") %>% 
+  as.integer() %>% 
+  as.matrix()
+
+logistic_lasso <- 
+  cv.glmnet(logistic_data_x, logistic_data_y, family = "binomial")
+
+plot(logistic_lasso)
+```
+
+We can also use the broom package to extract these data and plot them using `ggplot2`
+
+```{r}
+tidy(logistic_lasso) %>% 
+  ggplot(aes(x = lambda, y = estimate)) +
+  geom_vline(xintercept = logistic_lasso$lambda.min, 
+             colour = "firebrick", linetype = "dashed") +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high),
+                colour = "grey", size = 1) + 
+  geom_point() +
+  geom_text(aes(y = max(conf.high) + 0.03, label = nzero)) +
+  scale_x_log10()
+```
+
+Another way of visualizing how the lasso regularization affects the model is to plot the coefficients for various values of lambda
+
+Here, I'm going straight to using broom and ggplot2 so I can easily tweak the figure
+
+Conveniently, the `cv.glmnet()` includes a full model under `logistic_lasso$glmnet.fit`
+
+We're going to ignore the intercept term here
+
+The `geom_blank()` line is a trick to make sure the plot is symetrical around the zero point
+
+We can glean a lot from this point
+
+First, the `DAXX_Expr` term has the largest absolute coefficient pver the entire range of tested lambdas
+
+Second, `MEN1_Expr` is the first term to drop to zero, soon followed by `ATRX_Expr`
+
+Third, we can also see that if the lambda is sufficiently high, even the `DAXX_Expr` term drops to zero and the model is only left with the intercept (_i.e._ constant probability for each A-D-M subtype)
+
+The red dashed line indicates the optimal value of lambda, which occurs right after the other two terms drop to zero
+
+```{r}
+tidy(logistic_lasso$glmnet.fit, return_zeros = TRUE) %>% 
+  mutate(is_nonzero = estimate != 0) %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot(aes(x = lambda, y = estimate, colour = term)) +
+  geom_vline(xintercept = logistic_lasso$lambda.min, 
+             colour = "firebrick", linetype = "dashed") +
+  geom_hline(yintercept = 0, colour = "grey20") +
+  geom_line() +
+  geom_point(aes(shape = is_nonzero)) +
+  geom_blank(aes(y = -estimate)) +
+  scale_x_log10()
+```
+Now that we have an optimal value for lambda, let's take a look at the model coefficients for this lambda
+
+Notice how you need to specify a value of lambda to the `s` argument
+
+Here, we can see that we only have one non-zero coefficient (other than the intercept), where the periods indicate coefficients that have been set to zero and excluded from the model
+
+```{r}
+coef(logistic_lasso$glmnet.fit, s = logistic_lasso$lambda.min)
+```
+
+Using this new regularized model, we can see that the performance has improved slightly despite less information being given to the model (one instead of three variables)
+
+The improvement in performance would probably be even greater if we tested this model on a completely separate test dataset
+
+```{r}
+subtype_probs_lasso <- 
+  predict(logistic_lasso$glmnet.fit, logistic_data_x, type = "response", 
+          s = logistic_lasso$lambda.min)
+
+logistic_results_lasso <- 
+  logistic_data %>% 
+  mutate(Subtype_Prob = subtype_probs_lasso[,1],
+         Subtype_Pred = ifelse(Subtype_Prob > 0.5, 
+                               "A-D-M Mutant", "A-D-M WT"),
+         Pred_Correct = Subtype == Subtype_Pred)
+
+logistic_results_lasso
+
+mean(logistic_results_lasso$Pred_Correct)
+```
 
 ## More Resources
 
