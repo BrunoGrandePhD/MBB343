@@ -62,7 +62,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Jan,Taiwan,Asia,9,0,23773881
 2020,Jan,Thailand,Asia,14,0,69625581
 2020,Jan,United_Arab_Emirates,Asia,4,0,9770526
-2020,Jan,United_Kingdom,Europe,2,0,66647112
+2020,Jan,United_Kingdom,Europe,0,0,66647112
 2020,Jan,United_States_of_America,America,6,0,329064917
 2020,Jan,Vietnam,Asia,5,0,96462108
 2020,Feb,Afghanistan,Asia,1,0,38041757
@@ -123,12 +123,12 @@ year,month,territory,continent,cases,deaths,population
 2020,Feb,South_Korea,Asia,2924,16,51225321
 2020,Feb,Spain,Europe,54,0,46937060
 2020,Feb,Sri_Lanka,Asia,0,0,21323734
-2020,Feb,Sweden,Europe,12,0,10230185
+2020,Feb,Sweden,Europe,11,0,10230185
 2020,Feb,Switzerland,Europe,12,0,8544527
 2020,Feb,Taiwan,Asia,30,1,23773881
 2020,Feb,Thailand,Asia,28,0,69625581
-2020,Feb,United_Arab_Emirates,Asia,15,0,9770526
-2020,Feb,United_Kingdom,Europe,16,0,66647112
+2020,Feb,United_Arab_Emirates,Asia,17,0,9770526
+2020,Feb,United_Kingdom,Europe,30,0,66647112
 2020,Feb,United_States_of_America,America,60,0,329064917
 2020,Feb,Vietnam,Asia,11,0,96462108
 2020,Mar,Afghanistan,Asia,140,4,38041757
@@ -139,7 +139,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Mar,Anguilla,America,2,0,14872
 2020,Mar,Antigua_and_Barbuda,America,7,0,97115
 2020,Mar,Argentina,America,966,24,44780675
-2020,Mar,Armenia,Europe,482,3,2957728
+2020,Mar,Armenia,Europe,532,3,2957728
 2020,Mar,Aruba,America,50,0,106310
 2020,Mar,Australia,Oceania,4532,19,25203200
 2020,Mar,Austria,Europe,9611,108,8858775
@@ -149,7 +149,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Mar,Bangladesh,Asia,49,5,163046173
 2020,Mar,Barbados,America,34,0,287021
 2020,Mar,Belarus,Europe,104,0,9452409
-2020,Mar,Belgium,Europe,15300,1307,11455519
+2020,Mar,Belgium,Europe,15299,1168,11455519
 2020,Mar,Belize,America,3,0,390351
 2020,Mar,Benin,Africa,6,0,11801151
 2020,Mar,Bermuda,America,27,0,62508
@@ -246,12 +246,12 @@ year,month,territory,continent,cases,deaths,population
 2020,Mar,Malaysia,Asia,2601,37,31949789
 2020,Mar,Maldives,Asia,17,0,530957
 2020,Mar,Mali,Africa,18,0,19658023
-2020,Mar,Malta,Europe,165,0,493559
+2020,Mar,Malta,Europe,156,0,493559
 2020,Mar,Mauritania,Africa,5,0,4525698
 2020,Mar,Mauritius,Africa,128,3,1269670
 2020,Mar,Mexico,America,1092,28,127575529
 2020,Mar,Moldova,Europe,298,2,4043258
-2020,Mar,Monaco,Europe,48,0,33085
+2020,Mar,Monaco,Europe,35,0,33085
 2020,Mar,Mongolia,Asia,12,0,3225166
 2020,Mar,Montenegro,Europe,91,1,622182
 2020,Mar,Montserrat,America,5,0,4991
@@ -290,7 +290,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Mar,San_Marino,Europe,228,25,34453
 2020,Mar,Saudi_Arabia,Asia,1453,8,34268529
 2020,Mar,Senegal,Africa,162,0,16296362
-2020,Mar,Serbia,Europe,741,13,6963764
+2020,Mar,Serbia,Europe,785,16,6963764
 2020,Mar,Seychelles,Africa,10,0,97741
 2020,Mar,Singapore,Asia,746,3,5804343
 2020,Mar,Sint_Maarten,America,3,0,42389
@@ -303,7 +303,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Mar,Sri_Lanka,Asia,119,1,21323734
 2020,Mar,Sudan,Africa,6,2,42813237
 2020,Mar,Suriname,America,8,0,581363
-2020,Mar,Sweden,Europe,4016,146,10230185
+2020,Mar,Sweden,Europe,4349,289,10230185
 2020,Mar,Switzerland,Europe,15400,295,8544527
 2020,Mar,Syria,Asia,10,2,17070132
 2020,Mar,Taiwan,Asia,267,4,23773881
@@ -316,8 +316,8 @@ year,month,territory,continent,cases,deaths,population
 2020,Mar,Turks_and_Caicos_islands,America,5,0,38194
 2020,Mar,Uganda,Africa,33,0,44269587
 2020,Mar,Ukraine,Europe,480,11,43993643
-2020,Mar,United_Arab_Emirates,Asia,592,5,9770526
-2020,Mar,United_Kingdom,Europe,22123,2043,66647112
+2020,Mar,United_Arab_Emirates,Asia,590,5,9770526
+2020,Mar,United_Kingdom,Europe,29651,2050,66647112
 2020,Mar,United_Republic_of_Tanzania,Africa,19,1,58005461
 2020,Mar,United_States_of_America,America,164554,3170,329064917
 2020,Mar,United_States_Virgin_Islands,America,30,0,104579
@@ -335,7 +335,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Apr,Anguilla,America,1,0,14872
 2020,Apr,Antigua_and_Barbuda,America,17,3,97115
 2020,Apr,Argentina,America,3306,190,44780675
-2020,Apr,Armenia,Europe,1450,27,2957728
+2020,Apr,Armenia,Europe,1534,29,2957728
 2020,Apr,Aruba,America,50,2,106310
 2020,Apr,Australia,Oceania,2189,71,25203200
 2020,Apr,Austria,Europe,5746,472,8858775
@@ -345,14 +345,14 @@ year,month,territory,continent,cases,deaths,population
 2020,Apr,Bangladesh,Asia,7054,158,163046173
 2020,Apr,Barbados,America,46,7,287021
 2020,Apr,Belarus,Europe,13076,84,9452409
-2020,Apr,Belgium,Europe,34440,6686,11455519
+2020,Apr,Belgium,Europe,34645,6605,11455519
 2020,Apr,Belize,America,15,2,390351
 2020,Apr,Benin,Africa,63,2,11801151
 2020,Apr,Bermuda,America,84,6,62508
 2020,Apr,Bhutan,Asia,3,0,763094
 2020,Apr,Bolivia,America,1003,53,11513102
 2020,Apr,"Bonaire, Saint Eustatius and Saba",America,6,0,25983
-2020,Apr,Bosnia_and_Herzegovina,Europe,1235,54,3300998
+2020,Apr,Bosnia_and_Herzegovina,Europe,1336,56,3300998
 2020,Apr,Botswana,Africa,23,1,2303703
 2020,Apr,Brazil,America,73583,5307,211049519
 2020,Apr,British_Virgin_Islands,America,3,1,30033
@@ -447,12 +447,12 @@ year,month,territory,continent,cases,deaths,population
 2020,Apr,Malaysia,Asia,3319,63,31949789
 2020,Apr,Maldives,Asia,260,0,530957
 2020,Apr,Mali,Africa,464,25,19658023
-2020,Apr,Malta,Europe,298,4,493559
+2020,Apr,Malta,Europe,306,4,493559
 2020,Apr,Mauritania,Africa,2,1,4525698
 2020,Apr,Mauritius,Africa,204,7,1269670
 2020,Apr,Mexico,America,16705,1704,127575529
 2020,Apr,Moldova,Europe,3473,109,4043258
-2020,Apr,Monaco,Europe,46,4,33085
+2020,Apr,Monaco,Europe,30,1,33085
 2020,Apr,Mongolia,Asia,26,0,3225166
 2020,Apr,Montenegro,Europe,231,6,622182
 2020,Apr,Montserrat,America,6,1,4991
@@ -492,7 +492,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Apr,Sao_Tome_and_Principe,Africa,14,0,215048
 2020,Apr,Saudi_Arabia,Asia,19949,149,34268529
 2020,Apr,Senegal,Africa,720,9,16296362
-2020,Apr,Serbia,Europe,7983,160,6963764
+2020,Apr,Serbia,Europe,7939,157,6963764
 2020,Apr,Seychelles,Africa,1,0,97741
 2020,Apr,Sierra_Leone,Africa,116,4,7813207
 2020,Apr,Singapore,Asia,14797,11,5804343
@@ -507,7 +507,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Apr,Sri_Lanka,Asia,529,6,21323734
 2020,Apr,Sudan,Africa,369,26,42813237
 2020,Apr,Suriname,America,2,1,581363
-2020,Apr,Sweden,Europe,16274,2316,10230185
+2020,Apr,Sweden,Europe,16608,2514,10230185
 2020,Apr,Switzerland,Europe,13912,1112,8544527
 2020,Apr,Syria,Asia,33,1,17070132
 2020,Apr,Taiwan,Asia,123,1,23773881
@@ -521,7 +521,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Apr,Uganda,Africa,48,0,44269587
 2020,Apr,Ukraine,Europe,9386,239,43993643
 2020,Apr,United_Arab_Emirates,Asia,11318,93,9770526
-2020,Apr,United_Kingdom,Europe,143080,24054,66647112
+2020,Apr,United_Kingdom,Europe,137469,23999,66647112
 2020,Apr,United_Republic_of_Tanzania,Africa,461,15,58005461
 2020,Apr,United_States_of_America,America,875289,57796,329064917
 2020,Apr,United_States_Virgin_Islands,America,36,4,104579
@@ -541,7 +541,7 @@ year,month,territory,continent,cases,deaths,population
 2020,May,Anguilla,America,0,0,14872
 2020,May,Antigua_and_Barbuda,America,1,0,97115
 2020,May,Argentina,America,11929,314,44780675
-2020,May,Armenia,Europe,6995,97,2957728
+2020,May,Armenia,Europe,7216,99,2957728
 2020,May,Aruba,America,1,1,106310
 2020,May,Australia,Oceania,439,12,25203200
 2020,May,Austria,Europe,1274,88,8858775
@@ -551,14 +551,14 @@ year,month,territory,continent,cases,deaths,population
 2020,May,Bangladesh,Asia,37505,447,163046173
 2020,May,Barbados,America,12,0,287021
 2020,May,Belarus,Europe,28477,145,9452409
-2020,May,Belgium,Europe,8851,1509,11455519
+2020,May,Belgium,Europe,8976,1576,11455519
 2020,May,Belize,America,0,0,390351
 2020,May,Benin,Africa,163,1,11801151
 2020,May,Bermuda,America,29,3,62508
 2020,May,Bhutan,Asia,36,0,763094
 2020,May,Bolivia,America,8482,251,11513102
 2020,May,"Bonaire, Saint Eustatius and Saba",America,1,0,25983
-2020,May,Bosnia_and_Herzegovina,Europe,906,91,3300998
+2020,May,Bosnia_and_Herzegovina,Europe,804,88,3300998
 2020,May,Botswana,Africa,12,0,2303703
 2020,May,Brazil,America,420278,23368,211049519
 2020,May,British_Virgin_Islands,America,2,0,30033
@@ -595,7 +595,7 @@ year,month,territory,continent,cases,deaths,population
 2020,May,El_Salvador,America,2140,37,6453550
 2020,May,Equatorial_Guinea,Africa,991,11,1355982
 2020,May,Eritrea,Africa,0,0,3497117
-2020,May,Estonia,Europe,199,17,1324820
+2020,May,Estonia,Europe,199,13,1324820
 2020,May,Eswatini,Africa,192,1,1148133
 2020,May,Ethiopia,Africa,933,5,112078727
 2020,May,Falkland_Islands_(Malvinas),America,0,0,3372
@@ -655,12 +655,12 @@ year,month,territory,continent,cases,deaths,population
 2020,May,Malaysia,Asia,1817,15,31949789
 2020,May,Maldives,Asia,1395,5,530957
 2020,May,Mali,Africa,768,51,19658023
-2020,May,Malta,Europe,153,3,493559
+2020,May,Malta,Europe,155,3,493559
 2020,May,Mauritania,Africa,476,20,4525698
 2020,May,Mauritius,Africa,3,0,1269670
 2020,May,Mexico,America,69713,8047,127575529
 2020,May,Moldova,Europe,4327,180,4043258
-2020,May,Monaco,Europe,4,1,33085
+2020,May,Monaco,Europe,1,0,33085
 2020,May,Mongolia,Asia,141,0,3225166
 2020,May,Montenegro,Europe,2,2,622182
 2020,May,Montserrat,America,0,0,4991
@@ -715,7 +715,7 @@ year,month,territory,continent,cases,deaths,population
 2020,May,Sri_Lanka,Asia,971,3,21323734
 2020,May,Sudan,Africa,4425,234,42813237
 2020,May,Suriname,America,4,0,581363
-2020,May,Sweden,Europe,16811,1933,10230185
+2020,May,Sweden,Europe,17420,1790,10230185
 2020,May,Switzerland,Europe,1438,249,8544527
 2020,May,Syria,Asia,79,1,17070132
 2020,May,Taiwan,Asia,13,1,23773881
@@ -730,7 +730,7 @@ year,month,territory,continent,cases,deaths,population
 2020,May,Uganda,Africa,332,0,44269587
 2020,May,Ukraine,Europe,13338,446,43993643
 2020,May,United_Arab_Emirates,Asia,21967,164,9770526
-2020,May,United_Kingdom,Europe,107605,12279,66647112
+2020,May,United_Kingdom,Europe,87240,11336,66647112
 2020,May,United_Republic_of_Tanzania,Africa,29,5,58005461
 2020,May,United_States_of_America,America,730475,42815,329064917
 2020,May,United_States_Virgin_Islands,America,3,2,104579
@@ -750,7 +750,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Jun,Anguilla,America,0,0,14872
 2020,Jun,Antigua_and_Barbuda,America,41,0,97115
 2020,Jun,Argentina,America,46054,752,44780675
-2020,Jun,Armenia,Europe,16200,306,2957728
+2020,Jun,Armenia,Europe,16260,312,2957728
 2020,Jun,Aruba,America,2,0,106310
 2020,Jun,Australia,Oceania,582,2,25203200
 2020,Jun,Austria,Europe,1028,35,8858775
@@ -760,14 +760,14 @@ year,month,territory,continent,cases,deaths,population
 2020,Jun,Bangladesh,Asia,97193,1173,163046173
 2020,Jun,Barbados,America,5,0,287021
 2020,Jun,Belarus,Europe,20132,158,9452409
-2020,Jun,Belgium,Europe,2835,250,11455519
+2020,Jun,Belgium,Europe,2969,278,11455519
 2020,Jun,Belize,America,6,0,390351
 2020,Jun,Benin,Africa,955,16,11801151
 2020,Jun,Bermuda,America,6,0,62508
 2020,Jun,Bhutan,Asia,34,0,763094
 2020,Jun,Bolivia,America,22533,761,11513102
 2020,Jun,"Bonaire, Saint Eustatius and Saba",America,0,0,25983
-2020,Jun,Bosnia_and_Herzegovina,Europe,1849,30,3300998
+2020,Jun,Bosnia_and_Herzegovina,Europe,1850,31,3300998
 2020,Jun,Botswana,Africa,140,0,2303703
 2020,Jun,Brazil,America,869755,29480,211049519
 2020,Jun,British_Virgin_Islands,America,0,0,30033
@@ -804,7 +804,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Jun,El_Salvador,America,3656,118,6453550
 2020,Jun,Equatorial_Guinea,Africa,695,20,1355982
 2020,Jun,Eritrea,Africa,152,0,3497117
-2020,Jun,Estonia,Europe,122,2,1324820
+2020,Jun,Estonia,Europe,122,0,1324820
 2020,Jun,Eswatini,Africa,512,9,1148133
 2020,Jun,Ethiopia,Africa,4783,95,112078727
 2020,Jun,Falkland_Islands_(Malvinas),America,0,0,3372
@@ -832,7 +832,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Jun,Holy_See,Europe,0,0,815
 2020,Jun,Honduras,America,13724,284,9746115
 2020,Jun,Hungary,Europe,278,61,9772756
-2020,Jun,Iceland,Europe,34,0,356991
+2020,Jun,Iceland,Europe,16,0,356991
 2020,Jun,India,Asia,384697,11729,1366417756
 2020,Jun,Indonesia,Asia,29319,1232,270625567
 2020,Jun,Iran,Asia,76255,2936,82913893
@@ -864,12 +864,12 @@ year,month,territory,continent,cases,deaths,population
 2020,Jun,Malaysia,Asia,875,6,31949789
 2020,Jun,Maldives,Asia,664,3,530957
 2020,Jun,Mali,Africa,923,39,19658023
-2020,Jun,Malta,Europe,54,2,493559
+2020,Jun,Malta,Europe,52,2,493559
 2020,Jun,Mauritania,Africa,3666,105,4525698
 2020,Jun,Mauritius,Africa,6,0,1269670
 2020,Jun,Mexico,America,133145,17342,127575529
 2020,Jun,Moldova,Europe,8259,245,4043258
-2020,Jun,Monaco,Europe,4,0,33085
+2020,Jun,Monaco,Europe,3,0,33085
 2020,Jun,Mongolia,Asia,41,0,3225166
 2020,Jun,Montenegro,Europe,177,2,622182
 2020,Jun,Montserrat,America,0,0,4991
@@ -924,7 +924,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Jun,Sri_Lanka,Asia,422,1,21323734
 2020,Jun,Sudan,Africa,4458,310,42813237
 2020,Jun,Suriname,America,487,12,581363
-2020,Jun,Sweden,Europe,30554,915,10230185
+2020,Jun,Sweden,Europe,28669,890,10230185
 2020,Jun,Switzerland,Europe,807,25,8544527
 2020,Jun,Syria,Asia,147,5,17070132
 2020,Jun,Taiwan,Asia,5,0,23773881
@@ -939,7 +939,7 @@ year,month,territory,continent,cases,deaths,population
 2020,Jun,Uganda,Africa,457,0,44269587
 2020,Jun,Ukraine,Europe,20424,451,43993643
 2020,Jun,United_Arab_Emirates,Asia,14350,52,9770526
-2020,Jun,United_Kingdom,Europe,39139,5199,66647112
+2020,Jun,United_Kingdom,Europe,29151,2956,66647112
 2020,Jun,United_Republic_of_Tanzania,Africa,0,0,58005461
 2020,Jun,United_States_of_America,America,820168,22359,329064917
 2020,Jun,United_States_Virgin_Islands,America,15,0,104579
